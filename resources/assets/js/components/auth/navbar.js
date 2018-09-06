@@ -27,16 +27,38 @@ class Nav extends Component {
 
     if (this.props.link) {
       return (
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="#" onClick={this.handleClick.bind(this)}>Admin</a>
+        <header className="main-header">
+          <a href="#" className="logo">
+            <span className="logo-mini"><b>Yoole</b></span>
+            <span className="logo-lg"><b>Morning Speech Manager</b></span>
+          </a>
+          <nav className="navbar navbar-static-top">
+            <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span className="sr-only">Toggle navigation</span>
+            </a>
+            <div className="navbar-custom-menu">
+                <ul className="nav navbar-nav">
+                    <li className="dropdown messages-menu">
+                      <a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>{this.props.link}</a>
+                      <ul className="dropdown-menu">
+                          <li className="header">You have 4 messages</li>
+                          <li>
+                            <ul className="menu">
+                              <li>
+                                <a href="#">
+                                    <div className="pull-left">
+                                        <img src="" className="img-circle" alt="User Image" />
+                                    </div>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                      </ul>
+                    </li>
+                </ul>
             </div>
-            <ul className="nav navbar-nav navbar-right">
-              <a className="navbar-brand" href="#" onClick={this.logout.bind(this)}>{this.props.link}</a>  
-            </ul>
-          </div>
         </nav>
+        </header>
       )
     }
     return (
