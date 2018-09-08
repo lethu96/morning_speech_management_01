@@ -4,6 +4,7 @@ import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
 
+
 class CreatePost extends Component {
   constructor(props)
     {

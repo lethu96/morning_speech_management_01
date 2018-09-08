@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fbda46d50eba067ff7f9829306f5ffc1fd50b278
 class CreateUser extends Component {
   constructor(props)
   {
@@ -399,4 +403,3 @@ class CreateUser extends Component {
   }
 }
 export default CreateUser;
-
