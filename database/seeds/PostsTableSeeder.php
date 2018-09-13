@@ -20,18 +20,18 @@ class PostsTableSeeder extends Seeder
         'test.jpg',
     ];
     const VIDEO_URL = [
-        'testvideo.mp4',
+        'videomusic.mp4',
         'test.mp4',
     ];
     const TITLE = [
-        'This is a post Morning Speech 1',
-        'This is a post Morning Speech 2',
-        'This is a post Morning Speech 3',
+        'This is a post Morning Speek 1',
+        'This is a post Morning Speek 2',
+        'This is a post Morning Speek 3',
     ];
     const CONTENT = [
-        'Content of Morning Speech 01',
-        'Content of Morning Speech 02',
-        'Content of Morning Speech 03',
+        'Content of Morning Speek 01',
+        'Content of Morning Speek 02',
+        'Content of Morning Speek 03',
     ];
 
     private function processDay(Datetime $day)

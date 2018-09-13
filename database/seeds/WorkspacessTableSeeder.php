@@ -18,6 +18,6 @@ class WorkspacessTableSeeder extends Seeder
             ['name' => 'Handico', 'address' => 'Handico'],
         ];
         
-        DB::table('workspaces')->insert($workspace);
+        DB::table('work_spaces')->insert($workspace);
     }
 }

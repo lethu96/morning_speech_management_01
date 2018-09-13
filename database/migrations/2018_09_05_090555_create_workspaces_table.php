@@ -14,7 +14,7 @@ class CreateWorkspacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('workspaces', function (Blueprint $table) {
+        Schema::create('work_spaces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('address');
@@ -30,6 +30,6 @@ class CreateWorkspacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workspaces');
+        Schema::dropIfExists('work_spaces');
     }
 }

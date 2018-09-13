@@ -24,10 +24,10 @@ class UserTableSeeder extends Seeder
                 'birth_day' => '1996-12-12',
                 'company_id' => 1, 'work_space_id' => 1,
                 'position_id' => 1,
-                'avatar' => config('images') . 'chan.jpg',
+                'avatar' => 'chan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
-                'close_date' => '2019-02-12 15:20:01',
+                'close_date' => '2019-02-12 15:20:01'
             ],
             [
                 'name' => 'Normal user',
@@ -41,10 +41,10 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 2,
                 'position_id' => 2,
-                'avatar' => config('images') . 'chan.jpg',
+                'avatar' => 'chan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
-                'close_date' => '2019-02-12 15:20:01',
+                'close_date' => '2019-02-12 15:20:01'
             ],
         ];
 

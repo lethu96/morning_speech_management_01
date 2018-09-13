@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.search input {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.search button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.search button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.sidebar{
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-flex-direction: column;
+}
+.img-user{
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+.post-item {
+  margin-left: 5%;
+  margin-bottom: 3%;
+}
+.main-sidebar-client {
+  position: absolute;
+  left: 0;
+  background-color: #f1f1f1;
+  min-height: 100%;
+  width: 230px;
+  z-index: 810;
+}
+.w3-bar-item.w3-button{
+color: rgba(0,0,0,0.87);
+}
+.thumb{
+  height: 50px;
+}
+.DraftEditor-editorContainer {
+  background-color:#fff;
+  border-left:.1px solid transparent;
+  position:relative;
+  z-index:1;
+  height: 500px;
+}
+.suggestion-usd img {
+  border-radius: 100px;
+  height: 100%;
+  width: 24%;
+  border: 5px solid #fff;
+}
+.comment-info {
+  float: left;
+  width: 100%;
+  background-color: #fff;
+  border-left: 1px solid #e4e4e4;
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 15px;
+}
+.comment-up-info {
+  width: 100%;
+  padding-bottom: 2%;x;
+  border-bottom: 1px solid #e5e5e5;
+}
+.comment-up-info img {
+  float: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  height: 30px;
+  object-fit: cover;
+}
+.comment-info-user {
+  width: 100%;
+  padding: 30px 20px;
+}
+.comment-info-user >div {
+  float: left;
+}
+.comment-info-user h3 {
+  margin-left: 15px;
+  color: #e44d3a;
+}
+.comment-content p {
+  color: black;
+}
+.btn-active{
+  background-color: #e44d3a;
+  color: #fff;
+  font-size: 16px;
+  border: 1px solid #e5e5e5;
+  padding: 10px 25px;
+  display: inline-block;
+  font-weight: 600;
+  cursor: pointer;
+}
+.row.posts-detail {
+  margin-bottom: 3%;
+}
+.bk-links .unvote i {
+  color: black;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+.bk-links .vote i {
+  color: white;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #00a65a;
+}

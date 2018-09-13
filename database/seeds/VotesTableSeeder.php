@@ -16,22 +16,22 @@ class VotesTableSeeder extends Seeder
             [
                 'user_id' => 1,
                 'post_id' => 2,
-                'type_vote' => 'vote_up',
+                'type_vote' => 'vote_up'
             ],
             [
                 'user_id' => 2,
                 'post_id' => 1,
-                'type_vote' => 'vote_up',
+                'type_vote' => 'vote_up'
             ],
             [
                 'user_id' => 1,
                 'post_id' => 3,
-                'type_vote' => 'vote_down',
+                'type_vote' => 'vote_down'
             ],
             [
                 'user_id' => 2,
                 'post_id' => 3,
-                'type_vote' => 'vote_down',
+                'type_vote' => 'vote_down'
             ],
         ];
 
