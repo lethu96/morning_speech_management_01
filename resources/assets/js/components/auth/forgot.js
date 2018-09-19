@@ -13,7 +13,7 @@ class Forgot extends Component {
     onSubmit(e) {
         e.preventDefault();
         const {email} = this.state;
-        axios.post('api/password/email', {
+        axios.post('/password/email', {
             email,
         })
         .then(response => {

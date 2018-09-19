@@ -16,7 +16,7 @@ class Login extends Component {
     onSubmit(e) {
         e.preventDefault();
         const {email , password} = this.state ;
-        axios.post('api/login', {
+        axios.post('/login', {
             email, 
             password
         })
@@ -42,56 +42,53 @@ class Login extends Component {
         let msg = (!error) ? 'Login Successful' : 'Wrong Credentials';
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
         return (
-            <div >
-                <Nav />
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-md-8 col-md-offset-2">
-                            <div className="panel panel-default">
-                                <div className="panel-heading">Login</div>
-                                <div className="panel-body">   
-                                    <div className="col-md-offset-2 col-md-8 col-md-offset-2">
-                                        {error != undefined && <div className= {name} role="alert">{msg}</div>}
-                                    </div>  
-                                    <form className="form-horizontal" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
-                                        <div className="form-group">
-                                            <label for="email" className="col-md-4 control-label">E-Mail Address</label>
-                                            <div className="col-md-6">
-                                                <input id="email" type="email" ref="email" className="form-control" name="email"  onChange= {this.onChange.bind(this)} required />
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <label for="password" className="col-md-4 control-label">Password</label>
-                                            <div className="col-md-6">
-                                                <input id="password" type="password" ref="password" className="form-control" name="password"  onChange= {this.onChange.bind(this)}  required />
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="col-md-6 col-md-offset-4">
-                                                <div className="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" name="remember" /> Remember Me
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <div className="col-md-8 col-md-offset-4">
-                                                <button type="submit" className="btn btn-primary">
-                                                  Login
-                                                </button>
-                                                <li className="btn btn-link">
-                                                    <Link to = "forgotpassword">Forgot Your Password?</Link>
-                                                </li>
-                                            </div>
-                                        </div>
-                                  </form>
+            
+            <div className="limiter">
+                <div className="container-login100">
+                    <div className="wrap-login100">
+                        <div className="login100-form-title" >
+                            <span className="login100-form-title-1">
+                                Sign In
+                            </span>
+                        </div>
+                        <div className="col-md-offset-2 col-md-8 col-md-offset-2">
+                            {error != undefined && <div className= {name} role="alert">{msg}</div>}
+                        </div>
+                        <form className="login100-form validate-form" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
+                            <div className="wrap-input100 validate-input m-b-26">
+                                <span className="label-input100">Email</span>
+                                <input placeholder="Enter Email" className="input100" type="email" ref="email" className="form-control" name="email"  onChange= {this.onChange.bind(this)} required />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <div className="wrap-input100 validate-input m-b-18" >
+                                <span className="label-input100">Password</span>
+                                <input placeholder="Enter Password"  className="input100" type="password" ref="password" className="form-control" name="password"  onChange= {this.onChange.bind(this)}  required />
+                                <span className="focus-input100"></span>
+                            </div>
+
+                            <div className="flex-sb-m w-full p-b-30">
+                                <div className="contact100-form-checkbox">
+                                    <input className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"/>
+                                    <label className="label-checkbox100" for="ckb1">
+                                     Remember Me
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <Link to = "forgotpassword" className="txt1">Forgot Your Password?</Link>
                                 </div>
                             </div>
-                        </div>
+
+                            <div className="container-login100-form-btn">
+                                <button className="login100-form-btn" type="submit">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>     
+            </div>    
         );
     }
 }

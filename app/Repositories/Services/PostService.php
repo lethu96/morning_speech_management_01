@@ -39,8 +39,7 @@ class PostService implements PostRepositoryInterface
  
     public function create($request)
     {
-        // $request['user_id'] = Auth::user()->id;
-        $request['user_id'] = 1;
+        $request['user_id'] = Auth::user()->id;
         $post = $this->model->create($request->all());
 
         return response()->json($post);
@@ -92,11 +91,9 @@ class PostService implements PostRepositoryInterface
 
     public function listPost()
     {
-        //$user_id = Auth::user()->id;
-        
         $posts = Post::withCount(['vote','comments', 'vote as checkVote' => function ($query) {
-            $user =1 ;
-                $query->where('user_id', '=', $user);
+            $user_id = Auth::user()->id;
+                $query->where('user_id', '=', $user_id);
             }])->get();
 
         foreach ($posts as $post) {
@@ -112,8 +109,7 @@ class PostService implements PostRepositoryInterface
 
     public function myPost()
     {
-        // $user_id = Auth::user()->id;
-        $user_id = 1;
+        $user_id = Auth::user()->id;
         $posts = $this->model->where('user_id',$user_id)->get();
         foreach ($posts as $key => $post) {
            $post->user;

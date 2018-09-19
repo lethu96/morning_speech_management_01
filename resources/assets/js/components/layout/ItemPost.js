@@ -9,21 +9,21 @@ class ItemPost extends Component
     {
         super(props);
         this.state = {
-            isVote : false,
+            checkVote :'',
         };
         this.voteUp = this.voteUp.bind(this);
     }
     componentDidMount() {
-        if(this.props.obj.checkVote == 0)
-        this.setState(
-            isVote :true
-        );
-        console.log(this.state.isVote);
+        let vote = this.props.obj.checkVote;
+        this.setState({
+            checkVote: vote
+        });
+        console.log(this.state.checkVote);
     }
 
     voteUp() {
         this.setState(prevState => ({
-            isVote: !prevState.isVote
+            checkVote: !prevState.checkVote
         }));
     }
 
@@ -46,7 +46,7 @@ class ItemPost extends Component
                             <li><img src="images/icon9.png" alt=""/><span>Work Space</span></li>
                         </ul>
                         <ul className="bk-links">
-                            <li onClick={this.voteUp} className= {this.state.isVote ? 'unvote' : 'vote'}><i className="fa fa-hand-o-up"></i></li>
+                            <li onClick={this.voteUp} className={this.state.checkVote ? 'vote' : 'unvote'}><i className="fa fa-hand-o-up"></i></li>
                         </ul>
                     </div>
                     <div className="job_descp">

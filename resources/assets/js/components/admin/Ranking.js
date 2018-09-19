@@ -4,6 +4,8 @@ import { get } from 'axios';
 import times from 'lodash.times';
 import { Helmet } from 'react-helmet';
 import Page from './Page';
+import Nav from '../auth/navbar';
+import SideBar from '../auth/sidebar';
 
 const TOTAL_PER_PAGE = 10;
 
@@ -31,7 +33,7 @@ class Ranking extends Component {
   }
 
   getRanks() {
-    get('/api/ranks')
+    get('/ranks')
       .then(({ data }) => {
         const totalPages = Math.ceil(data.length / TOTAL_PER_PAGE);
         this.setState({
@@ -66,53 +68,57 @@ class Ranking extends Component {
     const startIndex = page * TOTAL_PER_PAGE;
 
     return (
-      <Page title="Ranking">
-        <Helmet>
-          <title>List Ranking</title>
-        </Helmet>
+        <div>
+            <Nav link="Logout" />  
+            <SideBar />
+            <Page title="Ranking">
+            <Helmet>
+              <title>List Ranking</title>
+            </Helmet>
 
-        <Table celled striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>CODE ID</Table.HeaderCell>
-              <Table.HeaderCell>NAME</Table.HeaderCell>
-              <Table.HeaderCell>TITLE POST</Table.HeaderCell>
-              <Table.HeaderCell>VOTE UP</Table.HeaderCell>
-              <Table.HeaderCell>AVARTAR</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {ranks.slice(startIndex, startIndex + TOTAL_PER_PAGE).map(rank =>
-              (<Table.Row key={rank.id}>
-                <Table.Cell>{rank.code_id}</Table.Cell>
-                <Table.Cell>{rank.name}</Table.Cell>
-                <Table.Cell>{rank.title}</Table.Cell>
-                <Table.Cell>{rank.number_vote}</Table.Cell>
-                <Table.Cell><img className="thumb"  src={rank.avatar} /></Table.Cell>
-              </Table.Row>),
-            )}
-          </Table.Body>
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan={6}>
-                <Menu floated="right" pagination>
-                  {page !== 0 && <Menu.Item as="a" icon onClick={this.decrementPage}>
-                    <Icon name="left chevron" />
-                  </Menu.Item>}
-                  {times(totalPages, n =>
-                    (<Menu.Item as="a" key={n} active={n === page} onClick={this.setPage(n)}>
-                      {n + 1}
-                    </Menu.Item>),
-                  )}
-                  {page !== (totalPages - 1) && <Menu.Item as="a" icon onClick={this.incrementPage}>
-                    <Icon name="right chevron" />
-                  </Menu.Item>}
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table>
-      </Page>
+            <Table celled striped>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>CODE ID</Table.HeaderCell>
+                  <Table.HeaderCell>NAME</Table.HeaderCell>
+                  <Table.HeaderCell>TITLE POST</Table.HeaderCell>
+                  <Table.HeaderCell>VOTE UP</Table.HeaderCell>
+                  <Table.HeaderCell>AVARTAR</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {ranks.slice(startIndex, startIndex + TOTAL_PER_PAGE).map(rank =>
+                  (<Table.Row key={rank.id}>
+                    <Table.Cell>{rank.code_id}</Table.Cell>
+                    <Table.Cell>{rank.name}</Table.Cell>
+                    <Table.Cell>{rank.title}</Table.Cell>
+                    <Table.Cell>{rank.number_vote}</Table.Cell>
+                    <Table.Cell><img className="thumb"  src={rank.avatar} /></Table.Cell>
+                  </Table.Row>),
+                )}
+              </Table.Body>
+              <Table.Footer>
+                <Table.Row>
+                  <Table.HeaderCell colSpan={6}>
+                    <Menu floated="right" pagination>
+                      {page !== 0 && <Menu.Item as="a" icon onClick={this.decrementPage}>
+                        <Icon name="left chevron" />
+                      </Menu.Item>}
+                      {times(totalPages, n =>
+                        (<Menu.Item as="a" key={n} active={n === page} onClick={this.setPage(n)}>
+                          {n + 1}
+                        </Menu.Item>),
+                      )}
+                      {page !== (totalPages - 1) && <Menu.Item as="a" icon onClick={this.incrementPage}>
+                        <Icon name="right chevron" />
+                      </Menu.Item>}
+                    </Menu>
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Footer>
+            </Table>
+            </Page>
+        </div>
     );
   }
 }

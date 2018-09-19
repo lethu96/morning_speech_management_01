@@ -151,3 +151,19 @@ color: rgba(0,0,0,0.87);
   line-height: 30px;
   background-color: #00a65a;
 }
+.unfollow {
+  display: inline-block;
+  padding: 0 12px;
+  color: #fff;
+  height: 35px;
+  line-height: 35px;
+  background-color: red;
+}
+.follow {
+  display: inline-block;
+  padding: 0 12px;
+  color: #fff;
+  height: 35px;
+  line-height: 35px;
+  background-color: #64d791;
+}

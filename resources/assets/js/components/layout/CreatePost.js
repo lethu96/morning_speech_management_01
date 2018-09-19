@@ -3,8 +3,10 @@ import Header from './Header';
 import {browserHistory} from 'react-router';
 import { post } from 'axios';
 import ReactDOM from 'react-dom';
-import { EditorState, ContentState} from 'draft-js';
+import { EditorState, ContentState, convertFromRaw, convertToRaw} from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 
 class CreatePost extends Component {
@@ -17,6 +19,8 @@ class CreatePost extends Component {
             editorState: EditorState.createEmpty(),
             isButtonDisabled: false
         };
+         this.onChange = (editorState) => this.setState({ editorState })
+        this.setDomEditorRef = ref => this.domEditor = ref;
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -27,21 +31,38 @@ class CreatePost extends Component {
         })
 
     }
-  //   setEditorContent (text) {
-  //   const contentState = ContentState.createFromText(text);
-  //   const editorState = EditorState.push(this.state.editorState, contentState);
-  //   this.setState({ editorState });  
-  // }
+    
+
+    onEditorStateChange(e) {
+        this.setState ({
+          title: e.target.value
+        })
+    };
+
+
+       componentDidMount() {
+    if(this.props.text) {
+      const html = `${this.props.text}`;
+      const contentBlock = htmlToDraft(html);
+      if (contentBlock) {
+        const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+        const editorState = EditorState.createWithContent(contentState);
+        this.setState({ editorState, });
+      }
+    }
+
+    this.domEditor.focusEditor();
+  }
 
     handleSubmit(e) {
         e.preventDefault();
         let data = new FormData();
         data.append('title', this.state.title)
-        data.append('editorState', this.state.content)
+        data.append('content', this.state.editorState)
 
-        post('/api/posts', data)
+        post('/posts', data)
         .then(
-            (response) => {this.props.history.push("/list-post");}
+            (response) => {this.props.history.push("/user-posts");}
         )
         .catch(error => {
             if (error.response) {
@@ -71,9 +92,12 @@ class CreatePost extends Component {
                                         </div>
                                     </div>
                                         <Editor
-                                            editorState={editorState}
-                                            onEditorStateChange={editorState => this.setState({ editorState })}
-                                        />
+                                        ref={this.setDomEditorRef}
+                                        editorState={editorState}
+                                        wrapperClassName="rte-wrapper"
+                                        editorClassName="rte-editor"
+                                        onChange={this.onChange}
+                                      />
 
                                         <label className="help-block" >{this.state.error.content} </label>
                                     <br />

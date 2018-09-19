@@ -16,14 +16,14 @@ export default class Main extends Component {
     if (location.pathname === '/index') {
             this.getPosts();
         }
-        else  if (location.pathname === '/my-posts' )
+        else  if (location.pathname === '/user-posts' )
         {
             this.getUserPosts();
         }
     }
 
     getPosts() {
-        get('/api/list-post')
+        get('/list-post')
           .then(({ data }) => {
             this.setState({
               posts: data,
@@ -32,7 +32,7 @@ export default class Main extends Component {
     }
 
     getUserPosts() {
-        get('/api/my-post')
+        get('/my-post')
           .then(({ data }) => {
             this.setState({
               posts: data,

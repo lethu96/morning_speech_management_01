@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { get, post, put } from 'axios';
+import Nav from '../auth/navbar';
+import SideBar from '../auth/sidebar';
 
 class UpdateUser extends Component
 {
@@ -51,19 +53,19 @@ class UpdateUser extends Component
 
     componentDidMount()
     {
-        get('/api/positions').then(response => {
+        get('/positions').then(response => {
             this.setState({ position: response.data });
         })
-        get('/api/companys').then(response => {
+        get('/companys').then(response => {
             this.setState({ company: response.data });
         })
-        get('/api/workspaces').then(response => {
+        get('/workspaces').then(response => {
             this.setState({ work_space: response.data });
         })
 
         let current_url = window.location.href;
         let current_id = current_url.split("/").pop();
-        get('/api/users/' + current_id)
+        get('/users/' + current_id)
         .then(response=> {
             this.setState({id:response.data.id, opening_date:response.data.opening_date,close_date:response.data.close_date,role:response.data.role,avatar:response.data.avatar, code_id: response.data.code_id, name: response.data.name, email: response.data.email,
                 card_number: response.data.card_number, gender: response.data.gender, birth_day: response.data.birth_day,phone_contact:response.data.phone_contact,selectedPosition: response.data.position_id, selectedCompany : response.data.company_id,selectedWorkSpace:response.data.work_space_id});
@@ -216,7 +218,7 @@ class UpdateUser extends Component
             company_id: this.state.selectedCompany,
             work_space_id: this.state.selectedWorkSpace,
         }
-        let uri = '/api/users/' + this.state.id;
+        let uri = '/users/' + this.state.id;
         put(uri, data)
         .then(
             (response) => {this.props.history.push("/list-user");}
@@ -232,6 +234,8 @@ class UpdateUser extends Component
     {
         return (
             <div>
+                <Nav link="Logout" />  
+                <SideBar />
                 <h1>Update User</h1>
                 <div className="row">
                     <div className="col-md-10"></div>

@@ -22,7 +22,7 @@ export default class SuggestUser extends Component {
     }
 
     getSuggest() {
-    	get('/api/suggest').then(response => {
+    	get('/suggest').then(response => {
             this.setState({ suggests: response.data });
         })
     }
@@ -41,6 +41,24 @@ export default class SuggestUser extends Component {
 	    return (
 	    	<div className="col-lg-3 pd-right-none no-pd">
 				<div className="right-sidebar">
+                    <div className="widget widget-jobs">
+                        <div className="sd-title">
+                            <h3>Top Post</h3>
+                            <i className="fa fa-ellipsis-v"></i>
+                        </div>
+                        <div className="jobs-list">
+                            <div className="job-info">
+                                <div className="job-details">
+                                    <h3>Senior Product Designer</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                </div>
+                                <div className="hr-rate">
+                                    <span>$25/hr</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
 					<div className="suggestions full-width">
 						<div className="sd-title">
 							<h3>Suggestions</h3>

@@ -20,6 +20,8 @@
         <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
         <link rel="stylesheet" href="css/stylefr.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/pagination.css">
         <link rel="stylesheet" type="text/css" href="css/DraftStyleDefault.css">
         <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />

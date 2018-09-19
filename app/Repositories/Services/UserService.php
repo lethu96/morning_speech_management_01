@@ -3,8 +3,10 @@
 namespace App\Repositories\Services;
  
 use App\User;
+use App\EloquentModels\Follow;
 Use App\EloquentModels\WorkSpace;
 use Auth;
+use DB;
 use Illuminate\Support\Collection;
 use App\Repositories\Interfaces\UserRepositoryInterface;
  
@@ -17,13 +19,12 @@ class UserService implements UserRepositoryInterface
  
     public function getAll()
     {
-        $user = User::where('status', '=', '1')->get();
-        foreach ($user as $key => $name) {
-            $name->position->name;
-            $name->company->name;
-            $name->workSpace->name;
+        $users = User::where('status', '=', '1')->get();
+        foreach ($users as $key => $user) {
+            $user->position->name;
+            $user->workSpace->name;
         }
-        $collection = collect($user);
+        $collection = collect($users);
 
         return $collection;
     }
@@ -106,21 +107,59 @@ class UserService implements UserRepositoryInterface
     public function profile ()
     {
         $user = Auth::user();
+        $position = $user->position->name;
+        $count = $user->followers->count();
+        $following  =  $user->following->count();
+
         $collection = collect($user);
+        $collection->put('userFollow', $count);
+        $collection->put('following', $following);
+        $collection->put('position', $position);
+
 
         return $collection;
     }
 
     public function suggest()
     {
-        //$user_id = Auth::user()->work_space_id;
-        $workspace_id = 1;
+        $workspace_id = Auth::user()->work_space_id;
         $users = $this->model->where('work_space_id',$workspace_id)->limit(4)->get();
         foreach ($users as $key => $position) {
             $position->position->name;
         }
 
         $collection = collect($users);
+
+        return $collection;
+    }
+
+    public function follows($request)
+    {
+        $user_id = Auth::user()->id;
+        $request['follower'] = $user_id ;
+        dd($request->all());
+        $follow = Follow::create($request->all());
+        
+        return response()->json($follow);
+    }
+    public function notFollow()
+    {
+        $user = Auth::user();
+        $user_id = Auth::user()->id;
+        $userFollowing = $user->following()->with('following')->pluck('user_id')->prepend($user_id);
+        $listUser = DB::table('users')->whereNotIn('id', $userFollowing)->get();
+        $collection = collect($listUser);
+
+        return $collection;
+
+    }
+    public function getFollowing()
+    {
+        $user = Auth::user();
+
+        $follower = $user->following()->with('following')->get();
+
+        $collection = collect($follower);
 
         return $collection;
     }

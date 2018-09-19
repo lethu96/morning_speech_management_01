@@ -42,7 +42,7 @@ export default class App extends Component
                         <Route path = "/add-user" component = {CreateUser} />
                         <Route path = "/update-user/:id" component = {UpdateUser} />
                         <Route path = "/create-post" component = {CreatePost} />
-                        <Route path = "/my-posts" component = {MyPost} />
+                        <Route path = "/user-posts" component = {MyPost} />
                         <Route path = "/people" component = {People} />
                         <Route path = "/detail-posts/:id" component = {DetailPost} />
                     </Switch>

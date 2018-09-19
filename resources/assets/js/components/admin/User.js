@@ -7,6 +7,8 @@ import times from 'lodash.times';
 import { Helmet } from 'react-helmet';
 import Page from './Page';
 import swal from 'sweetalert';
+import Nav from '../auth/navbar';
+import SideBar from '../auth/sidebar';
 
 
 const TOTAL_PER_PAGE = 10;
@@ -35,7 +37,7 @@ class Users extends React.Component {
      }
 
      getUsers() {
-          get('/api/users')
+          get('/users')
           .then(({ data }) => {
                const totalPages = Math.ceil(data.length / TOTAL_PER_PAGE);
                this.setState({
@@ -73,10 +75,10 @@ class Users extends React.Component {
           })
           .then((willDelete) => {
                if (willDelete) {
-                     axios.delete('/api/users/8' )
+                     axios.delete('/users/8' )
                     .then(
                          (response) => {
-                              get('/api/users')
+                              get('/users')
                               .then(response => {
                                    this.setState({ users: response.data });
                               }
@@ -91,12 +93,15 @@ class Users extends React.Component {
           });
      }
 
-     render() {
-         const { users, page, totalPages } = this.state;
-         const startIndex = page * TOTAL_PER_PAGE;
+    render() {
+        const { users, page, totalPages } = this.state;
+        const startIndex = page * TOTAL_PER_PAGE;
 
-          return (
-               <Page title="Users">
+        return (
+            <div>
+                <Nav link="Logout" />  
+                <SideBar />
+                <Page title="Users">
                     <Helmet>
                          <title>Users</title>
                     </Helmet>
@@ -153,7 +158,8 @@ class Users extends React.Component {
                          </Table.Footer>
                      </Table>
                     <Link to="/add-user" className="btn btn-success">Create Users</Link>
-               </Page>
+                </Page>
+            </div>
           );
      }
 }

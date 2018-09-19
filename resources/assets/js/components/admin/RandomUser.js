@@ -3,6 +3,8 @@ import {get} from 'axios';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Table } from 'semantic-ui-react';
 import TableRowWorkSpace from './TableRowWorkSpace';
+import Nav from '../auth/navbar';
+import SideBar from '../auth/sidebar';
 
 
 class RandomUser extends Component
@@ -20,7 +22,7 @@ class RandomUser extends Component
 
     componentDidMount()
     {
-        get('/api/workspaces').then(response => {
+        get('/workspaces').then(response => {
             this.setState({ workspace: response.data });
         })
 
@@ -45,6 +47,8 @@ class RandomUser extends Component
        const { results} = this.state;
         return (
           <div>
+            <Nav link="Logout" />  
+            <SideBar />
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav col-md-12">

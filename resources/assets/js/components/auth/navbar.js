@@ -9,9 +9,9 @@ class Nav extends Component {
   
    logout(e) {
         e.preventDefault();  
-        axios.post('api/logout')
+        axios.post('/logout')
         .then(response => {
-            this.props.history.push('/');
+            this.props.history.push('/home');
         })
         .catch(error => {
             console.log(error);

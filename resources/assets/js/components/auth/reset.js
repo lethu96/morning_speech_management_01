@@ -16,7 +16,7 @@ class Reset extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const url = BASE_URL+'/api/password/reset' ;
+        const url = BASE_URL+'/password/reset' ;
         const {token, email, password, password_confirmation} = this.state ;
         axios.post(url, {
             token,

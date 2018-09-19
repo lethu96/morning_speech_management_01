@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, browserHistory, Image } from 'react-router-dom';
 import { get } from 'axios';
 import swal from 'sweetalert';
+import Nav from '../auth/navbar';
+import SideBar from '../auth/sidebar';
 
 class TableRowWorkSpace extends Component
 {
@@ -22,7 +24,7 @@ class TableRowWorkSpace extends Component
         })
         .then((willRandom) => {
             if (willRandom) {
-                get('api/random/' + this.props.obj.id)
+                get('/random/' + this.props.obj.id)
                 .then(
                     (response) => {
                             this.setState({ list: response.data });

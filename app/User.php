@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\EloquentModels\Position;
 use App\EloquentModels\Company;
 use App\EloquentModels\WorkSpace;
+use App\EloquentModels\Follow;
 
 class User extends Authenticatable
 {
@@ -36,7 +37,6 @@ class User extends Authenticatable
         'role',
     ];
 
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -49,16 +49,26 @@ class User extends Authenticatable
 
     public function position()
     {
-        return $this->belongsTo('App\EloquentModels\Position', 'position_id', 'id');
+        return $this->belongsTo(Position::class, 'position_id', 'id');
     }
 
     public function company()
     {
-        return $this->belongsTo('App\EloquentModels\Company', 'company_id', 'id');
+        return $this->belongsTo(Company::class, 'company_id', 'id');
     }
 
     public function workSpace()
     {
-        return $this->belongsTo('App\EloquentModels\WorkSpace', 'company_id', 'id');
+        return $this->belongsTo(WorkSpace::class, 'company_id', 'id');
+    }
+
+    public function followers()
+    {
+        return $this->hasMany(Follow::class);    
+    }
+
+    public function following()
+    {
+        return  $this->hasMany(Follow::class, 'follower', 'id');
     }
 }

@@ -21,7 +21,7 @@ export default class Header extends Component {
     }
 
     getProfile() {
-        get('/api/profile')
+        get('/profile')
         .then(({ data }) => {
             this.setState({
                 users: data,
@@ -30,6 +30,7 @@ export default class Header extends Component {
     }
 
     render() {
+        const {users} = this.state;
         return (
             <header>
                 <div className="container">
@@ -58,7 +59,7 @@ export default class Header extends Component {
                                    </Link>
                                     <ul>
                                         <li><Link to="create-post">New Post </Link></li>
-                                        <li><Link to="my-posts">My Post </Link></li>
+                                        <li><Link to="user-posts">My Post </Link></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -74,8 +75,7 @@ export default class Header extends Component {
                         </div>
                         <div className="user-account">
                             <div className="user-info">
-                                <img src="images/user.png" alt=""/>
-                                <a href="#" title="">John</a>
+                                <a href="#" title="">{users.name}</a>
                                 <i className="fa fa-sort-down"></i>
                             </div>
                             <div className="user-account-settingss">

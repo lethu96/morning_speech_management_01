@@ -3,32 +3,43 @@ import Header from './Header';
 import {Link } from 'react-router-dom';
 import { get } from 'axios';
 import ItemPeople from './ItemPeople';
+import ItemNotFollow from './ItemNotFollow';
 
 class People extends Component {
     constructor(props) {
         super(props);
         this.state = {
-               users: [],
+               notfollow: [],
+               following: [],
         };
     }
 
     componentDidMount() {
-        this.getUsers();
-    }
-
-    getUsers() {
-        get('/api/users')
+        get('/user/not-follow')
         .then(({ data }) => {
             this.setState({
-                users: data,
+                notfollow: data,
+            });
+          });
+        get('/user/following')
+        .then(({ data }) => {
+            this.setState({
+                following: data,
             });
           });
     }
 
-    getItemUser()
-    {
-        if (this.state.users instanceof Array) {
-            return this.state.users.map((user, i) => {
+    getItemFollower() {
+        if (this.state.notfollow instanceof Array) {
+            return this.state.notfollow.map((user, i) => {
+                return <ItemNotFollow obj={user} key={i}/>;
+            })
+        }
+    }
+
+    getItemFollowing() {
+        if (this.state.following instanceof Array) {
+            return this.state.following.map((user, i) => {
                 return <ItemPeople obj={user} key={i}/>;
             })
         }
@@ -41,13 +52,22 @@ class People extends Component {
                 <section className="companies-info">
                     <div className="container">
                         <div className="company-title">
-                            <h3>All Companies</h3>
+                            <h3>Following</h3>
                         </div>
                         <div className="companies-list">
                             <div className="row">
-                                {this.getItemUser()}
+                                {this.getItemFollowing()}
                             </div>
                         </div>
+                        <div className="company-title bottom">
+                            <h3>All Company</h3>
+                        </div>
+                        <div className="companies-list">
+                            <div className="row">
+                                {this.getItemFollower()}
+                            </div>
+                        </div>
+
                     </div>
                 </section>
             </div>   

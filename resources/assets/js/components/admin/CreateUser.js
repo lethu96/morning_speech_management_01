@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import { get, post } from 'axios';
 import { Form } from 'semantic-ui-react';
+import Nav from '../auth/navbar';
+import SideBar from '../auth/sidebar';
 
 
 class CreateUser extends Component
@@ -53,14 +55,14 @@ class CreateUser extends Component
     }
     componentDidMount()
     {
-        get('/api/companys').then(response => {
+        get('/companys').then(response => {
             this.setState({ company: response.data });
         })
-        get('/api/positions').then(response => {
+        get('/positions').then(response => {
             this.setState({ position: response.data });
         })
 
-        get('/api/workspaces').then(response => {
+        get('/workspaces').then(response => {
             this.setState({ work_space: response.data });
         })
     }
@@ -216,7 +218,7 @@ class CreateUser extends Component
         data.append('company_id', this.state.selectedCompany)
         data.append('work_space_id', this.state.selectedWorkSpace)
 
-        post('/api/users', data)
+        post('/users', data)
         .then(
             (response) => {this.props.history.push("/list-user");}
         )
@@ -232,6 +234,8 @@ class CreateUser extends Component
     {
         return (
             <div>
+                <Nav link="Logout" />  
+                <SideBar />
                 <h1>Create Users</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Services\UserService;
 use App\Http\Requests\UserValidatorRequest;
 use App\Http\Requests\UpdateUserValidatorRequest;
+use App\EloquentModels\Follow;
 
 class UserController extends Controller
 {
@@ -15,6 +16,7 @@ class UserController extends Controller
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
+        $this->middleware('auth');
     }
 
     /**
@@ -105,5 +107,29 @@ class UserController extends Controller
     public function suggest()
     {
         return $this->userService->suggest();
+    }
+
+    public function follows(Request $resquest)
+    {
+        dd($request->all());
+        return $this->userService->follows();
+    }
+
+    public function notFollow()
+    {
+        return $this->userService->notFollow();
+    }
+
+    public function getFollowing()
+    {
+        return $this->userService->getFollowing();
+    }
+
+    public function test(Request $resquest)
+    {
+        // dd($request::all());
+        // $result = Follow::create($request::all());
+
+        return response()->json('ahahhaah');
     }
 }

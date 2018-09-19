@@ -19,4 +19,10 @@ interface UserRepositoryInterface
     public function profile();
 
     public function suggest();
+
+    public function follows($request);
+
+    public function notFollow();
+
+    public function getFollowing();
 }

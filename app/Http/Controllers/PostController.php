@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Requests\PostValidatorRequest;
 use App\Repositories\Services\PostService;
 use DB;
+use Auth;
 
 class PostController extends Controller
 {
@@ -18,6 +19,12 @@ class PostController extends Controller
     public function __construct(PostService $postService)
     {
         $this->postService = $postService;
+        $this->middleware('auth');
+    }
+
+    public function getIndex()
+    {
+        return view('index');
     }
 
     public function index()

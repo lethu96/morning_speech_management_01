@@ -27,11 +27,11 @@ export default class DetailPost extends Component {
 	    let current_url = window.location.href;
         let current_id = current_url.split("/").pop();
 
-        get('/api/posts/' + current_id).then(response => {
+        get('/posts/' + current_id).then(response => {
             this.setState({id: response.data.id, title: response.data.title, content: response.data.content, user: response.data.user});
         	console.log(this.state.user);
         })
-        get('/api/comment-of-post/' + current_id)
+        get('/comment-of-post/' + current_id)
         .then(({ data }) => {
             this.setState({
                 itemComment: data,
@@ -52,12 +52,12 @@ export default class DetailPost extends Component {
         data.append('content', this.state.comment)
         data.append('post_id', this.state.id)
 
-        post('/api/add-comment', data)
+        post('/add-comment', data)
         .then(
             (response) => {
-            	axios.get('/api/comment-of-post/'+this.state.id)
+            	axios.get('/comment-of-post/'+this.state.id)
                         .then(response => {
-                        	console.log( response.data);
+                        	this.props.history.push("/posts/"+ this.state.id);
                     })
                 }
         )

@@ -23,7 +23,7 @@ export default class UserProfile extends Component {
     }
 
     getProfile() {
-        get('/api/users/1')
+        get('/profile')
         .then(({ data }) => {
             this.setState({
                 users: data,
@@ -32,7 +32,7 @@ export default class UserProfile extends Component {
     }
 
     render() {
-    	const { users } = this.state;
+    	const {users} = this.state;
 	    return (
 	      	<div className="col-lg-3 col-md-4 pd-left-none no-pd">
 				<div className="main-left-sidebar no-margin">
@@ -45,17 +45,17 @@ export default class UserProfile extends Component {
 							</div>
 							<div className="user-specs">
 								<h3>{users.name}</h3>
-								<span>{users.name}</span>
+								<span>{users.position}</span>
 							</div>
 						</div>
 						<ul className="user-fw-status">
 							<li>
 								<h4>Following</h4>
-								<span>34</span>
+								<span>{users.following}</span>
 							</li>
 							<li>
 								<h4>Followers</h4>
-								<span>155</span>
+								<span>{users.userFollow}</span>
 							</li>
 						</ul>
 					</div>

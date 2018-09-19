@@ -14,11 +14,11 @@ class ItemPeople extends Component {
              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
                 <div className="company_profile_info">
                     <div className="company-up-info">
-                        <img src={this.props.obj.avatar} alt=""/>
-                        <h3>{this.props.obj.name}</h3>
-                        <h4>{this.props.obj.position.name}</h4>
+                        <img src={this.props.obj.following.avatar} alt=""/>
+                        <h3>{this.props.obj.following.name}</h3>
+                        
                         <ul>
-                            <li><a href="#" title="" className="follow">Follow</a></li>
+                            <li onClick={this.follow} className="follow"> Followed</li>
                         </ul>
                     </div>
                     <a href="#" title="" className="view-more-pro">View Profile</a>
