@@ -14,8 +14,9 @@ Route::group(['middleware' => ['auth', 'checkLevel']], function () {
 	Route::get('/index', 'PostController@getIndex');
 	Route::get('/home', 'PostController@getIndex');
 	Route::get('/rank', 'PostController@getIndex');
-    Route::get('people', 'PostController@getIndex');
+    Route::get('/people', 'PostController@getIndex');
     Route::get('/detail-posts/{id}','PostController@getIndex');
+    Route::get('/detail-user/{id}', 'PostController@getIndex');
 	Route::get('/user-posts', 'PostController@getIndex');
 	Route::resource('users', 'UserController');
     Route::resource('posts', 'PostController');
@@ -35,6 +36,8 @@ Route::group(['middleware' => ['auth', 'checkLevel']], function () {
 	Route::get('/post', 'PostController@getItemPost');
 	Route::get('/user/not-follow', 'UserController@notFollow');
 	Route::get('/user/following','UserController@getFollowing');
+    Route::post('/votes', 'PostController@votes');
+    Route::post('/follows', 'PostController@follows');
 });
 
 Route::get('{slug}', function () {
@@ -44,5 +47,4 @@ Route::get('{slug}/{id}', function () {
     return view('index');
 }) ->where('slug', '(?!api)([A-z\d-\/_.]+)?');
 Auth::routes();
-Route::post('/follow', 'UserController@follows');
-Route::post('/tests', 'UserController@test');
+Route::get('/top-post', 'PostController@topPost');

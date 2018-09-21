@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import {browserHistory} from 'react-router';
-import { Link, Image } from 'react-router-dom';
-import post from 'axios';
+import { Link, browserHistory } from 'react-router-dom';
+import { get, post } from 'axios';
 
 class ItemNotFollow extends Component {
     constructor(props)
     {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            checkFollow: '',
+        }
+       this.followUser = this.followUser.bind(this);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    followUser() {
+        this.setState(prevState => ({
+            checkFollow: !prevState.checkFollow
+        }));
         let data = new FormData();
         data.append('user_id', this.props.obj.id)
-        post('/follow', data)
-        .then(
-            (response) => {}
-        );
+        post('/follows', data)
     }
 
     render()
@@ -27,15 +28,12 @@ class ItemNotFollow extends Component {
                 <div className="company_profile_info">
                     <div className="company-up-info">
                         <img src={this.props.obj.avatar} alt=""/>
-                        <h3>{this.props.obj.name}</h3>
-                        
+                        <h3><Link to={"/user-detail/" + this.props.obj.id}>{this.props.obj.name}</Link></h3>
                         <ul>
-                            <form onSubmit={this.handleSubmit}>
-                            <input type="submit" value="+ Follow" className="btn btn-danger"/>
-                            </form>
+                            <li onClick={this.followUser} className={this.state.checkFollow ? 'follow' : 'unfollow'}><i className= {this.state.checkFollow ? 'fa fa-check' : 'fa fa-plus'} >Follow</i></li>
                         </ul>
                     </div>
-                    <a href="#" title="" className="view-more-pro">View Profile</a>
+                    <Link className="view-more-pro" to={"/user-detail/" + this.props.obj.id}> View Profile</Link>
                 </div>
             </div>
         );

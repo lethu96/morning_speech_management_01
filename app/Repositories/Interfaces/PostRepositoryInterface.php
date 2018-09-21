@@ -21,4 +21,10 @@ interface PostRepositoryInterface
     public function listPost();
 
     public function myPost();
+
+    public function votePost($request);
+
+    public function followUser($request);
+
+    public function topPost();
 }

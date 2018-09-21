@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
+        '/follows',
+        '/votes',
         'api/login',
         'api/register',
         'api/logout',
@@ -24,6 +26,5 @@ class VerifyCsrfToken extends Middleware
         'api/posts/*',
         'profile',
         '/api/add-comment',
-        'test',
     ];
 }

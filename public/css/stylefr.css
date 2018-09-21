@@ -1093,6 +1093,7 @@ main {
 .usy-name {
 	float: left;
 	margin-left: 10px;
+	margin-top: 2%;
 }
 .usy-name h3 {
 	color: #000000;
@@ -1133,7 +1134,7 @@ main {
 }
 .descp li span {
 	color: #b2b2b2;
-	font-size: 14px;
+	font-size: 13px;
 	float: left;
 }
 .descp li img {
@@ -2570,6 +2571,8 @@ footer {
 	border-radius: 100px;
 	float: none;
 	border: 5px solid #fff;
+	height: 100%;
+	width: 72%;
 }
 .user_pro_status {
 	float: left;
@@ -5390,7 +5393,7 @@ a:hover {
 .usy-dt img {
 	border-radius: 100px;
   height: 100%;
-  width: 12%;
+  width: 9%;
   border: 5px solid #fff;
 }
 .login100-form-title {
@@ -5408,4 +5411,23 @@ a:hover {
 }
 .company-title.bottom{
 	margin-top: 3%;
+}
+.usy-dt .img-lock
+{
+	width: 13%;
+    margin-top: -1%;
+}
+.fa.fa-map-marker
+{
+    color: #e2665c;
+}
+.fa.fa-mobile-phone
+{
+	color: black;
+}
+.fa.fa-envelope-o{
+	color: #64d791;
+}
+.fa.fa-birthday-cake{
+	color: #ff8600;
 }

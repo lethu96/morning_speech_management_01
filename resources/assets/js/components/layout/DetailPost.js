@@ -17,7 +17,6 @@ export default class DetailPost extends Component {
             user: {},
             itemComment: '',
             error: '',
-
         };
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -99,10 +98,7 @@ export default class DetailPost extends Component {
 						                        <ul className="descp">
 						                            <li><img src="images/icon9.png" alt=""/><span>Work Space</span></li>
 						                        </ul>
-						                        <ul className="bk-links">
-						                            <li><a href="#" title=""><i className="fa fa-hand-o-up"></i></a></li>
-						                            <li><a href="#" title=""><i className="fa fa-thumbs-down"></i></a></li>
-						                        </ul>
+						                       
 						                    </div>
 						                    <div className="job_descp">
 						                        <h3>{this.state.title}</h3>

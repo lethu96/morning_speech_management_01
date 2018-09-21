@@ -22,7 +22,7 @@ class Login extends Component {
         })
         .then(response => {
             this.setState({err: false});
-            this.props.history.push("home") ;
+            this.props.history.push("index") ;
           
         })
         .catch(error => {
@@ -70,7 +70,7 @@ class Login extends Component {
                             <div className="flex-sb-m w-full p-b-30">
                                 <div className="contact100-form-checkbox">
                                     <input className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"/>
-                                    <label className="label-checkbox100" for="ckb1">
+                                    <label className="label-checkbox100">
                                      Remember Me
                                     </label>
                                 </div>

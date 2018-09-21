@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, withRouter} from 'react-router-dom';
 import Index from './auth/index';
 import Login from './auth/login';
 import Home from './auth/home';
@@ -17,6 +17,11 @@ import CreatePost  from './layout/CreatePost';
 import MyPost from './layout/MyPost';
 import People from './layout/People';
 import DetailPost from  './layout/DetailPost';
+import DetailUser from './layout/DetailUser';
+import { createHashHistory } from 'history'
+
+
+const history = createHashHistory()
 export default class App extends Component
 {
     checkrender() {
@@ -45,6 +50,7 @@ export default class App extends Component
                         <Route path = "/user-posts" component = {MyPost} />
                         <Route path = "/people" component = {People} />
                         <Route path = "/detail-posts/:id" component = {DetailPost} />
+                        <Route path = "/user-detail/:id" component = {DetailUser} />
                     </Switch>
             </Router>
         )

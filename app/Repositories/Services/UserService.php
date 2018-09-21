@@ -67,8 +67,23 @@ class UserService implements UserRepositoryInterface
     public function getById($id)
     {
         $user = $this->model->find($id);
+        $posts = $user->posts;
+        foreach ($posts as $key => $post) {
+            $post->user->workspace;
+        }
+        $workSpace = $user->workSpace->name;
+        $position = $user->position->name;
+        $count = $user->followers->count();
+        $following  =  $user->following->count();
 
-        return response()->json($user);
+        $collection = collect($user);
+        $collection->put('post', $posts);
+        $collection->put('workspace', $workSpace);
+        $collection->put('userFollow', $count);
+        $collection->put('following', $following);
+        $collection->put('position', $position);
+
+        return $collection;
     }
 
     public function update($id, $request)
@@ -133,15 +148,6 @@ class UserService implements UserRepositoryInterface
         return $collection;
     }
 
-    public function follows($request)
-    {
-        $user_id = Auth::user()->id;
-        $request['follower'] = $user_id ;
-        dd($request->all());
-        $follow = Follow::create($request->all());
-        
-        return response()->json($follow);
-    }
     public function notFollow()
     {
         $user = Auth::user();

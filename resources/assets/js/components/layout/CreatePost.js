@@ -19,7 +19,6 @@ class CreatePost extends Component {
             editorState: EditorState.createEmpty(),
             isButtonDisabled: false
         };
-         this.onChange = (editorState) => this.setState({ editorState })
         this.setDomEditorRef = ref => this.domEditor = ref;
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

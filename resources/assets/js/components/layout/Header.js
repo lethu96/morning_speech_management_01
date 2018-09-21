@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { get } from 'axios';
+import { get,post } from 'axios';
 import {Link, withRouter } from 'react-router-dom';
+import { browserHistory } from 'history'
 
 export default class Header extends Component {
     constructor(props) {
@@ -29,6 +30,17 @@ export default class Header extends Component {
         });
     }
 
+    logout(e) {
+        e.preventDefault();  
+        post('/logout')
+        .then(response => {
+            this.props.history.push('/login');
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
     render() {
         const {users} = this.state;
         return (
@@ -36,7 +48,7 @@ export default class Header extends Component {
                 <div className="container">
                     <div className="header-data">
                         <div className="logo">
-                            <a><img src="images/logo.png"/></a>
+                            <a><img src="/images/logo.png"/></a>
                         </div>
                         <div className="search-bar">
                             <form>
@@ -48,13 +60,13 @@ export default class Header extends Component {
                             <ul>
                                 <li>
                                     <Link to="/index">
-                                        <span><img src="images/icon1.png" alt=""/></span>
+                                        <span><img src="/images/icon1.png" alt=""/></span>
                                         Home
                                     </Link>
                                 </li>
                                 <li>
                                    <Link to="#">
-                                    <span><img src="images/icon2.png" alt=""/></span>
+                                    <span><img src="/images/icon2.png" alt=""/></span>
                                         Post
                                    </Link>
                                     <ul>
@@ -64,25 +76,22 @@ export default class Header extends Component {
                                 </li>
                                 <li>
                                     <Link to="/people">
-                                    <span><img src="images/icon4.png" alt=""/></span> 
+                                    <span><img src="/images/icon4.png" alt=""/></span> 
                                     People
                                     </Link>
                                 </li>
+                                <li>
+                                   <Link to="#">
+                                    <span><img src="/images/icon2.png" alt=""/></span>
+                                       {users.name}
+                                   </Link>
+                                    <ul>
+                                        <li><Link  to={"/user-detail/" + users.id}> My Profile </Link></li>
+                                        <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </nav>
-                        <div className="menu-btn">
-                            <a href="#" title=""><i className="fa fa-bars"></i></a>
-                        </div>
-                        <div className="user-account">
-                            <div className="user-info">
-                                <a href="#" title="">{users.name}</a>
-                                <i className="fa fa-sort-down"></i>
-                            </div>
-                            <div className="user-account-settingss">
-                                <h3>Setting</h3>
-                                <h3 className="tc"><a href="" title="">Logout</a></h3>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </header>

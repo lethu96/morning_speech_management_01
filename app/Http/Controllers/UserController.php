@@ -109,12 +109,6 @@ class UserController extends Controller
         return $this->userService->suggest();
     }
 
-    public function follows(Request $resquest)
-    {
-        dd($request->all());
-        return $this->userService->follows();
-    }
-
     public function notFollow()
     {
         return $this->userService->notFollow();
@@ -123,13 +117,5 @@ class UserController extends Controller
     public function getFollowing()
     {
         return $this->userService->getFollowing();
-    }
-
-    public function test(Request $resquest)
-    {
-        // dd($request::all());
-        // $result = Follow::create($request::all());
-
-        return response()->json('ahahhaah');
     }
 }

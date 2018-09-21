@@ -4,6 +4,9 @@ namespace App\Repositories\Services;
  
 use App\EloquentModels\Post;
 use App\EloquentModels\Vote;
+use App\EloquentModels\Follow;
+use App\User;
+use App\EloquentModels\WorkSpace;
 use Auth;
 use DB;
 use Carbon\Carbon;
@@ -99,7 +102,7 @@ class PostService implements PostRepositoryInterface
         foreach ($posts as $post) {
               $post->comments_count;
               $post->vote_count;
-              $post->user;
+              $post->user->workspace;
               $post->checkVote;
         }
         $collection = collect($posts);
@@ -112,10 +115,71 @@ class PostService implements PostRepositoryInterface
         $user_id = Auth::user()->id;
         $posts = $this->model->where('user_id',$user_id)->get();
         foreach ($posts as $key => $post) {
-           $post->user;
+           $post->user->workspace;
         }
 
         return response()->json($posts);
     }
 
+    public function votePost($request)
+    {
+        $user_id = Auth::user()->id;
+        $count = Vote::where('user_id', $user_id)->where('post_id', $request['post_id'])->count();
+
+        if($count > 0) {
+            $result = Vote::where('user_id', $user_id)->where('post_id', $request['post_id'])->delete();
+        } else {
+            $result = Vote::create(['post_id' => $request['post_id'],'user_id' => $user_id]);
+        }
+
+        $collection = collect($result);
+        
+        return $collection;
+    }
+
+    public function followUser($request)
+    {
+        $follower = Auth::user()->id;
+        $count = Follow::where('user_id', $request['user_id'])->where('follower', $follower)->count();
+
+        if($count > 0) {
+            $result = Follow::where('user_id', $request['user_id'])->where('follower', $follower)->delete();
+        } else {
+            $result = Follow::create(['user_id' => $request['user_id'],'follower' => $follower]);
+        }
+
+        $collection = collect($result);
+        
+        return $collection;
+    }
+
+    public function topPost()
+    {
+        
+        // $selects = [
+        //     'posts.*',
+        //     'users.name',
+        //     'users.code_id',
+        //     'users.avatar',
+        //     'COUNT(votes.post_id) AS  number_vote',
+        // ];
+        // $result = DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')
+        //                             ->join('votes', 'votes.post_id', '=', 'posts.id')
+        //                             ->selectRaw(implode(',', $selects))
+        //                             ->where('votes.type_vote', '=', 'vote_up')
+        //                             ->whereMonth('posts.created_at', $month)
+        //                             ->groupBy('posts.id')
+        //                             ->orderBy(\DB::raw('count(votes.post_id)'), 'DESC')
+        //                             ->get();
+        // $collection = collect($result);
+
+        // return $collection;
+        $month = Carbon::now()->month;
+
+
+        //$workSpace= WorkSpace::all();
+        // $workspace = WorkSpace::find(1);
+        // $workspace->user;
+        // dd($workspace->user);
+    }
 }

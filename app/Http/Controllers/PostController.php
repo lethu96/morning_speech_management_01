@@ -66,4 +66,19 @@ class PostController extends Controller
     {
         return $this->postService->myPost();
     }
+
+    public function votes(Request $request)
+    {
+        return $this->postService->votePost($request);
+    }
+
+    public function follows(Request $request)
+    {
+        return $this->postService->followUser($request);
+    }
+
+    public function topPost()
+    {
+        return $this->postService->topPost();
+    }
 }

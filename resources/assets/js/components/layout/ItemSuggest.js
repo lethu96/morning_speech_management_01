@@ -16,7 +16,7 @@ class ItemSuggest extends Component
             <div className="suggestion-usd">
                 <img src={this.props.obj.avatar} alt=""/>
                 <div className="sgt-text">
-                    <h4>{this.props.obj.name}</h4>
+                    <h4><Link to={"/user-detail/" + this.props.obj.id}>{this.props.obj.name}</Link></h4>
                     <span>{this.props.obj.position.name}</span>
                 </div>
                 <span><i className="fa fa-plus"></i></span>

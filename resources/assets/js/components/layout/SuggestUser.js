@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { get } from 'axios';
 import ItemSuggest from  './ItemSuggest';
+import TopPost from './TopPost';
 
 export default class SuggestUser extends Component {
 
@@ -8,6 +9,7 @@ export default class SuggestUser extends Component {
         super(props);
         this.state = {
         	suggests: '',
+            top: '',
         }
     }
 
@@ -25,13 +27,25 @@ export default class SuggestUser extends Component {
     	get('/suggest').then(response => {
             this.setState({ suggests: response.data });
         })
+        get('/ranks').then(response=>{
+            this.setState({ top: response.data});
+        })
     }
 
-    item()
+    itemSuggetsUser()
     {
         if (this.state.suggests instanceof Array) {
             return this.state.suggests.map((suggest, i) => {
                 return <ItemSuggest obj={suggest} key={i} />;
+            })
+        }
+    }
+
+    itemTopPost()
+    {
+        if (this.state.top instanceof Array) {
+            return this.state.top.map((top, i) => {
+                return <TopPost obj={top} key={i} />;
             })
         }
     }
@@ -47,16 +61,8 @@ export default class SuggestUser extends Component {
                             <i className="fa fa-ellipsis-v"></i>
                         </div>
                         <div className="jobs-list">
-                            <div className="job-info">
-                                <div className="job-details">
-                                    <h3>Senior Product Designer</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
-                                </div>
-                                <div className="hr-rate">
-                                    <span>$25/hr</span>
-                                </div>
-                            </div>
                             
+                            {this.itemTopPost()}
                         </div>
                     </div>
 					<div className="suggestions full-width">
@@ -65,7 +71,7 @@ export default class SuggestUser extends Component {
 							<i className="fa fa-ellipsis-v"></i>
 						</div>
 						<div className="suggestions-list">
-						{this.item()}
+						{this.itemSuggetsUser()}
 						</div>
 					</div>
 				</div>

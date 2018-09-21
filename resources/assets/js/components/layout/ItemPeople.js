@@ -15,13 +15,13 @@ class ItemPeople extends Component {
                 <div className="company_profile_info">
                     <div className="company-up-info">
                         <img src={this.props.obj.following.avatar} alt=""/>
-                        <h3>{this.props.obj.following.name}</h3>
+                        <h3><Link to={"/user-detail/" + this.props.obj.following.id}>{this.props.obj.following.name}</Link></h3>
                         
                         <ul>
-                            <li onClick={this.follow} className="follow"> Followed</li>
+                            <li onClick={this.follow} className="follow"> Following</li>
                         </ul>
                     </div>
-                    <a href="#" title="" className="view-more-pro">View Profile</a>
+                    <Link className="view-more-pro" to={"/user-detail/" + this.props.obj.following.id}>View Profile</Link>
                 </div>
             </div>
         );

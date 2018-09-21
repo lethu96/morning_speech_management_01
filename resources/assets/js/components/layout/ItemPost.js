@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory, Image } from 'react-router-dom';
-import { get } from 'axios';
+import { get, post } from 'axios';
 import swal from 'sweetalert';
 
 class ItemPost extends Component
@@ -25,11 +25,14 @@ class ItemPost extends Component
         this.setState(prevState => ({
             checkVote: !prevState.checkVote
         }));
+        let data = new FormData();
+        data.append('post_id', this.props.obj.id)
+        post('/votes', data)
     }
 
     render()
     {
-        return (
+        return (            
             <div className="posts-section">
                 <div className="post-bar">
                     <div className="post_topbar">
@@ -37,16 +40,16 @@ class ItemPost extends Component
                             <img src={this.props.obj.user.avatar} alt=""/>
                             <div className="usy-name">
                                 <h3>{this.props.obj.user.name}</h3>
-                                <span><img src="images/clock.png" alt=""/>{this.props.obj.created_at}</span>
+                                <span><img src="/images/clock.png" alt="" className="img-lock"/>{this.props.obj.created_at}</span>
                             </div>
                         </div>
                     </div>
                     <div className="epi-sec">
                         <ul className="descp">
-                            <li><img src="images/icon9.png" alt=""/><span>Work Space</span></li>
+                            <li><img src="/images/icon9.png" alt=""/><span>{this.props.obj.user.workspace.name} work space</span></li>
                         </ul>
                         <ul className="bk-links">
-                            <li onClick={this.voteUp} className={this.state.checkVote ? 'vote' : 'unvote'}><i className="fa fa-hand-o-up"></i></li>
+                            <li onClick={this.voteUp} className={this.state.checkVote ? 'vote' : 'unvote'}><i className="fa fa-thumbs-up"></i></li>
                         </ul>
                     </div>
                     <div className="job_descp">

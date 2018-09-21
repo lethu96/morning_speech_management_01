@@ -8,6 +8,7 @@ use App\EloquentModels\Position;
 use App\EloquentModels\Company;
 use App\EloquentModels\WorkSpace;
 use App\EloquentModels\Follow;
+use App\EloquentModels\Post;
 
 class User extends Authenticatable
 {
@@ -70,5 +71,10 @@ class User extends Authenticatable
     public function following()
     {
         return  $this->hasMany(Follow::class, 'follower', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
