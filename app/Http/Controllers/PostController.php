@@ -81,4 +81,9 @@ class PostController extends Controller
     {
         return $this->postService->topPost();
     }
+
+    public function getUserVote($postId)
+    {
+        return $this->postService->getUserVote($postId);
+    }
 }

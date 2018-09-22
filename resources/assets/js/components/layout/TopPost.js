@@ -18,7 +18,7 @@ class TopPost extends Component
                     <h3><Link to={"/detail-posts/"+this.props.obj.id} > {this.props.obj.title} </Link></h3>
                 </div>
                 <div>
-                    <p>{this.props.obj.number_vote} votes</p>
+                    <p>{this.props.obj.total} votes</p>
                 </div>
             </div>
 

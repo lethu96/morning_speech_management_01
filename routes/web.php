@@ -38,13 +38,11 @@ Route::group(['middleware' => ['auth', 'checkLevel']], function () {
 	Route::get('/user/following','UserController@getFollowing');
     Route::post('/votes', 'PostController@votes');
     Route::post('/follows', 'PostController@follows');
+    Route::get('/top-post', 'PostController@topPost');
+    Route::get('/get-user-vote/{postId}', 'PostController@getUserVote');
 });
 
 Route::get('{slug}', function () {
     return view('index');
 }) ->where('slug', '(?!api)([A-z\d-\/_.]+)?');
-Route::get('{slug}/{id}', function () {
-    return view('index');
-}) ->where('slug', '(?!api)([A-z\d-\/_.]+)?');
 Auth::routes();
-Route::get('/top-post', 'PostController@topPost');

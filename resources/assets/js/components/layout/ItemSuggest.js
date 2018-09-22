@@ -12,7 +12,7 @@ class ItemSuggest extends Component
 
     render()
     {
-        return (
+            return (
             <div className="suggestion-usd">
                 <img src={this.props.obj.avatar} alt=""/>
                 <div className="sgt-text">

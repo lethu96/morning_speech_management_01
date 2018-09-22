@@ -138,14 +138,15 @@ class UserService implements UserRepositoryInterface
     public function suggest()
     {
         $workspace_id = Auth::user()->work_space_id;
-        $users = $this->model->where('work_space_id',$workspace_id)->limit(4)->get();
-        foreach ($users as $key => $position) {
-            $position->position->name;
+        $position_id = Auth::user()->position_id;
+
+        $users = $this->model->where('work_space_id', $workspace_id)->orWhere('position_id',$position_id)->limit(4)->get();
+        
+        foreach ($users as $key => $user) {
+            $user->position;
         }
 
-        $collection = collect($users);
-
-        return $collection;
+        return response()->json($users);
     }
 
     public function notFollow()
@@ -154,6 +155,7 @@ class UserService implements UserRepositoryInterface
         $user_id = Auth::user()->id;
         $userFollowing = $user->following()->with('following')->pluck('user_id')->prepend($user_id);
         $listUser = DB::table('users')->whereNotIn('id', $userFollowing)->get();
+
         $collection = collect($listUser);
 
         return $collection;
@@ -164,9 +166,9 @@ class UserService implements UserRepositoryInterface
         $user = Auth::user();
 
         $follower = $user->following()->with('following')->get();
-
         $collection = collect($follower);
 
         return $collection;
     }
+
 }

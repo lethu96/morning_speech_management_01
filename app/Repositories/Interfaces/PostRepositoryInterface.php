@@ -27,4 +27,6 @@ interface PostRepositoryInterface
     public function followUser($request);
 
     public function topPost();
+
+    public function getUserVote($postId);
 }
