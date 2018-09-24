@@ -4,6 +4,7 @@ import { get, post } from 'axios';
 import { Form } from 'semantic-ui-react';
 import Header from './Header';
 import ItemComment from './ItemComment';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 export default class DetailPost extends Component {
@@ -45,6 +46,11 @@ export default class DetailPost extends Component {
 
 	}
 
+	updateState(newlist)
+    {
+        this.setState({itemComment :newlist});
+    }
+
 	handleSubmit (event) {
 		event.preventDefault();
         let data = new FormData();
@@ -53,17 +59,25 @@ export default class DetailPost extends Component {
 
         post('/add-comment', data)
         .then(
-            (response) => {
-            	axios.get('/comment-of-post/'+this.state.id)
-                        .then(response => {
-                        	this.props.history.push("/posts/"+ this.state.id);
-                    })
-                }
+            // (response) => {
+            // 	axios.get('/comment-of-post/'+this.state.id)
+            //             .then(response => {
+            //             	this.props.history.push("/posts/"+ this.state.id);
+            //         })
+            //     }
+             (response) => {
+                    axios.get('/comment-of-post/'+this.state.id)
+                    .then(response => {
+                        this.setState({ list: response.data });
+                        this.props.newlist(this.state.list)
+                    }
+                )
         )
         .catch(error => {
             if (error.response) {
                 this.setState({ error: error.response.data.errors});            }
         });
+        this.refs.comment.value = "";
 	}
 
 	itemComment() {
@@ -75,6 +89,7 @@ export default class DetailPost extends Component {
 	}
 
     render() {
+    	const html = ReactHtmlParser(this.state.content);
 	    return (
 				<div> 
                 <Header />       
@@ -104,15 +119,15 @@ export default class DetailPost extends Component {
 						                        <h3>{this.state.title}</h3>
 						                        <ul className="job-dt">
 						                        </ul>
-						                        <p>{this.state.content}</p>
+						                        <p>{html}</p>
 						                    </div>
 						                    <div className="job-status-bar">
 						                        <ul className="like-com">
 						                            <li>
-						                                <a href="#"  className="com"><i className="fa fa-heart"></i> Vote up 20 </a>
+						                                <a href="#"  className="com"><i className="fa fa-heart"></i> Vote up </a>
 						                                
 						                            </li> 
-						                            <li><a href="#" title="" className="com"><img src="images/com.png" alt=""/> Comment 15</a></li>
+						                            <li><a href="#" title="" className="com"><img src="images/com.png" alt=""/> Comment </a></li>
 						                        </ul>
 						                        <a><i className="fa fa-eye"></i>Views 50</a>
 						                    </div>

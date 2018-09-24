@@ -10,6 +10,7 @@ class Login extends Component {
         this.state = {
             email : '',
             password: '',
+            data: ''
         }
     }
 
@@ -22,7 +23,8 @@ class Login extends Component {
         })
         .then(response => {
             this.setState({err: false});
-            this.props.history.push("index") ;
+            this.setState({data: response.data});
+            //this.props.history.push("index") ;
           
         })
         .catch(error => {
@@ -30,6 +32,7 @@ class Login extends Component {
             this.refs.password.value = "";
             this.setState({err: true});
         });
+        console.log(this.state.data)
     }
 
     onChange(e) {
@@ -41,6 +44,12 @@ class Login extends Component {
         let error = this.state.err ;
         let msg = (!error) ? 'Login Successful' : 'Wrong Credentials';
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
+        let checkRole = this.state.data;
+        if (checkRole == 0 ) { this.props.history.push("index") ;}
+        else {
+            this.props.history.push("home") ;
+        }
+
         return (
             
             <div className="limiter">

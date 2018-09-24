@@ -4,8 +4,13 @@ import { get, post } from 'axios';
 import swal from 'sweetalert';
 import Popup from './Popup';
 import PopupVote from './PopupVote';
+import ReadMoreReact from 'read-more-react';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 
 const Timestamp = require('react-timestamp');
+const rootElement = document.getElementById('reactjs-root');
+
 
 class ItemPost extends Component
 {
@@ -66,6 +71,7 @@ class ItemPost extends Component
 
     render()
     {
+        const html = ReactHtmlParser(this.props.obj.content);
         return (
             <div className="posts-section">
                 <div className="post-bar">
@@ -92,9 +98,7 @@ class ItemPost extends Component
                     </div>
                     <div className="job_descp">
                         <h3>{this.props.obj.title}</h3>
-                        <ul className="job-dt">
-                        </ul>
-                        <p>{this.props.obj.content}<Link to={"/detail-posts/"+this.props.obj.id} > view mores </Link></p>
+                        <p> {html}<Link to={"/detail-posts/"+this.props.obj.id} > Read mores </Link></p>
                     </div>
                     <div className="job-status-bar">
                         <ul className="like-com">

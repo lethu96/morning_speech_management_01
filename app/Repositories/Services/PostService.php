@@ -181,4 +181,25 @@ class PostService implements PostRepositoryInterface
             return ;
         }
     }
+
+    public function search($request)
+    {
+        $search =  $request->search;
+
+        $posts = '';
+
+        if (trim($request->search)) {
+            $posts = Post::where('title','LIKE',"%{$search}%")
+                         ->orderBy('created_at','DESC')->limit(5)->get();
+
+            $posts = $posts->map(function ($post, $key) {
+                            return [
+                                        'title' => $post['title'],
+                                        'id'    => $post['id'],
+                                   ];
+                        });          
+        }
+
+        return $posts;
+    }
 }

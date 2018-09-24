@@ -3,10 +3,8 @@ import Header from './Header';
 import {browserHistory} from 'react-router';
 import { post } from 'axios';
 import ReactDOM from 'react-dom';
-import { EditorState, ContentState, convertFromRaw, convertToRaw} from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import ReactQuill from 'react-quill'; // ES6
+
 
 
 class CreatePost extends Component {
@@ -14,13 +12,12 @@ class CreatePost extends Component {
         super(props);
         this.state = {
             title: '',
-            content: '',
+            text: '',
             error:'',
-            editorState: EditorState.createEmpty(),
             isButtonDisabled: false
         };
-        this.setDomEditorRef = ref => this.domEditor = ref;
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
+        this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -30,34 +27,16 @@ class CreatePost extends Component {
         })
 
     }
-    
 
-    onEditorStateChange(e) {
-        this.setState ({
-          title: e.target.value
-        })
-    };
-
-
-       componentDidMount() {
-    if(this.props.text) {
-      const html = `${this.props.text}`;
-      const contentBlock = htmlToDraft(html);
-      if (contentBlock) {
-        const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
-        const editorState = EditorState.createWithContent(contentState);
-        this.setState({ editorState, });
-      }
+    handleChange(value) {
+        this.setState({ text: value })
     }
-
-    this.domEditor.focusEditor();
-  }
 
     handleSubmit(e) {
         e.preventDefault();
         let data = new FormData();
         data.append('title', this.state.title)
-        data.append('content', this.state.editorState)
+        data.append('content', this.state.text)
 
         post('/posts', data)
         .then(
@@ -70,8 +49,6 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { editorState } = this.state;
-        console.log(editorState);
         return (
             <div> 
                 <Header />       
@@ -82,26 +59,25 @@ class CreatePost extends Component {
                                 <div className="row">
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="row">
-                                        <div className="col-md-12">
+                                        <div className="row">
                                             <div className="form-group">
-                                                <label>Title</label>
+                                                <label className="label-post">Title</label>
                                                 <input value={this.state.title} type="text" className="form-control" onChange={this.handleChangeTitle} />
                                                 <label className="help-block" >{this.state.error.title} </label>
                                             </div>
                                         </div>
                                     </div>
-                                        <Editor
-                                        ref={this.setDomEditorRef}
-                                        editorState={editorState}
-                                        wrapperClassName="rte-wrapper"
-                                        editorClassName="rte-editor"
-                                        onChange={this.onChange}
-                                      />
+                                    <div className="row">
+                                        <label className="label-post">Content</label>
+                                    </div>
+
+                                        <ReactQuill value={this.state.text}
+                                                    onChange={this.handleChange} />
 
                                         <label className="help-block" >{this.state.error.content} </label>
                                     <br />
                                     <div className="form-group">
-                                        <button type = "submit" className="btn btn-primary" >Add Post</button>
+                                        <button type = "submit" className="btn create-post" >Add Post</button>
                                     </div>
                                 </form>
                                 </div>

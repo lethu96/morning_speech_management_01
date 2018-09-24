@@ -19,7 +19,6 @@ class ItemSuggest extends Component
                     <h4><Link to={"/user-detail/" + this.props.obj.id}>{this.props.obj.name}</Link></h4>
                     <span>{this.props.obj.position.name}</span>
                 </div>
-                <span><i className="fa fa-plus"></i></span>
             </div>
         );
     }

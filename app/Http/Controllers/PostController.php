@@ -86,4 +86,9 @@ class PostController extends Controller
     {
         return $this->postService->getUserVote($postId);
     }
+
+    public function getSearch(Request $request)
+    {
+        return $this->postService->search($request);
+    }
 }
