@@ -19,14 +19,15 @@ class UserService implements UserRepositoryInterface
  
     public function getAll()
     {
-        $users = User::where('status', '=', '1')->get();
-        foreach ($users as $key => $user) {
-            $user->position->name;
-            $user->workSpace->name;
-        }
-        $collection = collect($users);
+        $user = User::where('status', '=', '1')->get();
 
-        return $collection;
+        foreach ($user as $key => $name) {
+            $name->position->name;
+            $name->company->name;
+            $name->workSpace->name;
+        }
+
+        return $user;
     }
 
     public function delete($id)
@@ -62,12 +63,13 @@ class UserService implements UserRepositoryInterface
         $user->close_date = $request['close_date'];
         $user->save();
 
-        return response()->json($user);
+        return $user;
     }
 
     public function getById($id)
     {
         $user = $this->model->find($id);
+
         $posts = $user->posts;
         foreach ($posts as $key => $post) {
             $post->user->workspace;
@@ -89,6 +91,7 @@ class UserService implements UserRepositoryInterface
 
     public function update($id, $request)
     {
+
         $user = $this->model->find($id);
         if ($request->hasFile('avatar')) {
             $file = $request['avatar'];
@@ -113,7 +116,7 @@ class UserService implements UserRepositoryInterface
         $user->close_date = $request['close_date'];
         $user->save();
 
-        return response()->json($user);
+        return $user;
     }
 
     public function random($workSpaceId)
@@ -133,7 +136,6 @@ class UserService implements UserRepositoryInterface
         $collection->put('following', $following);
         $collection->put('position', $position);
 
-
         return $collection;
     }
 
@@ -149,7 +151,7 @@ class UserService implements UserRepositoryInterface
             $user->position;
         }
 
-        return response()->json($users);
+        return $users;
     }
 
     public function notFollow()
@@ -159,9 +161,7 @@ class UserService implements UserRepositoryInterface
         $userFollowing = $user->following()->with('following')->pluck('user_id')->prepend($user_id);
         $listUser = DB::table('users')->whereNotIn('id', $userFollowing)->get();
 
-        $collection = collect($listUser);
-
-        return $collection;
+        return $listUser;
     }
 
     public function getFollowing()

@@ -35,9 +35,7 @@ class PostService implements PostRepositoryInterface
     {
         $post = $this->model->whereKey($id)->with('user')->first();
 
-        $collection = collect($post);
-
-        return $collection;
+        return $post;
     }
  
     public function create($request)
@@ -105,9 +103,8 @@ class PostService implements PostRepositoryInterface
               $post->user->workspace;
               $post->checkVote;
         }
-        $collection = collect($posts);
 
-        return $collection;
+        return $posts;
     }
 
     public function myPost()
@@ -118,7 +115,7 @@ class PostService implements PostRepositoryInterface
             $post->user->workspace;
         }
 
-        return response()->json($posts);
+        return $posts;
     }
 
     public function votePost($request)
@@ -131,10 +128,8 @@ class PostService implements PostRepositoryInterface
         } else {
             $result = Vote::create(['post_id' => $request['post_id'],'user_id' => $user_id]);
         }
-
-        $collection = collect($result);
         
-        return $collection;
+        return $result;
     }
 
     public function followUser($request)
@@ -148,9 +143,7 @@ class PostService implements PostRepositoryInterface
             $result = Follow::create(['user_id' => $request['user_id'],'follower' => $follower]);
         }
 
-        $collection = collect($result);
-        
-        return $collection;
+        return $result;
     }
 
     public function topPost()
@@ -166,7 +159,7 @@ class PostService implements PostRepositoryInterface
             ->whereMonth('posts.created_at', $month)
             ->limit(3)->get();
 
-        return response()->json($posts);
+        return $posts;
     }
 
     public function getUserVote($postId)
@@ -177,7 +170,7 @@ class PostService implements PostRepositoryInterface
             foreach ($userVotes as $key => $userVote) {
                 $userVote->user;
             }
-            return response()->json($userVotes);
+            return $userVotes;
         } else {
             return ;
         }

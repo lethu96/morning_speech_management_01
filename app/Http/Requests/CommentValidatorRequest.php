@@ -24,7 +24,13 @@ class CommentValidatorRequest extends FormRequest
     public function rules()
     {
         return [
+<<<<<<< HEAD
             'content' => 'required|max:300',
+=======
+            'user_id' => 'required|integer',
+            'post_id' => 'required|integer',
+            'content' => 'required|text',
+>>>>>>> de30220b9035b459237b02d03e3f20c81063a288
         ];
     }
 }

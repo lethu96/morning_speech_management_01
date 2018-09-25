@@ -59,7 +59,6 @@ class LoginController extends Controller
         );
 
         if ($validator->fails()) {
-            // The given data did not pass validation
             $keys       = $validator->errors()->keys();
             $messages   = $validator->errors()->getMessages();
             $error      = [];

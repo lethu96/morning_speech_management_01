@@ -16,7 +16,7 @@ class UserController extends Controller
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
-        $this->middleware('auth');
+
     }
 
     /**
@@ -26,7 +26,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return $this->userService->getAll();
+        $list = $this->userService->getAll();
+
+        return response()->json($list);
     }
 
     /**
@@ -46,7 +48,9 @@ class UserController extends Controller
      */
     public function store(UserValidatorRequest $request)
     {
-        return $this->userService->create($request);
+        $item = $this->userService->create($request);
+
+        return response()->json($item);
     }
 
     /**
@@ -57,7 +61,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return $this->userService->getById($id);
+        $itemShow = $this->userService->getById($id);
+
+        return response()->json($item);
     }
 
     /**
@@ -80,7 +86,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserValidatorRequest $request, $id)
     {
-        return $this->userService->update($id, $request);
+        $item = $this->userService->update($id, $request);
+
+        return response()->json($item);
     }
 
     /**
@@ -91,31 +99,43 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return $this->userService->delete($id);
+        $item = $this->userService->delete($id);
+
+        return response()->json($item);
     }
 
     public function random($workSpaceId)
     {
-        return $this->userService->random($workSpaceId);
+        $userRandom = $this->userService->random($workSpaceId);
+
+        return response()->json($userRandom);
     }
     
     public function profile()
     {
-        return $this->userService->profile();
+        $profile = $this->userService->profile();
+
+        return response()->json($profile);
     }
 
     public function suggest()
     {
-        return $this->userService->suggest();
+        $userSuggest = $this->userService->suggest();
+
+        return response()->json($userSuggest);
     }
 
     public function notFollow()
     {
-        return $this->userService->notFollow();
+        $unFollows = $this->userService->notFollow();
+
+        return response()->json($unFollows);
     }
 
     public function getFollowing()
     {
-        return $this->userService->getFollowing();
+        $follows = $this->userService->getFollowing();
+
+        return response()->json($follows);
     }
 }

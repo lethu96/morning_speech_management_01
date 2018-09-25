@@ -29,66 +29,90 @@ class PostController extends Controller
 
     public function index()
     {
-        return $this->postService->getAll();
+        $list = $this->postService->getAll();
+
+        return response()->json($list);
     }
 
     public function store(PostValidatorRequest $request)
     {
-        return $this->postService->create($request);
+        $item = $this->postService->create($request);
+
+        return response()->json($item);
     }
 
     public function show($id)
     {
-        return $this->postService->getById($id);
+        $item = $this->postService->getById($id);
+
+        return response()->json($item);
     }
 
     public function update(PostValidatorRequest $request, $id)
     {
-        return $this->postService->update($id, $request);
-    }
+        $itemUpdate = $this->postService->update($id, $request);
+
+        return response()->json($itemUpdate);
 
     public function destroy($id)
     {
-        return $this->postService->delete($id);
+        $item = $this->postService->delete($id);
+
+        return response()->json($item );
     }
 
     public function getRank()
     {
-        return $this->postService->ranking();
+        $ranks = $this->postService->ranking();
+
+        return response()->json($ranks);
     }
 
     public function getListItemPost()
     {
-        return $this->postService->listPost();
+        $listItems = $this->postService->listPost();
+
+        return response()->json($listItems);
     }
 
     public function myPost()
     {
-        return $this->postService->myPost();
+        $myPost = $this->postService->myPost();
+
+        return response()->json($myPost);
     }
 
     public function votes(Request $request)
     {
-        return $this->postService->votePost($request);
+        $votes = $this->postService->votePost($request);
+        return response()->json($items );
     }
 
     public function follows(Request $request)
     {
-        return $this->postService->followUser($request);
+        $follows = $this->postService->followUser($request);
+
+        return response()->json($follows );
     }
 
     public function topPost()
     {
-        return $this->postService->topPost();
+        $tops = $this->postService->topPost();
+
+        return response()->json($tops);
     }
 
     public function getUserVote($postId)
     {
-        return $this->postService->getUserVote($postId);
+        $users = $this->postService->getUserVote($postId);
+
+        return response()->json($users);
     }
 
     public function getSearch(Request $request)
     {
-        return $this->postService->search($request);
+        $results = $this->postService->search($request);
+
+        return response()->json($results);
     }
 }
