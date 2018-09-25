@@ -53,6 +53,7 @@ class PostController extends Controller
         $itemUpdate = $this->postService->update($id, $request);
 
         return response()->json($itemUpdate);
+    }
 
     public function destroy($id)
     {
