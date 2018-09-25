@@ -9,6 +9,7 @@ class ItemNotFollow extends Component {
         this.state = {
             checkFollow: '',
         }
+
        this.followUser = this.followUser.bind(this);
     }
 
@@ -16,6 +17,7 @@ class ItemNotFollow extends Component {
         this.setState(prevState => ({
             checkFollow: !prevState.checkFollow
         }));
+        
         let data = new FormData();
         data.append('user_id', this.props.obj.id)
         post('/follows', data)
@@ -39,4 +41,5 @@ class ItemNotFollow extends Component {
         );
     }
 }
+
 export default ItemNotFollow;

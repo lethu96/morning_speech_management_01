@@ -14,6 +14,6 @@ class WorkSpace extends Model
 
     public function users()
     {
-    	return $this->hasMany(User::Class);
+        return $this->hasMany(User::Class);
     }
 }

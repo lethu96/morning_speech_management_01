@@ -8,6 +8,7 @@ use App\Repositories\Services\UserService;
 use App\EloquentModels\WorkSpace;
 use DB;
 use Carbon\Carbon;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

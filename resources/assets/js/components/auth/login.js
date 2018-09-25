@@ -10,29 +10,28 @@ class Login extends Component {
         this.state = {
             email : '',
             password: '',
-            data: ''
+            role: ''
         }
     }
 
     onSubmit(e) {
         e.preventDefault();
         const {email , password} = this.state ;
-        axios.post('/login', {
+        axios.post('/login-user', {
             email, 
             password
         })
         .then(response => {
-            this.setState({err: false});
-            this.setState({data: response.data});
+            //this.setState({err: false});
+            this.setState({role: response.data.data});
             //this.props.history.push("index") ;
           
         })
         .catch(error => {
             this.refs.email.value = "";
             this.refs.password.value = "";
-            this.setState({err: true});
+            //this.setState({err: true});
         });
-        console.log(this.state.data)
     }
 
     onChange(e) {
@@ -40,15 +39,22 @@ class Login extends Component {
         this.setState({[name]: value});
     }
 
-	render() {    
-        let error = this.state.err ;
-        let msg = (!error) ? 'Login Successful' : 'Wrong Credentials';
-        let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
-        let checkRole = this.state.data;
-        if (checkRole == 0 ) { this.props.history.push("index") ;}
-        else {
-            this.props.history.push("home") ;
+	render() {   
+        // let error = this.state.err ;
+        // let msg = (!error) ? 'Login Successful' : 'Wrong Credentials';
+        // let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
+        let checkRole = this.state.role;
+        console.log(checkRole)
+        if( checkRole == 1 ) {
+            this.props.history.push("/index")
         }
+        if( checkRole == 2 ) {
+            this.props.history.push("/home")
+        }
+        // if (checkRole == 0 ) { this.props.history.push("index") ;}
+        // else {
+        //     this.props.history.push("home") ;
+        // }
 
         return (
             
@@ -61,7 +67,7 @@ class Login extends Component {
                             </span>
                         </div>
                         <div className="col-md-offset-2 col-md-8 col-md-offset-2">
-                            {error != undefined && <div className= {name} role="alert">{msg}</div>}
+        
                         </div>
                         <form className="login100-form validate-form" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
                             <div className="wrap-input100 validate-input m-b-26">

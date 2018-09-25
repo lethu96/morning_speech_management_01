@@ -4,7 +4,7 @@ namespace App\Repositories\Services;
  
 use App\User;
 use App\EloquentModels\Follow;
-Use App\EloquentModels\WorkSpace;
+use App\EloquentModels\WorkSpace;
 use Auth;
 use DB;
 use Illuminate\Support\Collection;
@@ -40,12 +40,13 @@ class UserService implements UserRepositoryInterface
         $user = new User;
 
         if ($request->hasFile('avatar')) {
-                $file = $request['avatar'];
-                $file->move('images', $file->getClientOriginalName());
-                $user->avatar = '/images/' . $file->getClientOriginalName();
-            } else {
-                $user->avatar = '/images/avatar.jpg';
-            }
+            $file = $request['avatar'];
+            $file->move('images', $file->getClientOriginalName());
+            $user->avatar = '/images/' . $file->getClientOriginalName();
+        } else {
+            $user->avatar = '/images/avatar.jpg';
+        }
+
         $user->name = $request['name'];
         $user->password = bcrypt($request['password']);
         $user->email = $request['email'];
@@ -90,12 +91,13 @@ class UserService implements UserRepositoryInterface
     {
         $user = $this->model->find($id);
         if ($request->hasFile('avatar')) {
-                $file = $request['avatar'];
-                $file->move('images', $file->getClientOriginalName());
-                $user->avatar = '/images/' . $file->getClientOriginalName();
-            } else {
-                $user->avatar = '/images/avatar.jpg';
-            }
+            $file = $request['avatar'];
+            $file->move('images', $file->getClientOriginalName());
+            $user->avatar = '/images/' . $file->getClientOriginalName();
+        } else {
+            $user->avatar = '/images/avatar.jpg';
+        }
+
         $user->name = $request['name'];
         $user->password = bcrypt($request['password']);
         $user->email = $request['email'];
@@ -119,7 +121,7 @@ class UserService implements UserRepositoryInterface
         return User::inRandomOrder()->where('work_space_id', '=', $workSpaceId)->take(5)->get();
     }
 
-    public function profile ()
+    public function profile()
     {
         $user = Auth::user();
         $position = $user->position->name;
@@ -140,7 +142,8 @@ class UserService implements UserRepositoryInterface
         $workspace_id = Auth::user()->work_space_id;
         $position_id = Auth::user()->position_id;
 
-        $users = $this->model->where('work_space_id', $workspace_id)->orWhere('position_id',$position_id)->limit(4)->get();
+        $users = $this->model->where('work_space_id', $workspace_id)
+        ->orWhere('position_id', $position_id)->limit(4)->get();
         
         foreach ($users as $key => $user) {
             $user->position;
@@ -159,8 +162,8 @@ class UserService implements UserRepositoryInterface
         $collection = collect($listUser);
 
         return $collection;
-
     }
+
     public function getFollowing()
     {
         $user = Auth::user();
@@ -170,5 +173,4 @@ class UserService implements UserRepositoryInterface
 
         return $collection;
     }
-
 }

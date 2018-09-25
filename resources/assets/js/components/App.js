@@ -20,15 +20,10 @@ import DetailPost from  './layout/DetailPost';
 import DetailUser from './layout/DetailUser';
 import { createHashHistory } from 'history'
 
-
 const history = createHashHistory()
+
 export default class App extends Component
 {
-    checkrender() {
-        if (this.state.success === true) {
-            return 
-        }
-    }
 
     render() {
         return (
@@ -36,10 +31,10 @@ export default class App extends Component
                     <Switch>
                         <Route exact path = '/' component = {Index}/>
                         <Route exact path = '/index' component = {Master} /> 
-                        <Route path = '/login' component={Login}/>
-                        <Route path = '/home' component={Home}/>
-                        <Route path = '/forgotpassword' component={Forgot}/>
-                        <Route path = '/password/reset/:token' component={Reset}/>
+                        <Route path = '/login' component= {Login}/>
+                        <Route path = '/home' component= {Home}/>
+                        <Route path = '/forgotpassword' component= {Forgot}/>
+                        <Route path = '/password/reset/:token' component= {Reset}/>
                         <Route path = "/list-post" component = {Post} />
                         <Route path = "/list-user" component = {User} />
                         <Route path = "/rank" component = {Ranking} />

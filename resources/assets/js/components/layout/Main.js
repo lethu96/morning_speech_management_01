@@ -3,12 +3,11 @@ import get from 'axios';
 import {Link, withRouter } from 'react-router-dom';
 import ItemPost from './ItemPost';
 
-
 export default class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-               posts: [],
+            posts: [],
         };
     }
 
@@ -26,7 +25,7 @@ export default class Main extends Component {
         get('/list-post')
           .then(({ data }) => {
             this.setState({
-              posts: data,
+                posts: data,
             });
         });
     }
@@ -35,7 +34,7 @@ export default class Main extends Component {
         get('/my-post')
           .then(({ data }) => {
             this.setState({
-              posts: data,
+                posts: data,
             });
         });
     }
@@ -54,7 +53,7 @@ export default class Main extends Component {
         return (
             <div className="col-lg-6 col-md-8 no-pd">
                 <div className="main-ws-sec">
-                 {this.getItem()}
+                    {this.getItem()}
                 </div>
             </div>
         )

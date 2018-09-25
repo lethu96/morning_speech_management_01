@@ -8,10 +8,10 @@ export default class SideBar extends Component {
         <section className="sidebar">
           <div className="user-panel">
               <div className="pull-left image">
-                 <img src="img/chan.jpeg" className="img-circle" alt="User Image" />
+                 <img src="/images/dang-luan.jpg" className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
-                <p>Admin</p>
+                <p>Tạ Quang Hiếu</p>
                 <a href="#"><i className="fa fa-circle text-success"></i> Online</a>
               </div>
           </div>

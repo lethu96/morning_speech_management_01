@@ -42,12 +42,13 @@ class TableRowWorkSpace extends Component
     render()
     {
         return (
-                <li className="nav-item">
-                  <form onSubmit={this.handleSubmit}>
-                      <input type="submit" value={this.props.obj.name} className="btn btn-item"/>
-                  </form>
-                </li>
+            <li className="nav-item">
+                <form onSubmit={this.handleSubmit}>
+                    <input type="submit" value={this.props.obj.name} className="btn btn-item"/>
+                </form>
+            </li>
         );
     }
 }
+
 export default TableRowWorkSpace;

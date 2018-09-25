@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router-dom';
 
-
 class ItemComment extends Component {
     constructor(props)
     {
@@ -23,7 +22,7 @@ class ItemComment extends Component {
                             </div> 
                         </div>
                         <div className="comment-content">
-                        <p>{this.props.obj.content}</p>
+                            <p>{this.props.obj.content}</p>
                         </div>
                     </div>
                 </div>
@@ -31,4 +30,5 @@ class ItemComment extends Component {
         );
     }
 }
+
 export default ItemComment;

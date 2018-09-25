@@ -22,11 +22,15 @@ class CommentController extends Controller
 
     public function index($postId)
     {
-        return $this->commentService->getCommentOfPost($postId);
+        $comment = $this->commentService->getCommentOfPost($postId);
+
+        return response()->json($comment);
     }
 
     public function store(CommentValidatorRequest $request)
     {
-        return $this->commentService->create($request);
+        $item = $this->commentService->create($request);
+
+        return response()->json($item);
     }
 }

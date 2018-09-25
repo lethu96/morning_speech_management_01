@@ -3,7 +3,6 @@ import {browserHistory} from 'react-router';
 import { get } from 'axios';
 import { Form } from 'semantic-ui-react';
 
-
 export default class UserProfile extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +32,7 @@ export default class UserProfile extends Component {
 
     render() {
     	const {users} = this.state;
+
 	    return (
 	      	<div className="col-lg-3 col-md-4 pd-left-none no-pd">
 				<div className="main-left-sidebar no-margin">
@@ -63,5 +63,4 @@ export default class UserProfile extends Component {
 			</div>
 	    )
   	}
-
 }

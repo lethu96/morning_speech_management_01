@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Middleware;
+
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,14 +14,12 @@ class CheckLevelMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next )
+    public function handle($request, Closure $next)
     {
-        if (Auth::check())
-        { 
-         return $next($request);
-        }
-        else{
+        if (Auth::check()) {
+            return $next($request);
+        } else {
             return redirect('/login');
-        }  
+        }
     }
 }

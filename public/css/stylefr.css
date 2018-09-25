@@ -5439,6 +5439,7 @@ a:hover {
 }
 .job-details a {
     font-size: 13px;
+    color: #57b846;
 }
 .vote-post{
     float: right;
@@ -5484,4 +5485,112 @@ a:hover {
 }
 .post_topbar.popup-vote .usy-name  span {
     display: inherit;
+}
+.read-more-button {
+    display: none;
+}
+.active {
+    background-color: #eaeaea;
+}
+
+/* Styling Vue Search Widget - You can customize it as you wish */
+.widget-search {
+    border: 1px solid #c5c5c5;
+    background: white;
+    position: absolute;
+    cursor: pointer;
+    list-style: none;
+    padding: 0;
+    z-index: 100;
+}
+
+.list_item_container {
+    width: 98%;
+    float: left;
+}
+
+.label{
+    width: 89%;
+    float:right;
+    color: rgb(124,77,255);
+    font-weight: bold;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+@media only screen and (max-width:768px) {
+
+    .image img{
+        width: 70px;
+        height : 55px;
+    }
+    .label{
+        width: 70%;
+    }
+    .label h4{
+        font-size: 15px;
+    }
+}
+
+/* To get a indigo focus color in search input - Not nessary */
+input[type="text"]:focus{
+  border-color: #5b518b !important; 
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 4px #5b518b !important;
+  outline: 0 none;
+}
+
+/* Custom style Blog Search Span Box - Not necessary */
+.span-style {
+    color: white;
+    background-color: #5b518b;
+    height: 46px;
+}
+.display-text-group {
+    color: #686868;
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+.menu-item .label a {
+    word-wrap: break-word;
+    white-space: pre-wrap
+}
+.ql-toolbar.ql-snow {
+    background-color: white;
+}
+.ql-container.ql-snow {
+    background-color: white;
+    height: 500px;
+}
+.btn.create-post {
+    padding: 0 12px;
+    color: #fff;
+    height: 35px;
+    line-height: 35px;
+    background-color: #e44d3a;
+}
+.label-post {
+    color: #000000;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 2px;
+}
+.ui.celled.striped.table .title  {
+    width: 20%;
+}
+.ui.celled.striped.table .content  {
+    width: 70%;
+}
+.form-update-user {
+    width: 73%;
+    margin-left: 19%;
+}
+.btn.btn-success {
+    margin-left: 19%;
+}
+.btn.btn-primary {
+    margin-right: 5%;
 }

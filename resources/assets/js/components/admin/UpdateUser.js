@@ -13,10 +13,10 @@ class UpdateUser extends Component
             id: '',
             code_id: '',
             name: '',
-            email:'',
-            card_number:'',
-            gender:'',
-            birth_day:'',
+            email: '',
+            card_number: '',
+            gender: '',
+            birth_day: '',
             phone_contact: '',
             opening_date:'',
             close_date: '',
@@ -24,14 +24,14 @@ class UpdateUser extends Component
             avatar: '',
             position: '',
             selectedPosition: '',
-            position_id:'',
-            company:'',
-            company_id:'',
+            position_id: '',
+            company: '',
+            company_id: '',
             selectedCompany:'',
             work_space: '',
             work_space_id: '',
             selectedWorkSpace: '',
-            error:'',
+            error: '',
         };
 
         this.handleChangeCodeId = this.handleChangeCodeId.bind(this);
@@ -56,9 +56,11 @@ class UpdateUser extends Component
         get('/positions').then(response => {
             this.setState({ position: response.data });
         })
+
         get('/companys').then(response => {
             this.setState({ company: response.data });
         })
+
         get('/workspaces').then(response => {
             this.setState({ work_space: response.data });
         })
@@ -218,6 +220,7 @@ class UpdateUser extends Component
             company_id: this.state.selectedCompany,
             work_space_id: this.state.selectedWorkSpace,
         }
+
         let uri = '/users/' + this.state.id;
         put(uri, data)
         .then(
@@ -243,45 +246,37 @@ class UpdateUser extends Component
                         <Link to="/list-user" className="btn btn-success">Return List User</Link>
                     </div>
                 </div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className="form-update-user">
                     <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Code Id</label>
                                 <input value={this.state.code_id} type="text" className="form-control" onChange={this.handleChangeCodeId} />
                                 <label className="help-block" >{this.state.error.code_id} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Name</label>
                                 <input value={this.state.name} type="text" className="form-control" onChange={this.handleChangeName} />
                                 <label className="help-block" >{this.state.error.name} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Email</label>
                                 <input value={this.state.email} type="text" className="form-control" onChange={this.handleChangeEmail} />
                                 <label className="help-block" >{this.state.error.email} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Card Number</label>
                                 <input value={this.state.card_number} type="text" className="form-control" onChange={this.handleChangeCardNumber} />
                                 <label className="help-block" >{this.state.error.card_number} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Gender</label>
                                 <select value={this.state.gender} className="form-control" onChange={this.handleChangeGender}>
@@ -292,45 +287,35 @@ class UpdateUser extends Component
                                 <label className="help-block" >{this.state.error.gender} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Birth Day</label>
                                 <input value={this.state.birth_day} type="date" className="form-control" onChange={this.handleChangeBirthDay} />
                                 <label className="help-block" >{this.state.error.birth_day} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Phone Contact</label>
                                 <input value={this.state.phone_contact} type="text" className="form-control" onChange={this.handleChangePhoneContact} />
                                 <label className="help-block" >{this.state.error.phone_contact} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Open Date</label>
                                 <input value={this.state.opening_date} type="date" className="form-control" onChange={this.handleChangeOpenDate} />
                                 <label className="help-block" >{this.state.error.opening_date} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Close Date</label>
                                 <input value={this.state.close_date} type="date" className="form-control" onChange={this.handleChangeCloseDate} />
                                 <label className="help-block" >{this.state.error.close_date} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Role</label>
                                 <select value={this.state.role} className="form-control" onChange={this.handleChangeRole}>
@@ -341,45 +326,37 @@ class UpdateUser extends Component
                                 <label className="help-block" >{this.state.error.role} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Position </label>
                                 <select value={this.state.selectedPosition} className="form-control" onChange={this.handleChangePositionId}>
-                                     <option value="">---Option---</option>
+                                    <option value="">---Option---</option>
                                     {this.showPosition()}
                                 </select>
                                 <label className="help-block" >{this.state.error.position_id} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Workspaces </label>
                                 <select value={this.state.selectedWorkSpace} className="form-control" onChange={this.handleChangeWorkSpaceId}>
-                                     <option value="">---Option---</option>
+                                    <option value="">---Option---</option>
                                     {this.showWorkSpace()}
                                 </select>
                                 <label className="help-block" >{this.state.error.work_space_id} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Company </label>
                                 <select value={this.state.selectedCompany} className="form-control" onChange={this.handleChangeCompanyId}>
-                                     <option value="">---Option---</option>
+                                    <option value="">---Option---</option>
                                     {this.showCompany()}
                                 </select>
                                 <label className="help-block" >{this.state.error.company_id} </label>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-4">
                             <div className="form-group">
                                 <label>Avatar</label>
                                 <input  type= "file" ref={input => {
@@ -395,9 +372,9 @@ class UpdateUser extends Component
                         <button type = "submit" className="btn btn-primary" >Update User</button>
                     </div>
                 </form>
-
             </div>
         )
     }
 }
+
 export default UpdateUser;

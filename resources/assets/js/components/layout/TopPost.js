@@ -21,9 +21,8 @@ class TopPost extends Component
                     <p>{this.props.obj.total} votes</p>
                 </div>
             </div>
-
-
         );
     }
 }
+
 export default TopPost;

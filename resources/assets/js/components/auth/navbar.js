@@ -11,7 +11,7 @@ class Nav extends Component {
         e.preventDefault();  
         axios.post('/logout')
         .then(response => {
-            this.props.history.push('/home');
+            this.props.history.push('/login');
         })
         .catch(error => {
             console.log(error);

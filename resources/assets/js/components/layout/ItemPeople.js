@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, browserHistory, Image } from 'react-router-dom';
 
-
 class ItemPeople extends Component {
     constructor(props)
     {
@@ -16,7 +15,6 @@ class ItemPeople extends Component {
                     <div className="company-up-info">
                         <img src={this.props.obj.following.avatar} alt=""/>
                         <h3><Link to={"/user-detail/" + this.props.obj.following.id}>{this.props.obj.following.name}</Link></h3>
-                        
                         <ul>
                             <li onClick={this.follow} className="follow"> Following</li>
                         </ul>
@@ -27,4 +25,5 @@ class ItemPeople extends Component {
         );
     }
 }
+
 export default ItemPeople;

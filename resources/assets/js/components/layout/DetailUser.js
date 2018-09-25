@@ -18,9 +18,9 @@ export default class DetailUser extends Component {
         let current_id = current_url.split("/").pop();
 
         get('/users/' + current_id)
-          .then(({ data }) => {
+        .then(({ data }) => {
             this.setState({
-              userInfo: data,
+                userInfo: data,
             });
         });
     }
@@ -34,12 +34,14 @@ export default class DetailUser extends Component {
     }
 
     render() {
+
         const {userInfo} = this.state;
+
         return (
                 <div> 
                 <Header />
                 <section className="cover-sec">
-                <img src="/images/cover-img.jpg" alt=""/>
+                    <img src="/images/cover-img.jpg" alt=""/>
                 </section>       
                 <main>
                     <div className="main-section">
@@ -133,5 +135,4 @@ export default class DetailUser extends Component {
             </div>  
         )
     }
-
 }

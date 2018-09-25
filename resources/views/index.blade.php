@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csr-token" content="{{ csrf_token() }}">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/AdminLTE.css">
         <link rel="stylesheet" href="/css/_all-skins.min.css">
@@ -24,8 +24,7 @@
         <link rel="stylesheet" type="text/css" href="/css/pagination.css">
         <link rel="stylesheet" type="text/css" href="/css/DraftStyleDefault.css">
         <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css">
-        <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+        <link rel="stylesheet" href="/css/fontsgoogleapis.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css">
             <title>Morning Speech Management</title>
         <style>
@@ -42,9 +41,9 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/jquery.slimscroll.min.js"></script>
         <script src="/js/adminlte.min.js"></script>
-        <script src="https://use.fontawesome.com/581d5d54d2.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/js/fontawesome.js"></script>
+        <script src="/js/toastr.min.js"></script>
+        <script src=/js/sweetalert.min.js"></script>
         <script type="text/javascript">
 
             $.ajaxSetup({

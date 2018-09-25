@@ -3,9 +3,7 @@ import Header from './Header';
 import {browserHistory} from 'react-router';
 import { post } from 'axios';
 import ReactDOM from 'react-dom';
-import ReactQuill from 'react-quill'; // ES6
-
-
+import ReactQuill from 'react-quill'; 
 
 class CreatePost extends Component {
     constructor(props) {
@@ -14,8 +12,9 @@ class CreatePost extends Component {
             title: '',
             text: '',
             error:'',
-            isButtonDisabled: false
+            isButtonDisabled: false,
         };
+
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -70,10 +69,7 @@ class CreatePost extends Component {
                                     <div className="row">
                                         <label className="label-post">Content</label>
                                     </div>
-
-                                        <ReactQuill value={this.state.text}
-                                                    onChange={this.handleChange} />
-
+                                        <ReactQuill value={this.state.text} onChange={this.handleChange} />
                                         <label className="help-block" >{this.state.error.content} </label>
                                     <br />
                                     <div className="form-group">

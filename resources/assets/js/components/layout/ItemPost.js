@@ -7,10 +7,8 @@ import PopupVote from './PopupVote';
 import ReadMoreReact from 'read-more-react';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
-
 const Timestamp = require('react-timestamp');
 const rootElement = document.getElementById('reactjs-root');
-
 
 class ItemPost extends Component
 {
@@ -24,10 +22,12 @@ class ItemPost extends Component
             listComment: '',
             listUser:'',
         };
+
         this.voteUp = this.voteUp.bind(this);
         this.PopupVote = this.PopupVote.bind(this);
         this.togglePopup = this.togglePopup.bind(this);
     }
+
     componentDidMount() {
         let uncom = this.props.obj.checkVote;
         this.setState({
@@ -48,15 +48,16 @@ class ItemPost extends Component
             });
         });
     }
+
     togglePopup() {        
         this.setState({
-          showPopup: !this.state.showPopup
+            showPopup: !this.state.showPopup
         });
     }
 
     PopupVote() {
         this.setState({
-          showUserVote: !this.state.showUserVote
+            showUserVote: !this.state.showUserVote
         });
     }    
 
@@ -64,6 +65,7 @@ class ItemPost extends Component
         this.setState(prevState => ({
             checkVote: !prevState.checkVote
         }));
+
         let data = new FormData();
         data.append('post_id', this.props.obj.id)
         post('/votes', data)
@@ -72,6 +74,7 @@ class ItemPost extends Component
     render()
     {
         const html = ReactHtmlParser(this.props.obj.content);
+
         return (
             <div className="posts-section">
                 <div className="post-bar">
@@ -107,21 +110,21 @@ class ItemPost extends Component
                             </li>
                             <li onClick={this.togglePopup}><a href="#" title="" className="com"><img src="images/com.png" alt=""/> Comment {this.props.obj.comments_count}</a></li>
                         </ul>
-                        <a><i className="fa fa-eye"></i>Views 50</a>
+                        <a><i className="fa fa-eye"></i></a>
                     </div>
                 </div>
                 {this.state.showPopup ? 
                   <Popup
-                    listComment={this.state.listComment}
-                    closePopup={this.togglePopup.bind(this)}
+                        listComment={this.state.listComment}
+                        closePopup={this.togglePopup.bind(this)}
                   />
                   : null
                 }
                 { this.state.showUserVote ? 
-                  <PopupVote
-                    listUser={this.state.listUser}
-                    closePopup={this.PopupVote.bind(this)}
-                  />
+                    <PopupVote
+                        listUser={this.state.listUser}
+                        closePopup={this.PopupVote.bind(this)}
+                    />
                   : null
                 }
             </div>

@@ -97,7 +97,7 @@ class PostService implements PostRepositoryInterface
         $posts = Post::withCount(['vote','comments', 'vote as checkVote' => function ($query) {
             $user_id = Auth::user()->id;
                 $query->where('user_id', '=', $user_id);
-            }])->get();
+        }])->get();
 
         foreach ($posts as $post) {
               $post->comments_count;
@@ -113,9 +113,9 @@ class PostService implements PostRepositoryInterface
     public function myPost()
     {
         $user_id = Auth::user()->id;
-        $posts = $this->model->where('user_id',$user_id)->get();
+        $posts = $this->model->where('user_id', $user_id)->get();
         foreach ($posts as $key => $post) {
-           $post->user->workspace;
+            $post->user->workspace;
         }
 
         return response()->json($posts);
@@ -126,7 +126,7 @@ class PostService implements PostRepositoryInterface
         $user_id = Auth::user()->id;
         $count = Vote::where('user_id', $user_id)->where('post_id', $request['post_id'])->count();
 
-        if($count > 0) {
+        if ($count > 0) {
             $result = Vote::where('user_id', $user_id)->where('post_id', $request['post_id'])->delete();
         } else {
             $result = Vote::create(['post_id' => $request['post_id'],'user_id' => $user_id]);
@@ -142,7 +142,7 @@ class PostService implements PostRepositoryInterface
         $follower = Auth::user()->id;
         $count = Follow::where('user_id', $request['user_id'])->where('follower', $follower)->count();
 
-        if($count > 0) {
+        if ($count > 0) {
             $result = Follow::where('user_id', $request['user_id'])->where('follower', $follower)->delete();
         } else {
             $result = Follow::create(['user_id' => $request['user_id'],'follower' => $follower]);
@@ -162,7 +162,9 @@ class PostService implements PostRepositoryInterface
             ->join('posts', 'posts.user_id', '=', 'users.id')
             ->join('votes', 'votes.post_id', '=', 'posts.id')
             ->select(DB::raw('count(work_spaces.id) as total, work_spaces.id, posts.*'))
-            ->groupBy('votes.post_id')->orderBy('total','DESC')->whereMonth('posts.created_at', $month)->limit(3)->get();
+            ->groupBy('votes.post_id')->orderBy('total', 'DESC')
+            ->whereMonth('posts.created_at', $month)
+            ->limit(3)->get();
 
         return response()->json($posts);
     }
@@ -171,10 +173,9 @@ class PostService implements PostRepositoryInterface
     {
         $post = Post::findOrFail($postId);
         $userVotes = Vote::where('post_id', $post['id'])->get();
-        if($userVotes)
-        {
+        if ($userVotes) {
             foreach ($userVotes as $key => $userVote) {
-            $userVote->user;
+                $userVote->user;
             }
             return response()->json($userVotes);
         } else {
@@ -185,19 +186,18 @@ class PostService implements PostRepositoryInterface
     public function search($request)
     {
         $search =  $request->search;
-
         $posts = '';
 
         if (trim($request->search)) {
-            $posts = Post::where('title','LIKE',"%{$search}%")
-                         ->orderBy('created_at','DESC')->limit(5)->get();
+            $posts = Post::where('title', 'LIKE', "%{$search}%")
+                        ->orderBy('created_at', 'DESC')->limit(5)->get();
 
             $posts = $posts->map(function ($post, $key) {
-                            return [
-                                        'title' => $post['title'],
-                                        'id'    => $post['id'],
-                                   ];
-                        });          
+                return [
+                    'title' => $post['title'],
+                    'id'    => $post['id'],
+                ];
+            });
         }
 
         return $posts;

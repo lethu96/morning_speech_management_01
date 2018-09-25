@@ -23,4 +23,5 @@ class ItemSuggest extends Component
         );
     }
 }
+
 export default ItemSuggest;

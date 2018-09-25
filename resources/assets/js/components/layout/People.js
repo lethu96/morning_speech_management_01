@@ -9,8 +9,8 @@ class People extends Component {
     constructor(props) {
         super(props);
         this.state = {
-               notfollow: [],
-               following: [],
+           notfollow: [],
+           following: [],
         };
     }
 
@@ -20,13 +20,13 @@ class People extends Component {
             this.setState({
                 notfollow: data,
             });
-          });
+        });
         get('/user/following')
         .then(({ data }) => {
             this.setState({
                 following: data,
             });
-          });
+        });
     }
 
     getItemFollower() {
@@ -75,4 +75,5 @@ class People extends Component {
 
     }
 }
+
 export default People;

@@ -6,9 +6,7 @@ import {browserHistory} from 'react-router';
 import List from './List';
 import { createHashHistory } from 'history'
 
-
 const history = createHashHistory()
-
 
 export default class Header extends Component {
     constructor(props) {
@@ -20,6 +18,7 @@ export default class Header extends Component {
             count : 0,
             width: 0,
         };
+
         this.handleSearch = this.handleSearch.bind(this);
     }
 
@@ -29,22 +28,23 @@ export default class Header extends Component {
         this.setState(() => ({ width : width }));
 
         window.addEventListener('resize', (e) => {
-          const newWidth = document.getElementById('search').offsetWidth; 
-          this.setState(() => ({ width : newWidth }));
+            const newWidth = document.getElementById('search').offsetWidth; 
+            this.setState(() => ({ width : newWidth }));
         });
-            document.body.addEventListener('click', (e) => {
-          this.clearData(e);
+
+        document.body.addEventListener('click', (e) => {
+            this.clearData(e);
         });
 
         document.getElementById('search').addEventListener('keydown', (e) => {
-          if (e.keyCode === 38 || e.keyCode === 40) {
-            e.preventDefault();
-          }
+            if (e.keyCode === 38 || e.keyCode === 40) {
+                e.preventDefault();
+            }
         });
     }
 
     componentWillUnmount () {
-    this.getProfile = false;
+        this.getProfile = false;
     }
 
     componentWillReceiveProps({ location = {} }) {
@@ -58,48 +58,49 @@ export default class Header extends Component {
             .then(({ data }) => {
                 this.setState({
                     users: data,
-                });
             });
-        }
-             handleSearch(e) {
-            this.getPosts();
-      }
+        });
+    }
+
+    handleSearch(e) {
+        this.getPosts();
+    }
 
     getPosts() {
         this.setState(() => ({ 
-          posts: [],
-          count: 0,
-          search: this.refs.newSearch.value      
+            posts: [],
+            count: 0,
+            search: this.refs.newSearch.value
         }));
 
         if (this.state.search.trim() != '') {
-          post("/search",{
-              search : this.state.search
-          })
-         .then( (response) => {
-            this.setState(() => ({ posts : response.data }));
-          })  
+            post("/search",{
+                search : this.state.search
+            })
+            .then( (response) => {
+                this.setState(() => ({ posts : response.data }));
+            })  
         }
-      }
+    }
 
     selectPost(keyCode) {
         if (keyCode == 40 && this.state.count < this.state.posts.length) {
-          this.setState((prevState) => ({ count : prevState.count + 1 }));
+            this.setState((prevState) => ({ count : prevState.count + 1 }));
         }
         if (keyCode == 38 && this.state.count > 1) {
-          this.setState((prevState) => ({ count : prevState.count - 1 }));
+            this.setState((prevState) => ({ count : prevState.count - 1 }));
         }
         if (keyCode == 13) {
-          document.getElementById(this.state.count).childNodes[0].click();
+            document.getElementById(this.state.count).childNodes[0].click();
         }
     }
 
     clearData(e) {
         if (e.target.id != 'search') {
-          this.setState(() => ({ 
-            posts: [],
-            count: 0
-          }));
+            this.setState(() => ({ 
+                posts: [],
+                count: 0,
+            }));
         }
     }
 
@@ -109,22 +110,21 @@ export default class Header extends Component {
         window.location.href = "/login";
     }
 
-
-
     render() {
         const {users} = this.state;
         const ulStyle = {
-      width : this.state.width + 'px'
-    }
+        width : this.state.width + 'px'
+        }
 
-    const posts = this.state.posts.map((post, index) => (
-      <List
-        key = {index}
-        post = {post}
-        index = {index + 1}
-        count = {this.state.count}
-      />
-    ));
+        const posts = this.state.posts.map((post, index) => (
+            <List
+                key = {index}
+                post = {post}
+                index = {index + 1}
+                count = {this.state.count}
+            />
+        ));
+
         return (
             <header>
                 <div className="container">
@@ -140,12 +140,11 @@ export default class Header extends Component {
                                   className="form-control input-lg" 
                                   placeholder="Search title for ....." 
                                 />
-
-                            {this.state.posts.length > 0 && 
-                              <ul style={ulStyle} className="widget-search" >
-                                { posts }
-                              </ul>
-                            }
+                                {this.state.posts.length > 0 && 
+                                  <ul style={ulStyle} className="widget-search" >
+                                    { posts }
+                                  </ul>
+                                }
                             </form>
                         </div>
                         <nav>

@@ -4,7 +4,6 @@ import Main from './Main';
 import UserProfile from './UserProfile';
 import SuggestUser from './SuggestUser';
 
-
 class Master extends Component {
     render() {
         return (
@@ -27,4 +26,5 @@ class Master extends Component {
         )
     }
 }
+
 export default Master;

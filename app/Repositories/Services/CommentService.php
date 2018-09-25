@@ -2,7 +2,7 @@
  
 namespace App\Repositories\Services;
  
-Use App\EloquentModels\Comment;
+use App\EloquentModels\Comment;
 use Auth;
 use Illuminate\Support\Collection;
 use App\Repositories\Interfaces\CommentRepositoryInterface;
@@ -20,9 +20,8 @@ class CommentService implements CommentRepositoryInterface
         foreach ($comment as $key => $user) {
             $user->user;
         }
-        $collection = collect($comment);
 
-        return $collection;
+        return $comment;
     }
  
     public function create($request)
@@ -30,7 +29,6 @@ class CommentService implements CommentRepositoryInterface
         $request['user_id'] = Auth::user()->id;
         $comment = $this->model->create($request->all());
         
-        return response()->json($comment);
+        return $comment;
     }
-
 }

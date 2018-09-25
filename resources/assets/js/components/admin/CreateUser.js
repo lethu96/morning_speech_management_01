@@ -5,35 +5,34 @@ import { Form } from 'semantic-ui-react';
 import Nav from '../auth/navbar';
 import SideBar from '../auth/sidebar';
 
-
 class CreateUser extends Component
 {
     constructor(props)
     {
         super(props);
         this.state = {
-            code_id : '',
-            name : '',
-            email :'',
-            password : '',
-            card_number :'',
-            gender :'',
-            birth_day :'',
-            phone_contact : '',
-            opening_date :'',
-            close_date : '',
-            role : '',
-            avatar : '',
+            code_id: '',
+            name: '',
+            email: '',
+            password: '',
+            card_number: '',
+            gender: '',
+            birth_day:'',
+            phone_contact: '',
+            opening_date: '',
+            close_date: '',
+            role: '',
+            avatar: '',
             position: '',
             selectedPosition: '1',
-            position_id:'',
-            company:'',
-            company_id:'',
+            position_id: '',
+            company: '',
+            company_id: '',
             selectedCompany :'1',
             work_space : '',
             work_space_id : '',
             selectedWorkSpace : '1',
-            error :'',
+            error : '',
             isButtonDisabled: false
         };
         this.handleChangeCodeId = this.handleChangeCodeId.bind(this);
@@ -225,7 +224,6 @@ class CreateUser extends Component
         .catch(error => {
             if (error.response) {
                 this.setState({ error: error.response.data.errors});
-                console.log(this.state.error);
             }
         });
     }

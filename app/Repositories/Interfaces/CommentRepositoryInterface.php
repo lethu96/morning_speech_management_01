@@ -7,5 +7,4 @@ interface CommentRepositoryInterface
     public function getCommentOfPost($postId);
  
     public function create($request);
- 
 }

@@ -62,7 +62,7 @@ class PostController extends Controller
         return $this->postService->listPost();
     }
 
-    public function myPost() 
+    public function myPost()
     {
         return $this->postService->myPost();
     }

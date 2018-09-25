@@ -27,6 +27,7 @@ export default class SuggestUser extends Component {
     	get('/suggest').then(response => {
             this.setState({ suggests: response.data });
         })
+
         get('/top-post').then(response=>{
             this.setState({ top: response.data});
         })
@@ -77,5 +78,4 @@ export default class SuggestUser extends Component {
 			</div>
 	    )
   	}
-
 }

@@ -3,7 +3,9 @@ import Header from './Header';
 import Main from './Main';
 import UserProfile from './UserProfile';
 import SuggestUser from './SuggestUser';
+
 class Master extends Component {
+
     render() {
         return (
            <div> 
@@ -24,4 +26,5 @@ class Master extends Component {
         )
     }
 }
+
 export default Master;

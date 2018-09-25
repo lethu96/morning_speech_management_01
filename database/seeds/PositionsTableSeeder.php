@@ -23,8 +23,6 @@ class PositionsTableSeeder extends Seeder
             ['name' => 'Android Open'],
             ['name' => 'Ruby Open'],
         ];
-
         DB::table('positions')->insert($position);
-
     }
 }
