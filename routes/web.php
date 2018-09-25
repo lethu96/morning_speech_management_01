@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('{slug}', 'index')->where('slug', '(?!api)([A-z\d-\/_.]+)?');
+
+Auth::routes();
