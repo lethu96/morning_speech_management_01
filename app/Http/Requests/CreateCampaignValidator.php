@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentValidatorRequest extends FormRequest
+class CreateCampaignValidator extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class CommentValidatorRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:300',
+            'from_date'=>'date|before:to_date',
+            'to_date' => 'date|after:from_date',
         ];
     }
 }

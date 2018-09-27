@@ -18,6 +18,8 @@ import MyPost from './layout/MyPost';
 import People from './layout/People';
 import DetailPost from  './layout/DetailPost';
 import DetailUser from './layout/DetailUser';
+import Campaign from './admin/Campaign';
+import ListCampaign from './admin/ListCampaign';
 import { createHashHistory } from 'history'
 
 const history = createHashHistory()
@@ -35,17 +37,19 @@ export default class App extends Component
                         <Route path = '/home' component= {Home}/>
                         <Route path = '/forgotpassword' component= {Forgot}/>
                         <Route path = '/password/reset/:token' component= {Reset}/>
-                        <Route path = "/list-post" component = {Post} />
-                        <Route path = "/list-user" component = {User} />
-                        <Route path = "/rank" component = {Ranking} />
-                        <Route path = "/random-user" component = {RandomUser} />
-                        <Route path = "/add-user" component = {CreateUser} />
-                        <Route path = "/update-user/:id" component = {UpdateUser} />
-                        <Route path = "/create-post" component = {CreatePost} />
-                        <Route path = "/user-posts" component = {MyPost} />
-                        <Route path = "/people" component = {People} />
-                        <Route path = "/detail-posts/:id" component = {DetailPost} />
-                        <Route path = "/user-detail/:id" component = {DetailUser} />
+                        <Route path = '/list-post' component = {Post} />
+                        <Route path = '/list-user' component = {User} />
+                        <Route path = '/rank' component = {Ranking} />
+                        <Route path = '/random-user' component = {RandomUser} />
+                        <Route path = '/add-user' component = {CreateUser} />
+                        <Route path = '/update-user/:id' component = {UpdateUser} />
+                        <Route path = '/create-post' component = {CreatePost} />
+                        <Route path = '/user-posts' component = {MyPost} />
+                        <Route path = '/people' component = {People} />
+                        <Route path = '/detail-posts/:id' component = {DetailPost} />
+                        <Route path = '/user-detail/:id' component = {DetailUser} />
+                        <Route path = '/create-campaign' component = {Campaign} />
+                        <Route path = '/list-campaign' component = {ListCampaign} />
                     </Switch>
             </Router>
         )

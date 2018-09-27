@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\EloquentModels\WorkSpace;
 
 class WorkSpaceController extends Controller
@@ -38,10 +37,4 @@ class WorkSpaceController extends Controller
     {
         //
     }
-=======
-
-class WorkSpaceController extends Controller
-{
-    //
->>>>>>> de30220b9035b459237b02d03e3f20c81063a288
 }

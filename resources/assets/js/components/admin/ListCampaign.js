@@ -10,13 +10,13 @@ import swal from 'sweetalert';
 import Nav from '../auth/navbar';
 import SideBar from '../auth/sidebar';
 
-const TOTAL_PER_PAGE = 10;
+const TOTAL_PER_PAGE = 9;
 
-class Users extends React.Component {
+class ListCampaign extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: [],
+            campaign: [],
             page: 0,
             totalPages: 0,
         };
@@ -27,21 +27,21 @@ class Users extends React.Component {
      }
 
     componentDidMount() {
-        this.getUsers();
+        this.getcampaign();
     }
 
     componentWillReceiveProps({ location = {} }) {
-        if (location.pathname === '/users' && location.pathname !== this.props.location.pathname) {
-            this.getUsers();
+        if (location.pathname === '/list-campaign' && location.pathname !== this.props.location.pathname) {
+            this.getcampaign();
         }
     }
 
-    getUsers() {
-        get('/users')
+    getcampaign() {
+        get('/campaigns')
            .then(({ data }) => {
                const totalPages = Math.ceil(data.length / TOTAL_PER_PAGE);
                this.setState({
-                    users: data,
+                    campaign: data,
                     page: 0,
                     totalPages : totalPages,
             });
@@ -66,74 +66,40 @@ class Users extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        swal({
-            title: "Are you sure?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-               if (willDelete) {
-                        axios.delete('/users/' + this.props.id)
-                        .then(
-                            (response) => {
-                                get('/users')
-                                .then(response => {
-                                   this.setState({ users: response.data });
-                                }
-                            )
-                        });
-                        swal("Post has been deleted!", {
-                            icon: "success",
-                            timer: 1000,
-                            buttons:false
-                        }
-                    );
-                }
-            }
-        );
     }
 
     render() {
 
-        const { users, page, totalPages } = this.state;
+        const { campaign, page, totalPages } = this.state;
         const startIndex = page * TOTAL_PER_PAGE;
 
         return (
             <div>
                 <Nav link="Logout" />  
                 <SideBar />
-                <Link to="/add-user" className="btn btn-success">Create Users</Link>
-                <Page title="Users">
+                <Link to="/add-campaign" className="btn btn-success">Create campaign</Link>
+                <Page title="campaign">
                     <Helmet>
-                         <title>Users</title>
+                         <title>campaign</title>
                     </Helmet>
 
                     <Table celled striped>
                          <Table.Header>
                               <Table.Row>
-                                   <Table.HeaderCell>Name</Table.HeaderCell>
-                                   <Table.HeaderCell>Email</Table.HeaderCell>
-                                   <Table.HeaderCell>Phone</Table.HeaderCell>
-                                   <Table.HeaderCell>Code </Table.HeaderCell>
-                                   <Table.HeaderCell>Card Number</Table.HeaderCell>
-                                   <Table.HeaderCell>Avatar</Table.HeaderCell>
+                                   <Table.HeaderCell>From date</Table.HeaderCell>
+                                   <Table.HeaderCell>To date</Table.HeaderCell>
                                    <Table.HeaderCell> ACTION </Table.HeaderCell>
                               </Table.Row>
                          </Table.Header>
                          <Table.Body>
-                              {users.slice(startIndex, startIndex + TOTAL_PER_PAGE).map(user =>
+                              {campaign.slice(startIndex, startIndex + TOTAL_PER_PAGE).map(campaign =>
                               (    
-                                   <Table.Row key={user.id}>
-                                        <Table.Cell>{user.name}</Table.Cell>
-                                        <Table.Cell>{user.email}</Table.Cell>
-                                        <Table.Cell>{user.phone_contact}</Table.Cell>
-                                        <Table.Cell>{user.code_id}</Table.Cell>
-                                        <Table.Cell>{user.card_number}</Table.Cell>
-                                        <Table.Cell><img className="thumb"  src={user.avatar} /></Table.Cell>
+                                   <Table.Row key={campaign.id}>
+                                        <Table.Cell>{campaign.from_date}</Table.Cell>
+                                        <Table.Cell>{campaign.to_date}</Table.Cell>
                                         <Table.Cell>
                                              <form onSubmit={this.handleSubmit}>
-                                                  <Link to={"/update-user/"+user.id} className="btn btn-primary">Edit</Link>
+                                                  <Link to={"/update-campaign/"+campaign.id} className="btn btn-primary">Edit</Link>
                                                   <input type="submit" value="Delete" className="btn btn-danger"/>
                                              </form>
                                         </Table.Cell>
@@ -166,4 +132,4 @@ class Users extends React.Component {
     }
 }
 
-export default Users;
+export default ListCampaign;

@@ -95,7 +95,7 @@ class PostService implements PostRepositoryInterface
         $posts = Post::withCount(['vote','comments', 'vote as checkVote' => function ($query) {
             $user_id = Auth::user()->id;
                 $query->where('user_id', '=', $user_id);
-        }])->get();
+        }])->where('confirm', '=', 1)->get();
 
         foreach ($posts as $post) {
               $post->comments_count;
