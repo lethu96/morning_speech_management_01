@@ -9,7 +9,7 @@ import { translate, Trans } from 'react-i18next';
 
 const history = createHashHistory()
 
-export default class Header extends Component {
+class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -194,3 +194,5 @@ export default class Header extends Component {
         )
     }
 }
+
+export default translate('translations')(Header);

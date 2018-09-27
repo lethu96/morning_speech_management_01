@@ -90,4 +90,4 @@ class RandomUser extends Component
     }
 }
 
-export default RandomUser;
+export default translate('translations')(RandomUser);

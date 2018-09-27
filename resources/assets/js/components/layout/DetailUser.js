@@ -6,7 +6,7 @@ import Header from './Header';
 import ItemPost from './ItemPost';
 import { translate, Trans } from 'react-i18next';
 
-export default class DetailUser extends Component {
+class DetailUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -138,3 +138,5 @@ export default class DetailUser extends Component {
         )
     }
 }
+
+export default translate('translations')(DetailUser);

@@ -401,4 +401,4 @@ class CreateUser extends Component
     }
 }
 
-export default CreateUser;
+export default translate('translations')(CreateUser);

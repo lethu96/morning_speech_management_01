@@ -45,4 +45,4 @@ class ItemNotFollow extends Component {
     }
 }
 
-export default ItemNotFollow;
+export default translate('translations')(ItemNotFollow);

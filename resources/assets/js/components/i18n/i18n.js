@@ -83,6 +83,11 @@ i18n.use(LanguageDetector)
                 'content': 'Content',
                 'create-user': 'Create User',
                 'gender': 'Gender',
+                'top-post': 'Top Post',
+                'suggestions': 'Suggestions',
+                'votes': 'Votes',
+                'read-more': 'Read More',
+                'user-vote': 'User Vote',             
             }
         },
         

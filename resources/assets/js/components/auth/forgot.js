@@ -37,6 +37,7 @@ class Forgot extends Component {
         let error = this.state.err ;
         let msg = (!error) ? 'We have e-mailed your password reset link!' : "User doesn't exist";
         let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
+        
         const { t, i18n } = this.props;
 
          return(

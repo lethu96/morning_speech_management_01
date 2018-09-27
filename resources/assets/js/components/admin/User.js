@@ -168,4 +168,4 @@ class Users extends React.Component {
         }
     }
 
-export default Users;
+export default translate('translations')(Users);

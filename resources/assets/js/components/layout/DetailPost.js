@@ -7,7 +7,7 @@ import ItemComment from './ItemComment';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import { translate, Trans } from 'react-i18next';
 
-export default class DetailPost extends Component {
+class DetailPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -151,3 +151,5 @@ export default class DetailPost extends Component {
         )
     }
 }
+
+export default translate('translations')(DetailPost);

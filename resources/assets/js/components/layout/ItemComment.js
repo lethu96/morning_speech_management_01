@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router-dom';
-import { translate, Trans } from 'react-i18next';
 
 class ItemComment extends Component {
     constructor(props)

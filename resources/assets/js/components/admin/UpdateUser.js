@@ -380,4 +380,4 @@ class UpdateUser extends Component
     }
 }
 
-export default UpdateUser;
+export default translate('translations')(UpdateUser);

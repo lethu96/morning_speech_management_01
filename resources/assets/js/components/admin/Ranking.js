@@ -127,4 +127,4 @@ class Ranking extends Component {
     }
 }
 
-export default Ranking;
+export default translate('translations')(Ranking);
