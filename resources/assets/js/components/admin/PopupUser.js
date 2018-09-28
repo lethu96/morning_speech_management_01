@@ -129,6 +129,8 @@ export default class PopupUser extends React.Component {
                     <div className="row">
                      { this.state.result ? 
                         <PickUser
+                            popup = {this.props.closePopup}
+                            updateState={this.props.updateState}
                             number={this.props.numberItem}
                             users={this.state.result}
                         />

@@ -5,9 +5,13 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\Services\UserService;
-use App\EloquentModels\WorkSpace;
-use DB;
-use Carbon\Carbon;
+use App\Repositories\Interfaces\PostRepositoryInterface;
+use App\Repositories\Services\PostService;
+use App\Repositories\Interfaces\CalendarRepositoryInterface;
+use App\Repositories\Services\CalendarService;
+use App\Repositories\Interfaces\CampaignRepositoryInterface;
+use App\Repositories\Services\CampaignService;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +41,16 @@ class AppServiceProvider extends ServiceProvider
             UserRepositoryInterface::class,
             UserService::class
         );
+
+        $this->app->singleton(
+            CalendarRepositoryInterface::class,
+            CalendarService::class
+        );
+
+        $this->app->singleton(
+            CampaignRepositoryInterface::class,
+            CampaignService::class
+        );
+        
     }
 }

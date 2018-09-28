@@ -12,7 +12,7 @@ class PickUser extends React.Component {
      }
 
     handleSubmit() {
-        this.props.newlist(this.props.users)
+        this.props.updateState(this.props.users)
     }
 
     

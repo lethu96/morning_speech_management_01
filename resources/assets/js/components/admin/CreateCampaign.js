@@ -21,7 +21,8 @@ class CreateCampaign extends Component
             toDate: moment(),
             error : '',
             calendar: '',
-            isButtonDisabled: false
+            isButtonDisabled: false,
+            campaignId:'',
         };
 
         this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
@@ -29,22 +30,19 @@ class CreateCampaign extends Component
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeStartDate(date)
-    {
+    handleChangeStartDate(date) {
         this.setState({
             startDate: date
         })
     }
     
-    handleChangeToDate(date)
-    {
+    handleChangeToDate(date) {
         this.setState({
             toDate: date
         })
     }
 
-    handleSubmit(e)
-    {
+    handleSubmit(e) {
         e.preventDefault();
         let data = new FormData();
         data.append('from_date', this.state.startDate)
@@ -53,6 +51,7 @@ class CreateCampaign extends Component
         post('/campaigns', data)
         .then(
             (response) => {
+                this.setState({campaignId: response.data});
                 get('/campaign/' + response.data)
                 .then((response) =>{
                     this.setState({calendar: response.data});
@@ -109,6 +108,7 @@ class CreateCampaign extends Component
                 </Page>
                 { this.state.calendar ? 
                     <Calendar
+                        campaignId={this.state.campaignId}
                         calendar={this.state.calendar}
                     />
                   : null

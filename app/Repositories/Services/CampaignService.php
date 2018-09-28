@@ -67,7 +67,8 @@ class CampaignService implements CampaignRepositoryInterface
                 ->where('work_space_id', 'LIKE', $workSpace )
                 ->orderBy('created_at', 'DESC')->limit($numberItem)
                 ->get();
-                
-        return $results;
+        $collection = collect($results);
+
+        return $collection;
     }
 }
