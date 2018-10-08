@@ -30,15 +30,15 @@ class CreateCampaign extends Component
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeStartDate(date) {
+    handleChangeStartDate(e) {
         this.setState({
-            startDate: date
+            startDate: e.target.value
         })
     }
     
-    handleChangeToDate(date) {
+    handleChangeToDate(e) {
         this.setState({
-            toDate: date
+            toDate: e.target.value
         })
     }
 
@@ -54,7 +54,10 @@ class CreateCampaign extends Component
                 this.setState({campaignId: response.data});
                 get('/campaign/' + response.data)
                 .then((response) =>{
-                    this.setState({calendar: response.data});
+                    this.setState({
+                        calendar: response.data,
+                        error : '',
+                    });
                 })
             }
         )
@@ -84,18 +87,15 @@ class CreateCampaign extends Component
                         <Table.Body>   
                            <Table.Row>
                                 <Table.Cell>
-                                    <DatePicker
-                                        selected={this.state.startDate}
-                                        onChange={(event) => this.handleChangeStartDate(event)}
-                                    />
-                                    <label className="help-block" >{this.state.error.from_date} </label>
+
+                                    <input type="date" value={this.state.startDate} className="form-control" onChange={ this.handleChangeStartDate} />
+                                   
+                                    <label className="error" >{this.state.error.from_date} </label>
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <DatePicker
-                                        selected={this.state.toDate}
-                                        onChange={(event) => this.handleChangeToDate(event)}
-                                    />
-                                    <label className="help-block" >{this.state.error.to_date} </label>
+                                <input type="date" value={this.state.toDate} className="form-control" onChange={this.handleChangeToDate} />
+                                    
+                                    <label className="error" >{this.state.error.to_date} </label>
                                 </Table.Cell>
                                 <Table.Cell>
                                     <form onSubmit={this.handleSubmit}>

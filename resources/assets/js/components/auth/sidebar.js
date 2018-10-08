@@ -23,20 +23,11 @@ export default class SideBar extends Component {
             <li>
               <Link to="list-user">User</Link>
             </li>
-            <li className="active treeview">
-            <Link to="/list-campaign"> Campaign </Link>
-                <ul className="treeview-menu" >
-                    <li>
-                     <Link to='/create-campaign'>  New Campaign </Link>
-                     <Link to="/list-campaign">  List Campaign </Link>
-                    </li>
-                </ul>
+            <li>
+              <Link to='/create-campaign'>  New Campaign </Link>
             </li>
             <li>
-              <Link to="rank">Ranking</Link>
-            </li>
-            <li>
-              <Link to="random-user">Random User</Link>
+              <Link to="/list-campaign">  List Campaign </Link>
             </li>
           </ul>
         </section>

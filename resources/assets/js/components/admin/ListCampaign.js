@@ -77,7 +77,7 @@ class ListCampaign extends React.Component {
             <div>
                 <Nav link="Logout" />  
                 <SideBar />
-                <Link to="/add-campaign" className="btn btn-success">Create campaign</Link>
+                <Link to="/create-campaign" className="btn btn-success">Create campaign</Link>
                 <Page title="campaign">
                     <Helmet>
                          <title>campaign</title>
@@ -99,8 +99,8 @@ class ListCampaign extends React.Component {
                                         <Table.Cell>{campaign.to_date}</Table.Cell>
                                         <Table.Cell>
                                              <form onSubmit={this.handleSubmit}>
-                                                  <Link to={"/update-campaign/"+campaign.id} className="btn btn-primary">Edit</Link>
-                                                  <input type="submit" value="Delete" className="btn btn-danger"/>
+                                                  <Link to={"/detail-campaign/" + campaign.id} className="edit">Edit</Link>
+                                                  <input type="submit" value="Delete" className="delete"/>
                                              </form>
                                         </Table.Cell>
                                    </Table.Row>),

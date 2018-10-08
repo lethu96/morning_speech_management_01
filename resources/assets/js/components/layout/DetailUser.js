@@ -4,6 +4,7 @@ import { get, post } from 'axios';
 import { Form } from 'semantic-ui-react';
 import Header from './Header';
 import ItemPost from './ItemPost';
+import MyCalendar from './MyCalendar';
 
 export default class DetailUser extends Component {
     constructor(props) {
@@ -54,6 +55,17 @@ export default class DetailUser extends Component {
                                                 <div className="user-pro-img">
                                                     <img src={userInfo.avatar} alt=""/>
                                                 </div>
+                                                <h3>{userInfo.name}</h3>
+                                                <div className="star-descp">
+                                                    <span>{userInfo.position}</span>
+                                                    <ul>
+                                                        <li><i className="fa fa-star"></i></li>
+                                                        <li><i className="fa fa-star"></i></li>
+                                                        <li><i className="fa fa-star"></i></li>
+                                                        <li><i className="fa fa-star"></i></li>
+                                                        <li><i className="fa fa-star-half-o"></i></li>
+                                                    </ul>
+                                                </div>
                                                 <div className="user_pro_status">
                                                     <ul className="flw-status">
                                                         <li>
@@ -79,18 +91,9 @@ export default class DetailUser extends Component {
                                     <div className="col-lg-6">
                                         <div className="main-ws-sec">
                                             <div className="user-tab-sec">
-                                                <h3>{userInfo.name}</h3>
-                                                <div className="star-descp">
-                                                    <span>{userInfo.position}</span>
-                                                    <ul>
-                                                        <li><i className="fa fa-star"></i></li>
-                                                        <li><i className="fa fa-star"></i></li>
-                                                        <li><i className="fa fa-star"></i></li>
-                                                        <li><i className="fa fa-star"></i></li>
-                                                        <li><i className="fa fa-star-half-o"></i></li>
-                                                    </ul>
-                                                </div>
+                                                
                                             </div>
+                                            <MyCalendar />
                                             <div className="product-feed-tab current" id="feed-dd">
                                                 <div className="posts-section">
                                                     {this.itemPost()}
@@ -100,9 +103,11 @@ export default class DetailUser extends Component {
                                     </div>
                                     <div className="col-lg-3">
                                         <div className="right-sidebar">
-                                            <div className="message-btn">
-                                                <a href="#" title=""><i className="fa fa-envelope"></i> Message</a>
-                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-3">
+                                        <div className="right-sidebar">
                                             <div className="widget widget-portfolio">
                                                 <div className="wd-heady">
                                                     <h3>Image</h3>

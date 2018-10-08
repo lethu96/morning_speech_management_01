@@ -252,28 +252,28 @@ class UpdateUser extends Component
                             <div className="form-group">
                                 <label>Code Id</label>
                                 <input value={this.state.code_id} type="text" className="form-control" onChange={this.handleChangeCodeId} />
-                                <label className="help-block" >{this.state.error.code_id} </label>
+                                <label className="error" >{this.state.error.code_id} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Name</label>
                                 <input value={this.state.name} type="text" className="form-control" onChange={this.handleChangeName} />
-                                <label className="help-block" >{this.state.error.name} </label>
+                                <label className="error" >{this.state.error.name} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Email</label>
                                 <input value={this.state.email} type="text" className="form-control" onChange={this.handleChangeEmail} />
-                                <label className="help-block" >{this.state.error.email} </label>
+                                <label className="error" >{this.state.error.email} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Card Number</label>
                                 <input value={this.state.card_number} type="text" className="form-control" onChange={this.handleChangeCardNumber} />
-                                <label className="help-block" >{this.state.error.card_number} </label>
+                                <label className="error" >{this.state.error.card_number} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -284,35 +284,35 @@ class UpdateUser extends Component
                                     <option value="male">male</option>
                                     <option value="female">female</option>
                                 </select>
-                                <label className="help-block" >{this.state.error.gender} </label>
+                                <label className="error" >{this.state.error.gender} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Birth Day</label>
                                 <input value={this.state.birth_day} type="date" className="form-control" onChange={this.handleChangeBirthDay} />
-                                <label className="help-block" >{this.state.error.birth_day} </label>
+                                <label className="error" >{this.state.error.birth_day} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Phone Contact</label>
                                 <input value={this.state.phone_contact} type="text" className="form-control" onChange={this.handleChangePhoneContact} />
-                                <label className="help-block" >{this.state.error.phone_contact} </label>
+                                <label className="error" >{this.state.error.phone_contact} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Open Date</label>
                                 <input value={this.state.opening_date} type="date" className="form-control" onChange={this.handleChangeOpenDate} />
-                                <label className="help-block" >{this.state.error.opening_date} </label>
+                                <label className="error" >{this.state.error.opening_date} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
                             <div className="form-group">
                                 <label>Close Date</label>
                                 <input value={this.state.close_date} type="date" className="form-control" onChange={this.handleChangeCloseDate} />
-                                <label className="help-block" >{this.state.error.close_date} </label>
+                                <label className="error" >{this.state.error.close_date} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -323,7 +323,7 @@ class UpdateUser extends Component
                                     <option value="1">Admin</option>
                                     <option value="0">User</option>
                                 </select>
-                                <label className="help-block" >{this.state.error.role} </label>
+                                <label className="error" >{this.state.error.role} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -333,7 +333,7 @@ class UpdateUser extends Component
                                     <option value="">---Option---</option>
                                     {this.showPosition()}
                                 </select>
-                                <label className="help-block" >{this.state.error.position_id} </label>
+                                <label className="error" >{this.state.error.position_id} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -343,7 +343,7 @@ class UpdateUser extends Component
                                     <option value="">---Option---</option>
                                     {this.showWorkSpace()}
                                 </select>
-                                <label className="help-block" >{this.state.error.work_space_id} </label>
+                                <label className="error" >{this.state.error.work_space_id} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -353,7 +353,7 @@ class UpdateUser extends Component
                                     <option value="">---Option---</option>
                                     {this.showCompany()}
                                 </select>
-                                <label className="help-block" >{this.state.error.company_id} </label>
+                                <label className="error" >{this.state.error.company_id} </label>
                             </div>
                         </div>
                         <div className="col-md-4">
@@ -362,8 +362,8 @@ class UpdateUser extends Component
                                 <input  type= "file" ref={input => {
                                     this.fileInput = input;
                                     }} className="form-control col-md-6" onChange={this.handleChangeAvatar}/>
-                                <p className="help-block">{this.state.error.avatar} </p>
-                                <label className="help-block" >{this.state.error.avatar} </label>
+                                <p className="error">{this.state.error.avatar} </p>
+                                <label className="error" >{this.state.error.avatar} </label>
                             </div>
                         </div>
                     </div>

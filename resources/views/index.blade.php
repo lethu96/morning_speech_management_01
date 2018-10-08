@@ -25,7 +25,8 @@
         <link rel="stylesheet" type="text/css" href="/css/DraftStyleDefault.css">
         <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css">
         <link rel="stylesheet" href="/css/fontsgoogleapis.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/calendar.css">
             <title>Morning Speech Management</title>
         <style>
             .title{

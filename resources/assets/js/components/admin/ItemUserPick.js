@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 
 class ItemUserPick extends Component
 {
@@ -13,7 +15,7 @@ class ItemUserPick extends Component
         return (
             <Table.Row >
                 <Table.Cell>
-                    {this.props.obj.name}
+                    <Link to={'/user-detail/' + this.props.obj.id}> {this.props.obj.name} </Link>
                 </Table.Cell>
             </Table.Row>
         );

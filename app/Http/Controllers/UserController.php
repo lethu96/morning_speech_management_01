@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         $itemShow = $this->userService->getById($id);
 
-        return response()->json($item);
+        return response()->json($itemShow);
     }
 
     /**

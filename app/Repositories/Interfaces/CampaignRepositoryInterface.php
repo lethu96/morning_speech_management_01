@@ -11,4 +11,8 @@ interface CampaignRepositoryInterface
     public function getCalenderOfCampaign($id);
 
     public function filterUser($request);
+
+    public function showItem($id);
+
+    public function rankOfCampaign($id);
 }

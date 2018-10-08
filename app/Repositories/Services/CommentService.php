@@ -27,8 +27,9 @@ class CommentService implements CommentRepositoryInterface
     public function create($request)
     {
         $request['user_id'] = Auth::user()->id;
+
         $comment = $this->model->create($request->all());
-        
+
         return $comment;
     }
 }

@@ -6,7 +6,7 @@ import { Container, Input, Form, Radio, Table, Checkbox } from 'semantic-ui-reac
 import { get, post } from 'axios';
 import PickUser from './PickUser';
 
-export default class PopupUser extends React.Component {
+export default class PopupOneUser extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,6 +16,7 @@ export default class PopupUser extends React.Component {
             workSpace: '',
             workspaceId: '',
             result: '',
+            updateUser: [],
         };
 
         this.handleChangeGender = this.handleChangeGender.bind(this);
@@ -84,6 +85,15 @@ export default class PopupUser extends React.Component {
             })  
         }
     }
+    handleAddUser() {
+
+        const id = [].concat(this.state.updateUser, this.refs.id.value);
+
+        this.setState({ updateUser: id })
+
+        this.props.updateState(this.state.updateUser)
+        
+    }
 
     render() {
     
@@ -127,13 +137,27 @@ export default class PopupUser extends React.Component {
                         </div>
                     </div>
                     <div className="row" className="result-filter">
-                     { this.state.result ? 
-                        <PickUser
-                            updateState={this.props.updateState}
-                            number={this.props.numberItem}
-                            users={this.state.result}
-                            closePopup={this.props.updateStatePopup}
-                        />
+                     { this.state.result ?
+                        this.state.result.map(user =>
+                            (
+                            <div key={user.id}>
+
+                                <form onSubmit={this.handleAddUser.bind(this)} className="form-result-filter">
+                                   <div className="col-md-12">
+                                        <div className="col-md-4">
+                                             <img className="thumb"  src={user.avatar} />
+                                        </div>
+                                        <div className="col-md-4">
+                                            <label>{user.name} </label>
+                                        </div>
+                                        <div className="col-md-4"> 
+                                            <input type="submit" value="Choose" className="btn-choose"/>
+                                        </div>
+                                        <input className=" hidden" value= {user.id} ref="id" />
+                                   </div>
+                                </form>
+                            </div>),
+                        )
                       : null
                     }   
                     </div>

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import {browserHistory} from 'react-router';
-import { post } from 'axios';
+import { get, post } from 'axios';
 import ReactDOM from 'react-dom';
-import ReactQuill from 'react-quill'; 
+import ReactQuill from 'react-quill';
+import ReactTags from 'react-tag-autocomplete';
 
 class CreatePost extends Component {
     constructor(props) {
@@ -13,6 +14,8 @@ class CreatePost extends Component {
             text: '',
             error:'',
             isButtonDisabled: false,
+            tags: [],
+            suggestions: []
         };
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
@@ -20,6 +23,24 @@ class CreatePost extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.suggest();
+    }
+
+    componentWillReceiveProps({ location = {} }) {
+        if (location.pathname === '/create-post' && location.pathname !== this.props.location.pathname) {
+            this.suggest();
+        }
+    }
+
+    suggest() {
+        get('/post-tag')
+        .then(({ data }) => {
+            this.setState({
+                suggestions: data,
+            });
+        });
+    }
     handleChangeTitle(e) {
         this.setState({
             title: e.target.value
@@ -31,11 +52,32 @@ class CreatePost extends Component {
         this.setState({ text: value })
     }
 
+    handleDelete (i) {
+        const tags = this.state.tags.slice(0)
+        tags.splice(i, 1)
+        this.setState({ tags })
+    }
+ 
+    handleAddition (tag) {
+    const tags = [].concat(this.state.tags, tag)
+    this.setState({ tags })
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         let data = new FormData();
+        
+        var arrayTag = [];
+        const tags = this.state.tags;
+
+
+        tags.map(result =>{
+            arrayTag.push(result.id);
+        });
+
         data.append('title', this.state.title)
         data.append('content', this.state.text)
+        data.append('tag_id', arrayTag)
 
         post('/posts', data)
         .then(
@@ -48,6 +90,7 @@ class CreatePost extends Component {
     }
 
     render() {
+
         return (
             <div> 
                 <Header />       
@@ -62,15 +105,20 @@ class CreatePost extends Component {
                                             <div className="form-group">
                                                 <label className="label-post">Title</label>
                                                 <input value={this.state.title} type="text" className="form-control" onChange={this.handleChangeTitle} />
-                                                <label className="help-block" >{this.state.error.title} </label>
+                                                <label className="error" >{this.state.error.title} </label>
                                             </div>
                                         </div>
                                     </div>
+                                    <ReactTags className="my-css-class"
+                                        tags={this.state.tags}
+                                        suggestions={this.state.suggestions}
+                                        handleDelete={this.handleDelete.bind(this)}
+                                        handleAddition={this.handleAddition.bind(this)} />
                                     <div className="row">
                                         <label className="label-post">Content</label>
                                     </div>
                                         <ReactQuill value={this.state.text} onChange={this.handleChange} />
-                                        <label className="help-block" >{this.state.error.content} </label>
+                                        <label className="error" >{this.state.error.content} </label>
                                     <br />
                                     <div className="form-group">
                                         <button type = "submit" className="btn create-post" >Add Post</button>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsConfirmOfPostTable extends Migration
+class ChangeColumTimePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddColumnsConfirmOfPostTable extends Migration
     public function up()
     {
         Schema::table('posts', function($table) {
-            $table->integer('confirm')->nullable();
-            $table->integer('campaign_id')->nullable();
+            $table->dropColumn('time');
         });
     }
 
@@ -27,8 +26,7 @@ class AddColumnsConfirmOfPostTable extends Migration
     public function down()
     {
         Schema::table('posts', function($table) {
-            $table->dropColumn('confirm');
-            $table->dropColumn('campaign_id');
+            $table->dateTime('time');
         });
     }
 }

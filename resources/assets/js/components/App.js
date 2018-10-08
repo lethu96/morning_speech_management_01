@@ -20,6 +20,7 @@ import DetailPost from  './layout/DetailPost';
 import DetailUser from './layout/DetailUser';
 import Campaign from './admin/Campaign';
 import ListCampaign from './admin/ListCampaign';
+import DetailCampagin from './admin/DetailCampagin';
 import { createHashHistory } from 'history'
 
 const history = createHashHistory()
@@ -29,7 +30,7 @@ export default class App extends Component
 
     render() {
         return (
-                <Router>
+                <Router history={history}>
                     <Switch>
                         <Route exact path = '/' component = {Index}/>
                         <Route exact path = '/index' component = {Master} /> 
@@ -49,7 +50,8 @@ export default class App extends Component
                         <Route path = '/detail-posts/:id' component = {DetailPost} />
                         <Route path = '/user-detail/:id' component = {DetailUser} />
                         <Route path = '/create-campaign' component = {Campaign} />
-                        <Route path = '/list-campaign' component = {ListCampaign} />
+                        <Route exact path = '/list-campaign' component = {ListCampaign} />
+                        <Route exact path = '/detail-campaign/:id' component = {DetailCampagin} />
                     </Switch>
             </Router>
         )

@@ -21,10 +21,9 @@ class UserService implements UserRepositoryInterface
     {
         $user = User::where('status', '=', '1')->get();
 
-        foreach ($user as $key => $name) {
-            $name->position->name;
-            $name->company->name;
-            $name->workSpace->name;
+        foreach ($user as $key => $users) {
+            $users->position->name;
+            $users->workSpace->name;
         }
 
         return $user;
@@ -72,7 +71,8 @@ class UserService implements UserRepositoryInterface
 
         $posts = $user->posts;
         foreach ($posts as $key => $post) {
-            $post->user->workspace;
+            $post->user->load('workspace');
+            $post->postTags->load('tags');
         }
         $workSpace = $user->workSpace->name;
         $position = $user->position->name;

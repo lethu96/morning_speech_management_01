@@ -4,7 +4,7 @@ import { Table } from 'semantic-ui-react';
 import {get, post} from 'axios';
 import PopupUser from './PopupUser';
 import ItemUserPick from './ItemUserPick';
-import {browserHistory} from 'react-router';
+
 
 export default class Calendar extends React.Component {
     constructor(props) {
@@ -26,6 +26,12 @@ export default class Calendar extends React.Component {
 
     updateState(newlist) {
         this.setState({users: newlist});
+    }
+
+    updateStatePopup(statePopup) {
+        this.setState({
+            showPopup: statePopup
+        });
     }
 
     userChoose()
@@ -53,7 +59,9 @@ export default class Calendar extends React.Component {
         data.append('campaign_id', this.props.campaignId)
 
         post('/calendars', data)
-        this.props.history.push('/detail-campaign' + this.props.campaignId);
+        .then(
+            (response) => {window.location.href = `/detail-campaign/${this.props.campaignId}`}
+        );
     }
 
     render() {
@@ -61,47 +69,64 @@ export default class Calendar extends React.Component {
         return (
             <div>
 
-                <Table celled striped className="table-calendar">
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>Date</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {this.props.calendar.map((result, i) =>
-                             (
-                                <Table.Row key={result.id}>
-                                    <Table.Cell>
-                                        {result}
-                                    </Table.Cell>
+                <div className="col-md-6">
+                    <Table celled striped className="table-calendar">
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Date</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                            {this.props.calendar.map((result, i) =>
+                                 (
+                                    <Table.Row key={result.id}>
+                                        <Table.Cell>
+                                            {result}
+                                        </Table.Cell>
+                                    </Table.Row>
+                                ),
+                            )}
+                        </Table.Body>
+                        <Table.Footer>
+                        {(() => {
+                            if (this.state.users === '') {
+                                return   <button onClick={this.showPopup} type = "submit" className="btn btn-item choose-user" >Add User</button> ;
+                            }
+                            else
+                                return (
+                                <button onClick={this.showPopup} type = "submit" className="btn btn-item edit-user" >Edit User</button>
+                            )
+                        })()}
+                        </Table.Footer>
+                    </Table>
+                </div>
+                <div className="col-md-6">
+                    { this.state.users ? 
+                        <Table celled striped className="table-user">
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell>User</Table.HeaderCell>
                                 </Table.Row>
-                            ),
-                        )}
-                    </Table.Body>
-                    <Table.Footer>
-                        <button onClick={this.showPopup} type = "submit" className="btn btn-primary" >Add User</button>
-                    </Table.Footer>
-                </Table>
-                <Table celled striped className="table-calendar">
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>User</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
-                    <Table.Body>
-                        {this.userChoose()}
-                    </Table.Body>
-                    <Table.Footer>
-                    <form onSubmit={this.handleConfirm}>
-                    <input type="submit" value="ConFirm" className="btn btn-success"/>
-                    </form>
-                    </Table.Footer>
-                </Table>
+                            </Table.Header>
+                            <Table.Body>
+                                {this.userChoose()}
+                            </Table.Body>
+                            <Table.Footer>
+                                <form onSubmit={this.handleConfirm}>
+                                <input type="submit" value="ConFirm Campaign" className="btn btn-item edit-user"/>
+                                </form>
+                            </Table.Footer>
+                        </Table>
+                        : null
+                    }
+                    
+                </div>
                 { this.state.showPopup ? 
                     <PopupUser
                         updateState= {users=> this.updateState(users) }
                         numberItem = {this.props.calendar.length}
                         closePopup={this.showPopup.bind(this)}
+                        updateStatePopup = {showPopup=> this.updateStatePopup(showPopup)} 
                     />
                     : null
                 }

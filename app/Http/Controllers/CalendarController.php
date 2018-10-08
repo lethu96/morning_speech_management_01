@@ -44,11 +44,41 @@ class CalendarController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $itemUpdate = $this->calendarService->update($request, $id);
+
+        return response()->json($itemUpdate);
     }
     
     public function destroy($id)
     {
         //
+    }
+
+    public function calendarWeek()
+    {
+        $calendar = $this->calendarService->calendarWeek();
+
+        return response()->json($calendar);
+    }
+
+    public function calendarNextWeek()
+    {
+        $calendar = $this->calendarService->calendarNextWeek();
+        return response()->json($calendar);
+    }
+
+    public function myCalendar()
+    {
+        $myCalendar = $this->calendarService->myCalendar();
+
+        return response()->json($myCalendar);
+    }
+
+    public function updatePost(Request $request, $id)
+    {
+
+        $post = $this->calendarService->updatePostOfCalendar($request, $id);
+
+        return response()->json($post);
     }
 }

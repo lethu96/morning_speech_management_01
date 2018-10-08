@@ -31,4 +31,6 @@ interface PostRepositoryInterface
     public function getUserVote($postId);
 
     public function search($request);
+
+    public function choosePostForCampaign();
 }

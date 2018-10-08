@@ -13,6 +13,7 @@ class PickUser extends React.Component {
 
     handleSubmit() {
         this.props.updateState(this.props.users)
+        this.props.closePopup(false)
     }
 
     
@@ -29,7 +30,7 @@ class PickUser extends React.Component {
                  <Table.Body>
                       {this.props.users.map(user =>
                       (    
-                           <Table.Row key={user.id}>
+                           <Table.Row key={user.id} >
                                 <Table.Cell><img className="thumb"  src={user.avatar} /></Table.Cell>
                                 <Table.Cell>{user.name}</Table.Cell>
                                 <Table.Cell>
@@ -53,7 +54,7 @@ class PickUser extends React.Component {
                                     }
                                     else
                                         return (
-                                        <div className="post-bar"> Item not enough, please refilter</div>
+                                        <label className="error"> Item not enough, please refilter</label>
                                     )
                                     })()}  
                                 </Table.Cell>

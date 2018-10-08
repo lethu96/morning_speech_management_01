@@ -24,8 +24,8 @@ class CreateCampaignValidator extends FormRequest
     public function rules()
     {
         return [
-            'from_date'=>'date|before:to_date',
-            'to_date' => 'date|after:from_date',
+            'from_date'=>'date|before:to_date|unique:campaigns',
+            'to_date' => 'date|after:from_date|unique:campaigns',
         ];
     }
 }

@@ -37,7 +37,9 @@ class CampaignController extends Controller
 
     public function show($id)
     {
-        //
+        $item = $this->campaignService->showItem($id);
+        
+        return response()->json($item);
     }
 
     public function edit($id)
@@ -65,5 +67,12 @@ class CampaignController extends Controller
         $result = $this->campaignService->filterUser($request);
         
         return response()->json($result);
+    }
+
+    public function rankOfCampaign($id)
+    {
+        $ranks = $this->campaignService->rankOfCampaign($id);
+
+        return response()->json($ranks);
     }
 }

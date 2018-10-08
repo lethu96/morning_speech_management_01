@@ -76,7 +76,7 @@ class ItemPost extends Component
         const html = ReactHtmlParser(this.props.obj.content);
 
         return (
-            <div className="posts-section">
+            <div className="posts-section" key={this.props.obj.id}>
                 <div className="post-bar">
                     <div className="post_topbar">
                         <div className="usy-dt">
@@ -110,7 +110,18 @@ class ItemPost extends Component
                             </li>
                             <li onClick={this.togglePopup}><a href="#" title="" className="com"><img src="images/com.png" alt=""/> Comment {this.props.obj.comments_count}</a></li>
                         </ul>
-                        <a><i className="fa fa-eye"></i></a>
+                        {this.props.obj.post_tags ?
+                            <a className="tags">
+                            {
+                                this.props.obj.post_tags.map((item, i) => {
+                                    return <p className="tag-item"> {item.tags.name}</p> ;
+                                })
+                            }
+                            <p className="tag-title"> Tags:  </p>
+                            </a>
+                            : null
+
+                        }
                     </div>
                 </div>
                 {this.state.showPopup ? 

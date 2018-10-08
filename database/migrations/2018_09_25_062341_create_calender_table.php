@@ -18,6 +18,8 @@ class CreateCalenderTable extends Migration
             $table->string('date');
             $table->integer('user_id');
             $table->integer('campaign_id');
+            $table->integer('post_id')->nullable();
+            $table->tinyInteger('checked')->nullable();
             $table->timestamps();
         });
     }

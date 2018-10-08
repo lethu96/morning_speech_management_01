@@ -86,14 +86,15 @@ class PostController extends Controller
     public function votes(Request $request)
     {
         $votes = $this->postService->votePost($request);
-        return response()->json($items );
+
+        return response()->json($votes );
     }
 
     public function follows(Request $request)
     {
         $follows = $this->postService->followUser($request);
 
-        return response()->json($follows );
+        return response()->json($follows);
     }
 
     public function topPost()
@@ -115,5 +116,12 @@ class PostController extends Controller
         $results = $this->postService->search($request);
 
         return response()->json($results);
+    }
+
+    public function choosePost()
+    {
+        $posts = $this->postService->choosePostForCampaign();
+
+        return response()->json($posts);
     }
 }

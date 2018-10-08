@@ -40,10 +40,25 @@ class PostService implements PostRepositoryInterface
  
     public function create($request)
     {
+        $result = '';
+
+        $tagId = explode ( ',', $request['tag_id']);
+
         $request['user_id'] = Auth::user()->id;
+
         $post = $this->model->create($request->all());
 
-        return response()->json($post);
+        if($post['id']) {
+            for( $i = 0; $i < sizeof($tagId); $i ++)
+            {
+                $result = DB::table('post_tag')->insert([
+                    'tag_id' => $tagId[$i],
+                    'post_id' => $post['id']
+                ]);
+            }
+        }
+
+        return response()->json($result);
     }
  
     public function update($id, $request)
@@ -95,13 +110,14 @@ class PostService implements PostRepositoryInterface
         $posts = Post::withCount(['vote','comments', 'vote as checkVote' => function ($query) {
             $user_id = Auth::user()->id;
                 $query->where('user_id', '=', $user_id);
-        }])->where('confirm', '=', 1)->get();
+        }])->where('confirm', '=', 1)->orderBy('id', 'DESC')->get();
 
         foreach ($posts as $post) {
-              $post->comments_count;
-              $post->vote_count;
-              $post->user->workspace;
-              $post->checkVote;
+            $post->comments_count;
+            $post->vote_count;
+            $post->user->workspace;
+            $post->checkVote;
+            $post->postTags->load('tags')->pluck('name');
         }
 
         return $posts;
@@ -113,6 +129,7 @@ class PostService implements PostRepositoryInterface
         $posts = $this->model->where('user_id', $user_id)->get();
         foreach ($posts as $key => $post) {
             $post->user->workspace;
+            $post->postTags->load('tags');
         }
 
         return $posts;
@@ -156,7 +173,7 @@ class PostService implements PostRepositoryInterface
             ->join('votes', 'votes.post_id', '=', 'posts.id')
             ->select(DB::raw('count(work_spaces.id) as total, work_spaces.id, posts.*'))
             ->groupBy('votes.post_id')->orderBy('total', 'DESC')
-            ->whereMonth('posts.created_at', $month)
+            ->whereMonth('votes.created_at', $month)
             ->limit(3)->get();
 
         return $posts;
@@ -194,5 +211,14 @@ class PostService implements PostRepositoryInterface
         }
 
         return $posts;
+    }
+
+    public function choosePostForCampaign()
+    {
+        $userId = Auth::user()->id;
+
+        $posts = Post::where('user_id', $userId)->where('confirm',NULL)->get();
+
+        return $posts; 
     }
 }

@@ -10,6 +10,7 @@ use DateTime;
 use DatePeriod;
 use DateInterval;
 use App\User;
+use DB;
  
 class CampaignService implements CampaignRepositoryInterface
 {
@@ -71,4 +72,51 @@ class CampaignService implements CampaignRepositoryInterface
 
         return $collection;
     }
+
+    public function showItem($id)
+    {
+        $campaign = $this->model->find($id);
+
+        $calendars = $campaign->calendars;
+
+        foreach ($calendars as $key => $calendar) {
+            $calendar->users;
+            $calendar->posts;
+        }
+
+        $collection = collect($campaign);
+        $collection->put('calendars', $calendars);
+
+        return $collection;
+    }
+    
+    public function rankOfCampaign($id)
+    {
+
+        $selects = [
+            'posts.*',
+            'users.name',
+            'users.code_id',
+            'users.avatar',
+            'COUNT(votes.post_id) AS  number_vote',
+        ];
+
+        $toDate = Campaign::where('id', $id)->pluck('to_date')->all();
+
+        $result = DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')
+                                    ->join('votes', 'votes.post_id', '=', 'posts.id')
+                                    ->join('calendars', 'posts.id', '=', 'calendars.post_id')
+                                    ->join('campaigns', 'calendars.campaign_id', '=', 'campaigns.id')
+                                    ->selectRaw(implode(',', $selects))
+                                    ->where('campaigns.id', $id)
+                                    ->whereDate('votes.created_at', '<=', $toDate)
+                                    ->groupBy('posts.id')
+                                    ->orderBy(\DB::raw('count(votes.post_id)'), 'DESC')
+                                    ->get();
+
+        $collection = collect($result);
+
+        return $collection;
+    }
+
 }

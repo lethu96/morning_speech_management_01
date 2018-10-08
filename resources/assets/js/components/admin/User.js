@@ -133,8 +133,8 @@ class Users extends React.Component {
                                         <Table.Cell><img className="thumb"  src={user.avatar} /></Table.Cell>
                                         <Table.Cell>
                                              <form onSubmit={this.handleSubmit}>
-                                                  <Link to={"/update-user/"+user.id} className="btn btn-primary">Edit</Link>
-                                                  <input type="submit" value="Delete" className="btn btn-danger"/>
+                                                  <Link to={'/update-user/' + user.id} className="edit">Edit</Link>
+                                                  <input type="submit" value="Delete" className="delete"/>
                                              </form>
                                         </Table.Cell>
                                    </Table.Row>),

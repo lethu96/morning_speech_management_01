@@ -130,7 +130,7 @@ export default class DetailPost extends Component {
                                             <div className="row">
                                                 <div className="col-lg-12">
                                                     <input type="text" name="title"  onChange={this.handleChangeComment} ref="newcomment"/>
-                                                    <label className="help-block" >{this.state.error.content}</label>
+                                                    <label className="error" >{this.state.error.content}</label>
                                                     <br />
                                                 </div>
                                                 <button type = "submit" className="btn-active" > Comment</button>

@@ -3,6 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import UserProfile from './UserProfile';
 import SuggestUser from './SuggestUser';
+import CalendarMs from './CalendarMs';
 
 class Master extends Component {
     render() {
@@ -14,7 +15,7 @@ class Master extends Component {
                         <div className="container">
                             <div className="main-section-data">
                                 <div className="row">
-                                <UserProfile />
+                                <CalendarMs />
                                 <Main />
                                 <SuggestUser />
                                 </div>

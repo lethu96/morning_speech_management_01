@@ -7,6 +7,7 @@ use App\Http\Requests\PostValidatorRequest;
 use App\User;
 use App\EloquentModels\Comment;
 use App\EloquentModels\Vote;
+use App\EloquentModels\PostTag;
 
 class Post extends Model
 {
@@ -29,5 +30,10 @@ class Post extends Model
     public function vote()
     {
         return $this->hasMany(Vote::class, 'post_id');
+    }
+
+    public function postTags()
+    {
+        return $this->hasMany(PostTag::class, 'post_id');
     }
 }
