@@ -13,7 +13,7 @@ class ChangeColumTimePostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function($table) {
+        Schema::table('comments', function($table) {
             $table->dropColumn('time');
         });
     }
@@ -25,7 +25,7 @@ class ChangeColumTimePostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function($table) {
+        Schema::table('comments', function($table) {
             $table->dateTime('time');
         });
     }
