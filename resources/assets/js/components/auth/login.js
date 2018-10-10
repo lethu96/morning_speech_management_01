@@ -10,22 +10,22 @@ class Login extends Component {
         this.state = {
             email : '',
             password: '',
-            role: ''
+            role: '',
         }
     }
 
     onSubmit(e) {
         e.preventDefault();
         const {email , password} = this.state ;
-        axios.post('/login', {
+        axios.post('/login-user', {
             email, 
             password
         })
         .then(response => {
             //this.setState({err: false});
             this.setState({role: response.data.data});
-            console.log(response.data);
-            this.props.history.push("home") ;
+            //console.log(response.data);
+            //this.props.history.push("home") ;
           
         })
         .catch(error => {
@@ -44,18 +44,14 @@ class Login extends Component {
         // let error = this.state.err ;
         // let msg = (!error) ? 'Login Successful' : 'Wrong Credentials';
         // let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
-        // let checkRole = this.state.role;
+        let checkRole = this.state.role;
 
-        // if( checkRole == 1 ) {
-        //     this.props.history.push("/index")
-        // }
-        // if( checkRole == 2 ) {
-        //     this.props.history.push("/home")
-        // }
-        // if (checkRole == 0 ) { this.props.history.push("index") ;}
-        // else {
-        //     this.props.history.push("home") ;
-        // }
+        if( checkRole == 1 ) {
+            this.props.history.push("/index")
+        }
+        if( checkRole == 2 ) {
+            this.props.history.push("/home")
+        }
 
         return (
             
