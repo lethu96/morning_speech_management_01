@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
                 'code_id' => 'B121460',
                 'card_number' => '0015254013',
                 'email' => 'le.thi.thu@framgia.com',
-                'role' => 0,
+                'role' => 2,
                 'password' => bcrypt('12345'),
                 'gender' => 'female',
                 'birth_day' => '1996-12-12',
