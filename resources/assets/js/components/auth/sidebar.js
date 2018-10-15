@@ -11,12 +11,11 @@ export default class SideBar extends Component {
                  <img src="/images/dang-luan.jpg" className="img-circle" alt="User Image" />
               </div>
               <div className="pull-left info">
-                <p>Tạ Quang Hiếu</p>
+                <p>Admin</p>
                 <a href="#"><i className="fa fa-circle text-success"></i> Online</a>
               </div>
           </div>
           <ul className="sidebar-menu" data-widget="tree">
-            <li className="header">Menu</li>
             <li>
               <Link to="list-post">Post</Link>
             </li>
