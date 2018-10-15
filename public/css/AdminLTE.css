@@ -416,7 +416,7 @@ a:focus {
  */
 .main-sidebar {
   background-color: #0d2930;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding-top: 50px;
@@ -2300,7 +2300,7 @@ a:focus {
  * -----------------
  */
 .btn {
-  border-radius: 3px;
+  border-radius: 6px;
   -webkit-box-shadow: none;
   box-shadow: none;
   border: 1px solid transparent;

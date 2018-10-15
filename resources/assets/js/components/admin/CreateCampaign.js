@@ -72,12 +72,10 @@ class CreateCampaign extends Component
     {
         return (
             <div>
-                <Page title="Users">
-                    <Helmet>
-                        <title>Create Campaigns</title>
-                    </Helmet>
-
-                    <Table celled striped>
+                <div className="content-wrapper">
+                    <section className="content">
+                        <div className="row">
+                            <Table celled striped>
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Start Date</Table.HeaderCell>
@@ -105,7 +103,9 @@ class CreateCampaign extends Component
                             </Table.Row>
                         </Table.Body>
                     </Table>
-                </Page>
+                        </div>
+                    </section>
+                </div>
                 { this.state.calendar ? 
                     <Calendar
                         campaignId={this.state.campaignId}

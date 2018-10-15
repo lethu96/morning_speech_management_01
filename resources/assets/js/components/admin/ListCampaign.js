@@ -77,13 +77,10 @@ class ListCampaign extends React.Component {
             <div>
                 <Nav link="Logout" />  
                 <SideBar />
-                <Link to="/create-campaign" className="btn btn-success">Create campaign</Link>
-                <Page title="campaign">
-                    <Helmet>
-                         <title>campaign</title>
-                    </Helmet>
-
-                    <Table celled striped>
+                <div className="content-wrapper">
+                  <section className="content">
+                        <div className="row">
+                            <Table celled striped>
                          <Table.Header>
                               <Table.Row>
                                    <Table.HeaderCell>From date</Table.HeaderCell>
@@ -99,8 +96,8 @@ class ListCampaign extends React.Component {
                                         <Table.Cell>{campaign.to_date}</Table.Cell>
                                         <Table.Cell>
                                              <form onSubmit={this.handleSubmit}>
-                                                  <Link to={"/detail-campaign/" + campaign.id} className="edit">Edit</Link>
-                                                  <input type="submit" value="Delete" className="delete"/>
+                                                  <Link to={"/detail-campaign/" + campaign.id} className="btn edit">Edit</Link>
+                                                  <input type="submit" value="Delete" className="btn delete"/>
                                              </form>
                                         </Table.Cell>
                                    </Table.Row>),
@@ -111,7 +108,7 @@ class ListCampaign extends React.Component {
                                    <Table.HeaderCell colSpan={6}>
                                         <Menu floated="right" pagination>
                                             {page !== 0 && <Menu.Item as="a" icon onClick={this.decrementPage}>
-                                                <Icon name="left chevron" />
+                                                <i className="fa fa-chevron-left" />
                                             </Menu.Item>}
                                                 {times(totalPages, n =>
                                                     (<Menu.Item as="a" key={n} active={n === page} onClick={this.setPage(n)}>
@@ -119,14 +116,16 @@ class ListCampaign extends React.Component {
                                             </Menu.Item>),
                                             )}
                                              {page !== (totalPages - 1) && <Menu.Item as="a" icon onClick={this.incrementPage}>
-                                                <Icon name="right chevron" />
+                                                <i className="fa fa-chevron-right" />
                                             </Menu.Item>}
                                         </Menu>
                                     </Table.HeaderCell>
                                </Table.Row>
                             </Table.Footer>
                     </Table>
-                </Page>
+                        </div>
+                  </section>
+                </div>
             </div>
         );
     }

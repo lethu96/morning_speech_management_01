@@ -51,12 +51,12 @@ class ItemCalendar extends Component
                 {(() => {
                 if (this.props.obj.posts) {
                     return (
-                        <Table.Cell> <Link to={'/detail-posts/' + this.props.obj.posts.id}> {this.props.obj.posts.title}</Link></Table.Cell>    
+                        <Table.Cell collapsing> <Link id="linkpost" to={'/detail-posts/' + this.props.obj.posts.id}> {this.props.obj.posts.title}</Link></Table.Cell>    
                     ) 
                 }  
                 else
                     return (
-                        <input value="Not posts" className="btn btn-item no-post" /> 
+                        <input value="Not post yet" className="btn btn-item no-post" /> 
                     )
                 })()}
                 <Table.Cell>
@@ -64,14 +64,14 @@ class ItemCalendar extends Component
                 if (this.props.obj.posts) {
                     if(this.props.obj.checked) {
                         return (
-                        <input className={this.state.checked ? 'post-checked' : 'post-uncheck'}  value={this.state.checked ? 'Checked' : 'Uncheck'}/>
+                        <input className={this.state.checked ? 'btn post-checked' : 'btn post-uncheck'}  value={this.state.checked ? 'Checked' : 'Uncheck'}/>
                     ) 
                     }else
-                        return  <input onClick= {this.checkPost} className={this.state.checked ? 'post-checked' : 'post-uncheck'}  value={this.state.checked ? 'Checked' : 'Uncheck'}/>
+                        return  <input onClick= {this.checkPost} className={this.state.checked ? 'btn post-checked' : 'btn post-uncheck'}  value={this.state.checked ? 'Checked' : 'Uncheck'}/>
                 }  
                 else
                     return (
-                        <input className={this.state.checked ? 'post-checked' : 'post-uncheck'}  value={this.state.checked ? 'Checked' : 'Uncheck'}/>
+                        <input className={this.state.checked ? 'btn post-checked' : 'btn post-uncheck'}  value={this.state.checked ? 'btn Checked' : 'Uncheck'}/>
                     )
                 })()}
                     

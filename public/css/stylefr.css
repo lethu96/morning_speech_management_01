@@ -5412,10 +5412,6 @@ a:hover {
 .navbar.navbar-default {
     width: 100%;
 }
-.ui.celled.striped.table {
-    width: 80%;
-    margin-left: 19%;
-}
 .navbar.navbar-expand-lg.navbar-light.bg-light {
     margin-left: 42%;
 }
@@ -5491,7 +5487,7 @@ a:hover {
     display: inherit;
 }
 .read-more-button {
-    display: none;
+    color: red;
 }
 
 /* Styling Vue Search Widget - You can customize it as you wish */
@@ -5935,4 +5931,7 @@ option {
 }
 .react-tags__selected-tag-name {
     color: black;
+}
+#linkpost {
+    color: #57b846 !important;
 }

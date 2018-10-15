@@ -103,13 +103,10 @@ class Users extends React.Component {
             <div>
                 <Nav link="Logout" />  
                 <SideBar />
-                <Link to="/add-user" className="btn btn-success">Create Users</Link>
-                <Page title="Users">
-                    <Helmet>
-                         <title>Users</title>
-                    </Helmet>
-
-                    <Table celled striped>
+                <div className="content-wrapper">
+                    <section className="content">
+                        <div className="row">
+                            <Table celled striped>
                          <Table.Header>
                               <Table.Row>
                                    <Table.HeaderCell>Name</Table.HeaderCell>
@@ -133,8 +130,8 @@ class Users extends React.Component {
                                         <Table.Cell><img className="thumb"  src={user.avatar} /></Table.Cell>
                                         <Table.Cell>
                                              <form onSubmit={this.handleSubmit}>
-                                                  <Link to={'/update-user/' + user.id} className="edit">Edit</Link>
-                                                  <input type="submit" value="Delete" className="delete"/>
+                                                  <Link to={'/update-user/' + user.id} className="btn edit">Edit</Link>
+                                                  <input type="submit" value="Delete" className="btn delete"/>
                                              </form>
                                         </Table.Cell>
                                    </Table.Row>),
@@ -145,7 +142,7 @@ class Users extends React.Component {
                                    <Table.HeaderCell colSpan={6}>
                                         <Menu floated="right" pagination>
                                             {page !== 0 && <Menu.Item as="a" icon onClick={this.decrementPage}>
-                                                <Icon name="left chevron" />
+                                                <i className="fa fa-chevron-left" />
                                             </Menu.Item>}
                                                 {times(totalPages, n =>
                                                     (<Menu.Item as="a" key={n} active={n === page} onClick={this.setPage(n)}>
@@ -153,14 +150,16 @@ class Users extends React.Component {
                                             </Menu.Item>),
                                             )}
                                              {page !== (totalPages - 1) && <Menu.Item as="a" icon onClick={this.incrementPage}>
-                                                <Icon name="right chevron" />
+                                                <i className="fa fa-chevron-right" />
                                             </Menu.Item>}
                                         </Menu>
                                     </Table.HeaderCell>
                                </Table.Row>
                             </Table.Footer>
                     </Table>
-                </Page>
+                        </div>
+                    </section>
+                </div>
             </div>
         );
     }

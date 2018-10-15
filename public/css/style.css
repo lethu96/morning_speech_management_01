@@ -167,3 +167,94 @@ color: rgba(0,0,0,0.87);
   line-height: 35px;
   background-color: #64d791;
 }
+.ui.table tfoot tr:first-child>th:only-child {
+    border-radius: 0 0 .28571429rem .28571429rem;
+}
+.ui.right.floated.menu {
+    float: right;
+    margin: 0 0 0 .5rem;
+}
+.ui.pagination.menu .item {
+    min-width: 3em;
+    text-align: center;
+}
+
+.ui.menu>.item:first-child {
+    border-radius: .28571429rem 0 0 .28571429rem;
+}
+.ui.menu .item {
+    position: relative;
+    vertical-align: middle;
+    line-height: 1;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: 0 0;
+    padding: .92857143em 1.14285714em;
+    text-transform: none;
+    color: rgba(0,0,0,.87);
+    font-weight: 400;
+    -webkit-transition: background .1s ease,box-shadow .1s ease,color .1s ease;
+    transition: background .1s ease,box-shadow .1s ease,color .1s ease;
+}
+.ui.menu .item:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(34,36,38,.1);
+}
+.ui.pagination.menu .icon.item i.icon {
+    vertical-align: top;
+}
+
+.ui.menu .icon.item>.icon {
+    width: auto;
+    margin: 0 auto;
+}
+.ui.menu .item>i.icon {
+    opacity: .9;
+    float: none;
+    margin: 0 .35714286em 0 0;
+}
+i.icon, i.icons {
+    font-size: 1em;
+}
+i.icon {
+    display: inline-block;
+    opacity: 1;
+    margin: 0 .25rem 0 0;
+    width: 1.18em;
+    height: 1em;
+    font-family: Icons;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: inherit;
+    text-align: center;
+    speak: none;
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.ui.pagination.menu .active.item {
+    border-top: none;
+    padding-top: .92857143em;
+    background-color: rgba(0,0,0,.05);
+    color: rgba(0,0,0,.95);
+    box-shadow: none;
+}
+.ui.menu .active.item {
+    background: rgba(0,0,0,.05);
+    font-weight: 400;
+}

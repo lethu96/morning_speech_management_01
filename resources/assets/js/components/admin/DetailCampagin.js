@@ -89,49 +89,49 @@ class DetailCampagin extends Component
             <div> 
                 <Nav link="Logout" />  
                 <SideBar />
-                <Page title="Users">
-                    <Helmet>
-                         <title>Campaign</title>
-                    </Helmet>
-                    <Link to='/list-campaign' className="back"> Back To List Campaign </Link>
-                    <div className="campaign-date"> To: {this.state.toDate} </div>
-                    <div className="campaign-date"> Campaign From: {this.state.fromDate} </div>
-                    
-                    <Table celled striped>
-                         <Table.Header>
-                              <Table.Row>
-                                   <Table.HeaderCell>Date</Table.HeaderCell>
-                                   <Table.HeaderCell>User name</Table.HeaderCell>
-                                   <Table.HeaderCell>Post</Table.HeaderCell>
-                                   <Table.HeaderCell>Action</Table.HeaderCell>
-                              </Table.Row>
-                         </Table.Header>
-                        <Table.Body>
-                        {(() => {
-                            if (this.state.calendars.length === 0) {
-                                return  this.AddUserForCampaign()
-                            }
-                            else
-                                return this.showCalendar()
-                        })()}
-                        </Table.Body>
-                    </Table>
-                    <div className="text-ranking" > Ranking Of Campaign </div>
-                    <Table celled striped>
-                         <Table.Header>
-                              <Table.Row>
-                                   <Table.HeaderCell>Code ID</Table.HeaderCell>
-                                   <Table.HeaderCell>User name</Table.HeaderCell>
-                                   <Table.HeaderCell>Title Post</Table.HeaderCell>
-                                   <Table.HeaderCell>Number Vote</Table.HeaderCell>
-                              </Table.Row>
-                         </Table.Header>
-                        <Table.Body>
-                            {this.showRank()}
-                        </Table.Body>
-                    </Table>
-
-                </Page>
+                <div className="content-wrapper">
+                    <section className="content">
+                        <div className="row">
+                            <Link to='/list-campaign' className="back"> Back To List Campaign </Link>
+                            <div className="campaign-date"> To: {this.state.toDate} </div>
+                            <div className="campaign-date"> Campaign From: {this.state.fromDate} </div>
+                            
+                            <Table celled striped>
+                                 <Table.Header>
+                                      <Table.Row>
+                                           <Table.HeaderCell>Date</Table.HeaderCell>
+                                           <Table.HeaderCell>User name</Table.HeaderCell>
+                                           <Table.HeaderCell collapsing>Post</Table.HeaderCell>
+                                           <Table.HeaderCell>Action</Table.HeaderCell>
+                                      </Table.Row>
+                                 </Table.Header>
+                                <Table.Body>
+                                {(() => {
+                                    if (this.state.calendars.length === 0) {
+                                        return  this.AddUserForCampaign()
+                                    }
+                                    else
+                                        return this.showCalendar()
+                                })()}
+                                </Table.Body>
+                            </Table>
+                            <div className="text-ranking" > Ranking Of Campaign </div>
+                            <Table celled striped>
+                                 <Table.Header>
+                                      <Table.Row>
+                                           <Table.HeaderCell>Code ID</Table.HeaderCell>
+                                           <Table.HeaderCell>User name</Table.HeaderCell>
+                                           <Table.HeaderCell>Title Post</Table.HeaderCell>
+                                           <Table.HeaderCell>Number Vote</Table.HeaderCell>
+                                      </Table.Row>
+                                 </Table.Header>
+                                <Table.Body>
+                                    {this.showRank()}
+                                </Table.Body>
+                            </Table>
+                        </div>
+                    </section>
+                </div>
             </div>  
         )
     }

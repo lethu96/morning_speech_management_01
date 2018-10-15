@@ -28,12 +28,6 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css">
         <link rel="stylesheet" type="text/css" href="/css/calendar.css">
             <title>Morning Speech Management</title>
-        <style>
-            .title{
-                margin-top: 230px;
-                color: cadetblue;
-            } 
-        </style>
     </head>
     <body>
         <div id="app"></div>

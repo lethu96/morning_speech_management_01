@@ -31,7 +31,7 @@ export default class Main extends Component {
     }
 
     getPosts() {
-        get('/list-post')
+        get('/list-post-admin')
           .then(({ data }) => {
             this.setState({
                 posts: data,

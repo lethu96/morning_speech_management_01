@@ -8,7 +8,7 @@ class Index extends Component {
            <div> 
                 <Nav />       
                 <div className="container text-center  title">
-                    <h1>Wellcome to Morning Speech Management </h1>
+                    <h1>Welcome to Morning Speech Management </h1>
                 </div> 
            </div>   
         )

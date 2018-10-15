@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'checkLevel']], function () {
     Route::resource('positions', 'PositionController');
     Route::resource('companys', 'CompanyController');
     Route::get('profile', 'UserController@profile');
-    Route::get('/list-post', 'PostController@getListItemPost');
+    Route::get('/list-post-admin', 'PostController@getListItemPost');
     Route::get('/my-post', 'PostController@myPost');
     Route::get('/suggest', 'UserController@suggest');
     Route::get('/comment-of-post/{id}', 'CommentController@index');
