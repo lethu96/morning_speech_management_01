@@ -48,7 +48,8 @@ class PostService implements PostRepositoryInterface
 
         $post = $this->model->create($request->all());
 
-        if($post['id']) {
+        if($request['tag_id']) {
+
             for( $i = 0; $i < sizeof($tagId); $i ++)
             {
                 $result = DB::table('post_tag')->insert([
@@ -57,8 +58,7 @@ class PostService implements PostRepositoryInterface
                 ]);
             }
         }
-
-        return response()->json($result);
+        return response()->json($post);
     }
  
     public function update($id, $request)

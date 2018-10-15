@@ -58,7 +58,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 3,
                 'position_id' => 4,
-                'avatar' => '/images/hieu.png',
+                'avatar' => '/images/luhan.png',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
@@ -75,7 +75,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 1,
                 'position_id' => 1,
-                'avatar' => '/images/duong.jpg',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
@@ -92,7 +92,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 1,
                 'position_id' => 3,
-                'avatar' => '/images/nga.jpg',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
@@ -109,7 +109,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 1,
                 'position_id' => 6,
-                'avatar' => '/images/hue.jpg',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '09656',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
@@ -127,7 +127,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 1,
                 'position_id' => 5,
-                'avatar' => '/images/tam.jpeg',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
@@ -178,7 +178,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 1,
                 'position_id' => 1,
-                'avatar' => '/images/dilraba.jpg',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
@@ -195,7 +195,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 3,
                 'position_id' => 4,
-                'avatar' => '/images/jungkook.jpg',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'
