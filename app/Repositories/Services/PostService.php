@@ -52,7 +52,7 @@ class PostService implements PostRepositoryInterface
 
             for( $i = 0; $i < sizeof($tagId); $i ++)
             {
-                $result = DB::table('post_tag')->insert([
+                $result = DB::table('post_tags')->insert([
                     'tag_id' => $tagId[$i],
                     'post_id' => $post['id']
                 ]);
