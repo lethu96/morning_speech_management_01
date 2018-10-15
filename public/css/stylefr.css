@@ -5582,8 +5582,7 @@ input[type="text"]:focus{
     width: 70%;
 }
 .form-update-user {
-    width: 73%;
-    margin-left: 19%;
+    margin-top: 3% !important;
 }
 .btn.btn-success {
     margin-left: 19%;
@@ -5866,7 +5865,7 @@ div.react-tags__suggestions ul li.react-tags__activesuggestions {
     width: 10%;
 }
 .workspaces {
-    margin-top: -4%;
+    margin-top: -1%;
 }
 .create-user {
     float: right;
