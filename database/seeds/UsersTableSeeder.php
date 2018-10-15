@@ -58,7 +58,7 @@ class UserTableSeeder extends Seeder
                 'company_id' => 1,
                 'work_space_id' => 3,
                 'position_id' => 4,
-                'avatar' => '/images/luhan.png',
+                'avatar' => '/images/luhan.jpg',
                 'phone_contact' => '84987654321',
                 'opening_date' => '2018-02-12 15:20:01',
                 'close_date' => '2019-02-12 15:20:01'

@@ -11,7 +11,7 @@ class PostTag extends Model
         'tag_id',
         'post_id',
     ];
-    protected $table = 'post_tag';
+    protected $table = 'post_tags';
 
     public function tags()
     {
