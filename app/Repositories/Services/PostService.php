@@ -167,16 +167,25 @@ class PostService implements PostRepositoryInterface
     {
         
         $month = Carbon::now()->month;
+        $selects = [
+            'posts.*',
+            'users.name',
+            'users.code_id',
+            'users.avatar',
+            'COUNT(votes.post_id) AS  number_vote',
+        ];
+        
+        $result = DB::table('posts')->join('users', 'posts.user_id', '=', 'users.id')
+                                    ->join('votes', 'votes.post_id', '=', 'posts.id')
+                                    ->selectRaw(implode(',', $selects))
+                                    ->where('votes.type_vote', '=', 'vote_up')
+                                    ->whereMonth('posts.created_at', $month)
+                                    ->groupBy('posts.id')
+                                    ->orderBy(\DB::raw('count(votes.post_id)'), 'DESC')
+                                    ->get();
+        $collection = collect($result);
 
-        $posts = DB::table('users')->join('work_spaces', 'work_spaces.id', '=', 'users.work_space_id')
-            ->join('posts', 'posts.user_id', '=', 'users.id')
-            ->join('votes', 'votes.post_id', '=', 'posts.id')
-            ->select(DB::raw('count(work_spaces.id) as total, work_spaces.id, posts.*'))
-            ->groupBy('votes.post_id')->orderBy('total', 'DESC')
-            ->whereMonth('votes.created_at', $month)
-            ->limit(3)->get();
-
-        return $posts;
+        return $collection;
     }
 
     public function getUserVote($postId)

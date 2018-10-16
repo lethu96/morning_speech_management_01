@@ -246,132 +246,139 @@ class UpdateUser extends Component
                         <Link to="/list-user" className="btn btn-success">Return List User</Link>
                     </div>
                 </div>
-                <form onSubmit={this.handleSubmit} className="form-update-user">
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Code Id</label>
-                                <input value={this.state.code_id} type="text" className="form-control" onChange={this.handleChangeCodeId} />
-                                <label className="error" >{this.state.error.code_id} </label>
-                            </div>
+                <div className="content-wrapper">
+                    <section className="content">
+                        <div className="row">
+                            <form onSubmit={this.handleSubmit} className="form-update-user">
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Code Id</label>
+                                            <input value={this.state.code_id} type="text" className="form-control" onChange={this.handleChangeCodeId} />
+                                            <label className="error" >{this.state.error.code_id} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Name</label>
+                                            <input value={this.state.name} type="text" className="form-control" onChange={this.handleChangeName} />
+                                            <label className="error" >{this.state.error.name} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Email</label>
+                                            <input value={this.state.email} type="text" className="form-control" onChange={this.handleChangeEmail} />
+                                            <label className="error" >{this.state.error.email} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Card Number</label>
+                                            <input value={this.state.card_number} type="text" className="form-control" onChange={this.handleChangeCardNumber} />
+                                            <label className="error" >{this.state.error.card_number} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Gender</label>
+                                            <select value={this.state.gender} className="form-control" onChange={this.handleChangeGender}>
+                                                <option value="">---Option---</option>
+                                                <option value="male">male</option>
+                                                <option value="female">female</option>
+                                            </select>
+                                            <label className="error" >{this.state.error.gender} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Birth Day</label>
+                                            <input value={this.state.birth_day} type="date" className="form-control" onChange={this.handleChangeBirthDay} />
+                                            <label className="error" >{this.state.error.birth_day} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Phone Contact</label>
+                                            <input value={this.state.phone_contact} type="text" className="form-control" onChange={this.handleChangePhoneContact} />
+                                            <label className="error" >{this.state.error.phone_contact} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Open Date</label>
+                                            <input value={this.state.opening_date} type="date" className="form-control" onChange={this.handleChangeOpenDate} />
+                                            <label className="error" >{this.state.error.opening_date} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Close Date</label>
+                                            <input value={this.state.close_date} type="date" className="form-control" onChange={this.handleChangeCloseDate} />
+                                            <label className="error" >{this.state.error.close_date} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Role</label>
+                                            <select value={this.state.role} className="form-control" onChange={this.handleChangeRole}>
+                                                <option value="">---Option---</option>
+                                                <option value="1">Admin</option>
+                                                <option value="0">User</option>
+                                            </select>
+                                            <label className="error" >{this.state.error.role} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Position </label>
+                                            <select value={this.state.selectedPosition} className="form-control" onChange={this.handleChangePositionId}>
+                                                <option value="">---Option---</option>
+                                                {this.showPosition()}
+                                            </select>
+                                            <label className="error" >{this.state.error.position_id} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Workspaces </label>
+                                            <select value={this.state.selectedWorkSpace} className="form-control" onChange={this.handleChangeWorkSpaceId}>
+                                                <option value="">---Option---</option>
+                                                {this.showWorkSpace()}
+                                            </select>
+                                            <label className="error" >{this.state.error.work_space_id} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Company </label>
+                                            <select value={this.state.selectedCompany} className="form-control" onChange={this.handleChangeCompanyId}>
+                                                <option value="">---Option---</option>
+                                                {this.showCompany()}
+                                            </select>
+                                            <label className="error" >{this.state.error.company_id} </label>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Avatar</label>
+                                            <input  type= "file" ref={input => {
+                                                this.fileInput = input;
+                                                }} className="form-control col-md-6" onChange={this.handleChangeAvatar}/>
+                                            <p className="error">{this.state.error.avatar} </p>
+                                            <label className="error" >{this.state.error.avatar} </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div className="form-group">
+                                    <button type = "submit" className="btn btn-primary" >Update User</button>
+                                </div>
+                            </form>
                         </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Name</label>
-                                <input value={this.state.name} type="text" className="form-control" onChange={this.handleChangeName} />
-                                <label className="error" >{this.state.error.name} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input value={this.state.email} type="text" className="form-control" onChange={this.handleChangeEmail} />
-                                <label className="error" >{this.state.error.email} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Card Number</label>
-                                <input value={this.state.card_number} type="text" className="form-control" onChange={this.handleChangeCardNumber} />
-                                <label className="error" >{this.state.error.card_number} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Gender</label>
-                                <select value={this.state.gender} className="form-control" onChange={this.handleChangeGender}>
-                                    <option value="">---Option---</option>
-                                    <option value="male">male</option>
-                                    <option value="female">female</option>
-                                </select>
-                                <label className="error" >{this.state.error.gender} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Birth Day</label>
-                                <input value={this.state.birth_day} type="date" className="form-control" onChange={this.handleChangeBirthDay} />
-                                <label className="error" >{this.state.error.birth_day} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Phone Contact</label>
-                                <input value={this.state.phone_contact} type="text" className="form-control" onChange={this.handleChangePhoneContact} />
-                                <label className="error" >{this.state.error.phone_contact} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Open Date</label>
-                                <input value={this.state.opening_date} type="date" className="form-control" onChange={this.handleChangeOpenDate} />
-                                <label className="error" >{this.state.error.opening_date} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Close Date</label>
-                                <input value={this.state.close_date} type="date" className="form-control" onChange={this.handleChangeCloseDate} />
-                                <label className="error" >{this.state.error.close_date} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Role</label>
-                                <select value={this.state.role} className="form-control" onChange={this.handleChangeRole}>
-                                    <option value="">---Option---</option>
-                                    <option value="1">Admin</option>
-                                    <option value="0">User</option>
-                                </select>
-                                <label className="error" >{this.state.error.role} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Position </label>
-                                <select value={this.state.selectedPosition} className="form-control" onChange={this.handleChangePositionId}>
-                                    <option value="">---Option---</option>
-                                    {this.showPosition()}
-                                </select>
-                                <label className="error" >{this.state.error.position_id} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Workspaces </label>
-                                <select value={this.state.selectedWorkSpace} className="form-control" onChange={this.handleChangeWorkSpaceId}>
-                                    <option value="">---Option---</option>
-                                    {this.showWorkSpace()}
-                                </select>
-                                <label className="error" >{this.state.error.work_space_id} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Company </label>
-                                <select value={this.state.selectedCompany} className="form-control" onChange={this.handleChangeCompanyId}>
-                                    <option value="">---Option---</option>
-                                    {this.showCompany()}
-                                </select>
-                                <label className="error" >{this.state.error.company_id} </label>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>Avatar</label>
-                                <input  type= "file" ref={input => {
-                                    this.fileInput = input;
-                                    }} className="form-control col-md-6" onChange={this.handleChangeAvatar}/>
-                                <p className="error">{this.state.error.avatar} </p>
-                                <label className="error" >{this.state.error.avatar} </label>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <div className="form-group">
-                        <button type = "submit" className="btn btn-primary" >Update User</button>
-                    </div>
-                </form>
+                    </section>
+                </div>
+
             </div>
         )
     }

@@ -173,7 +173,7 @@ export default class Header extends Component {
                                 </li>
                                 <li>
                                    <Link to="#">
-                                    <span><img src="/images/icon2.png" alt=""/></span>
+                                    <span><i className="fa fa-user"></i></span>
                                        {users.name}
                                    </Link>
                                     <ul>
