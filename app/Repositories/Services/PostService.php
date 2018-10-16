@@ -183,9 +183,8 @@ class PostService implements PostRepositoryInterface
                                     ->groupBy('posts.id')
                                     ->orderBy(\DB::raw('count(votes.post_id)'), 'DESC')
                                     ->get();
-        $collection = collect($result);
 
-        return $collection;
+        return $result;
     }
 
     public function getUserVote($postId)
