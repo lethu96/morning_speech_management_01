@@ -7,9 +7,10 @@ import Page from './Page';
 import Nav from '../auth/navbar';
 import SideBar from '../auth/sidebar';
 import ReadMoreReact from 'read-more-react';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
-const TOTAL_PER_PAGE = 3;
+const TOTAL_PER_PAGE = 10;
 
 class Post extends React.Component {
     constructor(props) {

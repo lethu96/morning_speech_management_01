@@ -11,6 +11,7 @@ class Login extends Component {
             email : '',
             password: '',
             role: '',
+            err:'',
         }
     }
 
@@ -23,7 +24,10 @@ class Login extends Component {
         })
         .then(response => {
             //this.setState({err: false});
-            this.setState({role: response.data.data});
+            this.setState({
+                role: response.data.data,
+                err :response.data.error,
+            });
             //console.log(response.data);
             //this.props.history.push("home") ;
           
@@ -41,7 +45,7 @@ class Login extends Component {
     }
 
 	render() {   
-        // let error = this.state.err ;
+         let error = this.state.err ;
         // let msg = (!error) ? 'Login Successful' : 'Wrong Credentials';
         // let name = (!error) ? 'alert alert-success' : 'alert alert-danger';
         let checkRole = this.state.role;
@@ -63,10 +67,11 @@ class Login extends Component {
                                 Sign In
                             </span>
                         </div>
-                        <div className="col-md-offset-2 col-md-8 col-md-offset-2">
-        
-                        </div>
+                        
                         <form className="login100-form validate-form" role="form" method="POST" onSubmit= {this.onSubmit.bind(this)}>
+                            <div className="">
+                            <label className="error-login" >{error} </label>
+                            </div>
                             <div className="wrap-input100 validate-input m-b-26">
                                 <span className="label-input100">Email</span>
                                 <input placeholder="Enter Email" className="input100" type="email" ref="email" className="form-control" name="email"  onChange= {this.onChange.bind(this)} required />
@@ -81,7 +86,6 @@ class Login extends Component {
 
                             <div className="flex-sb-m w-full p-b-30">
                                 <div className="contact100-form-checkbox">
-                                    <input className="input-checkbox100" id="ckb1" type="checkbox" name="remember-me"/>
                                     <label className="label-checkbox100">
                                      Remember Me
                                     </label>

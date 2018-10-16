@@ -37,10 +37,21 @@ class TagsTableSeeder extends Seeder
             ],
             [
 
-                'name' => 'Du hành'
+                'name' => 'Vũ trụ'
             ],
             [
-                'name' => 'Du ca'
+                'name' => 'Kinh nghiệm sống'
+            ],
+            [
+
+                'name' => 'Tình yêu'
+            ],
+            [
+
+                'name' => 'Trò chơi'
+            ],
+            [
+                'name' => 'Ăn uống'
             ],
         ];
 

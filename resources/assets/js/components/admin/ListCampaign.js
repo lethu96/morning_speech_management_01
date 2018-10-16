@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Table, Menu, Icon, Button } from 'semantic-ui-react';
 import { get } from 'axios';
@@ -65,6 +65,7 @@ class ListCampaign extends React.Component {
     }
 
     handleSubmit(event) {
+
         event.preventDefault();
     }
 

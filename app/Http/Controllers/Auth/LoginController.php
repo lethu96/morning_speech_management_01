@@ -93,7 +93,7 @@ class LoginController extends Controller
                     'code'      => 501,
                     'success'   => false,
                     'data'      => null,
-                    'error'     => true,
+                    'error'     => 'Wrong Information.Please check email or password',
                     ]
                 );
             }

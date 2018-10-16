@@ -44,7 +44,7 @@ class Nav extends Component {
                     <div className="navbar-header">
                     </div>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><Link to="/login">Login</Link></li>
+                        
                     </ul>
                 </div>
             </nav>

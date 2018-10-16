@@ -39,7 +39,6 @@ export default class PopupChoosePost extends React.Component {
                         calendar: data,
                     });
 
-                    //this.props.updateState(this.state.calendar)
                     window.location.reload(true);
                 });
                 
@@ -60,6 +59,7 @@ export default class PopupChoosePost extends React.Component {
                     <label className="text-ranking">Choose a Post</label>
                     <div className="dropdown">
                         <select value={this.state.selectedPost} className="form-control" onChange={this.handleChangePost.bind(this)}>
+                            <option  value="0">--Option---</option>
                             {this.props.posts.map(post=> (
                                 <option key={post.id} value={post.id}>{post.title}</option>
                             )

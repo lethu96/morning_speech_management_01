@@ -57,7 +57,7 @@ class CalendarService implements CalendarRepositoryInterface
         $startDateOfWeek = date_format($now->startOfWeek(), "Y-m-d");
         $endDateofWeek = date_format($now->endOfWeek(), "Y-m-d");
 
-        $campaign = Campaign::whereDate('from_date', '<=', $startDateOfWeek)->whereDate('to_date', '<=', $endDateofWeek)->first();
+        $campaign = Campaign::whereDate('from_date', '=', $startDateOfWeek)->whereDate('to_date', '<=', $endDateofWeek)->first();
 
         $calendar = $campaign->calendars;
 
